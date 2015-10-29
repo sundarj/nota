@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>of nota</title>
+    <link rel="stylesheet" href="use/css/nota.css">
+</head>
+<body>
+    
+    <header class="main-head">
+        <h1>notæ</h1>
+    </header>
+    
+    <main></main>
+    
+    
+    <script id="init" type="text/html">
+    
+        {{>header}}
+        
+        {{#active}}
+            {{>note}}
+        {{/}}
+        
+    </script>
+    
+    <script id="header" type="text/html">
+        <header class="notepad">
+            <nav class="notes">
+                {{#each notae}}
+                    <button data-for="{{id}}" on-click="open(event)">{{title}}</button>
+                {{/each}}
+                <button class="create" on-click="create(event)">new</button>
+            </nav>
+        </header>
+    </script>
+    
+    <script id="note" type="text/html">
+        <article class="note">
+            <header class="note-head">
+                <input class="note-title" value="{{title}}" on-input="edit(event)">
+            </header>
+            
+            <textarea class="note-contents" value="{{contents}}" on-input="edit(event)"></textarea>
+        </article>
+    </script>
+    
+    <script src="http://cdn.ractivejs.org/latest/ractive.min.js"></script>
+    <script src="use/js/localforage.js"></script>
+    <script src="use/js/nota.js"></script>
+</body>
+</html>
