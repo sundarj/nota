@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>of nota</title>
-    <link rel="stylesheet" href="use/css/nota.css">
-</head>
-<body>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> of nota </title>
+  
+  <link rel="stylesheet" href="use/sheets/nota.css">
+  <link rel="import" id="notae-list-tmpl" href="use/components/notae-list.html">
     
-    <header class="main-head">
-        <h1>notæ</h1>
-    </header>
+  <header class="head">
+      <h1> nota </h1>
+  </header>
     
-    <main></main>
+  <main>
+    <notae-list :items="notae"></notae-list>
+    <!--<nota-editor></nota-editor>-->
+  </main>
+  
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
+  
+  <script>
+    'use strict'
     
+    Vue.component('notae-list', {
+      props: [ 'items' ],
+      template: document.getElementById('notae-list-tmpl').import.body,
+      methods: {
+        set (event) {
+          this.$dispatch( 'set', event.target.dataset.item )
+        }
+      },
+      replace: false,
+    })
     
-    <script id="init" type="text/html">
-    
-        {{>header}}
-        
-        {{#active}}
-            {{>note}}
-        {{/}}
-        
-    </script>
-    
-    <script id="header" type="text/html">
-        <header class="notepad">
-            <nav class="notes">
-                {{#each notae}}
-                    <button data-for="{{id}}" on-click="open(event)">{{title}}</button>
-                {{/each}}
-                <button class="create" on-click="create(event)">new</button>
-            </nav>
-        </header>
-    </script>
-    
-    <script id="note" type="text/html">
-        <article class="note">
-            <header class="note-head">
-                <input class="note-title" value="{{title}}" on-input="edit(event)">
-            </header>
-            
-            <textarea class="note-contents" value="{{contents}}" on-input="edit(event)"></textarea>
-        </article>
-    </script>
-    
-    <script src="http://cdn.ractivejs.org/latest/ractive.min.js"></script>
-    <script src="use/js/localforage.js"></script>
-    <script src="use/js/nota.js"></script>
-</body>
+    const vm = new Vue({
+      el: 'main',
+      data: {
+        notae: [ 'An', 'note', 'for', 'thee' ],
+      },
+      events: {
+        set (nota) { console.log(nota) }
+      },
+    })
+  </script>
+
 </html>
