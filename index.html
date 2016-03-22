@@ -6,14 +6,14 @@
   <title> of nota </title>
   
   <link rel="stylesheet" href="use/sheets/nota.css">
-  <link rel="import" id="notae-list-tmpl" href="use/components/notae-list.html">
+  <link rel="import" id="nota-list-tmpl" href="use/components/nota-list.html">
     
   <header class="head">
       <h1> nota </h1>
   </header>
     
   <main>
-    <notae-list :items="notae"></notae-list>
+    <nota-list :items="notae"></notae-list>
     <!--<nota-editor></nota-editor>-->
   </main>
   
@@ -22,9 +22,9 @@
   <script>
     'use strict'
     
-    Vue.component('notae-list', {
+    Vue.component('nota-list', {
       props: [ 'items' ],
-      template: document.getElementById('notae-list-tmpl').import.body,
+      template: document.getElementById('nota-list-tmpl').import.body,
       methods: {
         set (event) {
           this.$dispatch( 'set', event.target.dataset.item )
