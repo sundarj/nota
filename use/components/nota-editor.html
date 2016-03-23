@@ -1,0 +1,49 @@
+<div am-editor="root">
+
+  <div am-editor="field">
+    <span class="l-screen-reader" name="editor-title">Title</span>
+    <input am-editor="title" placeholder="title" aria-labelledby="editor-title"
+           :value="item.title" v-on:input="setTitle">
+  </div>
+
+  <div am-editor="field">
+    <span class="l-screen-reader" name="editor-content">Content</span>
+    <div am-editor="content" aria-labelledby="editor-content">
+      <textarea v-for="line in lines" am-editor="entry" :value="line" v-on:input="setContent"></textarea>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+
+  (function(Vue) {
+
+    'use strict'
+
+    Vue.component('nota-editor', {
+      props: [ 'item' ],
+
+      template: this.querySelector('[am-editor=root').outerHTML,
+
+      replace: false,
+
+      methods: {
+        setTitle (event) {
+          this.$dispatch( 'setTitle', event.target.value )
+        },
+
+        setContent (event) {
+          this.$dispatch( 'setContent', event.target.value )
+        },
+      },
+
+      computed: {
+        lines() { return this.item.content.trim().split("\n") }
+      },
+    })
+
+  }.call(document.currentScript.ownerDocument, Vue))
+
+</script>

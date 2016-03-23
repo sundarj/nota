@@ -1,3 +1,28 @@
-<ul class="list-root">
-    <li class="list-item" v-for="item in items" v-on:click="set" :data-item="item"> {{ item }} </li>
+<ul am-list="root">
+    <li am-list="item" v-for="item in items" v-on:click="setNota" :data-item="item">{ item }</li>
 </ul>
+
+
+<script>
+
+  (function(Vue) {
+
+    'use strict'
+
+    Vue.component('nota-list', {
+      props: [ 'items' ],
+
+      template: this.querySelector('[am-list=root]').outerHTML,
+
+      methods: {
+        setNota (event) {
+          this.$dispatch( 'setNota', event.target.dataset.item )
+        },
+      },
+
+      replace: false,
+    })
+
+  }.call(document.currentScript.ownerDocument, Vue))
+
+</script>

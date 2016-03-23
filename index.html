@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> of nota </title>
-  
-  <link rel="stylesheet" href="use/sheets/nota.css">
-  <link rel="import" id="nota-list-tmpl" href="use/components/nota-list.html">
-    
-  <header class="head">
-      <h1> nota </h1>
-  </header>
-    
+
+  <link rel="stylesheet" href="use/sheets/base.css">
+
   <main>
-    <nota-list :items="notae"></notae-list>
-    <!--<nota-editor></nota-editor>-->
+    <nota-list :items="notae"></nota-list>
+    <nota-editor :item="nota"></nota-editor>
   </main>
-  
+
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
-  
+
+  <link rel="import" href="use/components/nota-list.html">
+  <link rel="import" href="use/components/nota-editor.html">
+
   <script>
     'use strict'
-    
-    Vue.component('nota-list', {
-      props: [ 'items' ],
-      template: document.getElementById('nota-list-tmpl').import.body,
-      methods: {
-        set (event) {
-          this.$dispatch( 'set', event.target.dataset.item )
-        }
-      },
-      replace: false,
-    })
-    
+
+    Vue.config.debug = true
+    Vue.config.delimiters = [ '{' , '}' ]
+
+    const notae = [
+
+      { title: 'An',   content: 'duup\nlex', },
+      { title: 'note', content: 'hely', },
+      { title: 'for',  content: 'tropic', },
+      { title: 'thee', content: 'yuna', },
+
+    ]
+
     const vm = new Vue({
       el: 'main',
+
       data: {
-        notae: [ 'An', 'note', 'for', 'thee' ],
+        nota: {
+          title: '',
+          content: '',
+        },
       },
+
+      computed: {
+        notae() { return notae.map(nota => nota.title) },
+      },
+
       events: {
-        set (nota) { console.log(nota) }
+        setNota (title) {
+          this.nota = notae.filter(nota => nota.title === title)[0]
+        },
+
+        setTitle (title) {
+          console.log(title)
+        },
+
+        setContent (content) {
+          console.log(content)
+        },
       },
     })
   </script>
