@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="use/sheets/base.css">
 
   <main>
-    <nota-list :items="notae"></nota-list>
-    <nota-editor :item="nota"></nota-editor>
+    <nota-list :items="titles"></nota-list>
+    <nota-editor :title="title" :content="content"></nota-editor>
   </main>
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
@@ -23,41 +23,32 @@
     Vue.config.debug = true
     Vue.config.delimiters = [ '{' , '}' ]
 
-    const notae = [
-
-      { title: 'An',   content: 'duup\nlex', },
-      { title: 'note', content: 'hely', },
-      { title: 'for',  content: 'tropic', },
-      { title: 'thee', content: 'yuna', },
-
-    ]
+    const notae = {
+      'An':   { content: 'duup\nlex' },
+      'note': { content: 'hely' },
+      'for':  { content: 'tropic' },
+      'thee': { content: 'yuna' }
+    }
 
     const vm = new Vue({
       el: 'main',
-
+      
       data: {
-        nota: {
-          title: '',
-          content: '',
-        },
+        title: '',
+        content: '',
+        
+        notae,
       },
-
+      
       computed: {
-        notae() { return notae.map(nota => nota.title) },
+        titles() { return Object.keys( this.notae ) }
       },
-
+      
       events: {
-        setNota (title) {
-          this.nota = notae.filter(nota => nota.title === title)[0]
-        },
-
-        setTitle (title) {
-          console.log(title)
-        },
-
-        setContent (content) {
-          console.log(content)
-        },
+        nota(data) {
+          this.title = data.title
+          this.content = this.notae[ data.title ].content
+        }
       },
     })
   </script>

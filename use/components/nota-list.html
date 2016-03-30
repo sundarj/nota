@@ -1,5 +1,9 @@
 <ul am-list="root">
-    <li am-list="item" v-for="item in items" v-on:click="setNota" :data-item="item">{ item }</li>
+    <li am-list="item"
+        v-on:click="setNota"
+        v-for="item in items"
+        :data-item="item"
+        v-text="item"></li>
 </ul>
 
 
@@ -12,11 +16,11 @@
     Vue.component('nota-list', {
       props: [ 'items' ],
 
-      template: this.querySelector('[am-list=root]').outerHTML,
+      template: this.querySelector( '[am-list=root]' ).outerHTML,
 
       methods: {
         setNota (event) {
-          this.$dispatch( 'setNota', event.target.dataset.item )
+          this.$dispatch( 'nota', { title: event.target.dataset.item } )
         },
       },
 
