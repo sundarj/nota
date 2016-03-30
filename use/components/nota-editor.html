@@ -1,14 +1,14 @@
 <div am-editor="root">
 
   <div am-editor="field">
-    <span class="l-screen-reader" name="editor-title">Title</span>
+    <span class="l-screen-reader" name="editor-title"> Title </span>
 
     <input am-editor="title" placeholder="title" aria-labelledby="editor-title"
            :value="title">
   </div>
 
   <div am-editor="field">
-    <span class="l-screen-reader" name="editor-content">Content</span>
+    <span class="l-screen-reader" name="editor-content"> Content </span>
 
     <div am-editor="content" aria-labelledby="editor-content">
       <textarea v-for="line in lines" am-editor="entry" :value="line"></textarea>
@@ -35,7 +35,7 @@
         lines() {
           return this.content.trim().split("\n")
         }
-      }
+      },
     })
 
   }.call(document.currentScript.ownerDocument, Vue))
