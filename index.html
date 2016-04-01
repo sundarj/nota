@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="use/sheets/base.css">
 
   <main>
-    <nota-list :items="titles"></nota-list>
-    <nota-editor :title="title" :content="content"></nota-editor>
+    <nota-list :items="notae"></nota-list>
+    <nota-editor :item="nota"></nota-editor>
   </main>
 
   <script src="use/scripts/util.js"></script>
@@ -31,12 +31,12 @@
     // try {
       // notae = JSON.parse( localStorage.notae )
     // }  catch(er) {
-      notae = {
-        'An':   { content: [ 'duup' , 'lex' ] },
-        'note': { content: [ 'hely' ] },
-        'for':  { content: [ 'tropic' ] },
-        'thee': { content: [ 'yuna' ] },
-      }
+      notae = [
+        { id: u.uid() , title: 'An'   , content: [ 'duup' , 'lex' ] },
+        { id: u.uid() , title: 'note' , content: [ 'hely' ] },
+        { id: u.uid() , title: 'for'  , content: [ 'tropic' ] },
+        { id: u.uid() , title: 'thee' , content: [ 'yuna' ] },
+      ]
     // }
       
 
@@ -44,27 +44,22 @@
       el: 'main',
 
       data: {
-        title: '',
-        content: [],
-
+        nota: null,
         notae,
-      },
-
-      computed: {
-        titles() { return Object.keys( this.notae ) },
       },
 
       events: {
         nota(data) {
-          this.title = data.title
-          this.content = this.notae[ data.title ].content
+          this.nota = this.notae.filter(nota => nota.id === data.id)[0]
         },
         
         edit(data) {
-          this.notae[ data.original ] = {
-            title: data.title,
-            content: data.content,
-          }
+          this.notae.forEach(nota => {
+            if ( nota.id === data.id ) {
+              this.notae.title = data.title
+              this.notae.content = data.content
+            }
+          })
         },
       },
     })

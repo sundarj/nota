@@ -1,23 +1,22 @@
-<div am-editor="root">
+<div am-editor="root" v-if="item">
 
-  <div am-editor="field" v-if="title">
+  <div am-editor="field">
     <span class="l-screen-reader" name="editor-title"> Title </span>
 
     <input am-editor="title" placeholder="title" aria-labelledby="editor-title"
-      v-model="title">
+      v-model="item.title" v-on:keydown="key">
   </div>
 
-  <div am-editor="field" v-if="content.length">
+  <div am-editor="field">
     <span class="l-screen-reader" name="editor-content"> Content </span>
 
     <div am-editor="content" aria-labelledby="editor-content" 
       v-on:keydown="key">
       <textarea am-editor="entry" placeholder="..."
-        v-for="field in content"
-        v-model="content[$index]"
+        v-for="field of item.content"
+        v-model="item.content[$index]"
         v-focus="$index === focused"
         :value="field"
-        data-original="{* field }"
         :data-index="$index"
         track-by="$index"></textarea>
     </div>
@@ -33,7 +32,7 @@
     'use strict'
 
     Vue.component('nota-editor', {
-      props: [ 'title' , 'content' ],
+      props: [ 'item' ],
 
       template: this.querySelector( '[am-editor=root]' ).outerHTML,
 
@@ -55,16 +54,16 @@
           }
           
           this.$dispatch('edit', {
-            original: event.target.dataset.original,
-            title: this.title,
-            content: this.content,
+            id: this.item.id,
+            title: this.item.title,
+            content: this.item.content,
           })
         },
         
         create(event) {
           
           const $index = +event.target.dataset.index + 1
-          this.content.splice($index , 0 , '')
+          this.item.content.splice($index , 0 , '')
           Vue.nextTick(() => this.focused = $index)
         }
       },

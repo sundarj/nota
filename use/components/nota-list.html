@@ -1,9 +1,9 @@
 <ul am-list="root">
     <li am-list="item"
       v-on:click="setNota"
-      v-for="item in items"
-      :data-item="item"
-      v-text="item"></li>
+      v-for="item of items"
+      :data-id="item.id"
+      v-text="item.title"></li>
 </ul>
 
 
@@ -20,8 +20,9 @@
 
       methods: {
         setNota(event) {
-
-          this.$dispatch( 'nota', { title: event.target.dataset.item } )
+          const self = event.target.dataset
+          
+          this.$dispatch( 'nota', { id: self.id } )
         },
       },
 
