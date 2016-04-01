@@ -12,8 +12,11 @@
     <nota-editor :title="title" :content="content"></nota-editor>
   </main>
 
+  <script src="use/scripts/util.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
-
+  <script src="https://cdn.rawgit.com/simplesmiler/vue-focus/0.1.1/dist/vue-focus.min.js"></script>
+  
+  
   <link rel="import" href="use/components/nota-list.html">
   <link rel="import" href="use/components/nota-editor.html">
 
@@ -24,26 +27,26 @@
     Vue.config.delimiters = [ '{' , '}' ]
 
     const notae = {
-      'An':   { content: 'duup\nlex' },
-      'note': { content: 'hely' },
-      'for':  { content: 'tropic' },
-      'thee': { content: 'yuna' },
+      'An':   { content: [ 'duup' , 'lex' ] },
+      'note': { content: [ 'hely' ] },
+      'for':  { content: [ 'tropic' ] },
+      'thee': { content: [ 'yuna' ] },
     }
 
     const vm = new Vue({
       el: 'main',
-      
+
       data: {
         title: '',
-        content: '',
-        
+        content: [],
+
         notae,
       },
-      
+
       computed: {
         titles() { return Object.keys( this.notae ) },
       },
-      
+
       events: {
         nota(data) {
           this.title = data.title
