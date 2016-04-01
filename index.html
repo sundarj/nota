@@ -26,12 +26,19 @@
     Vue.config.debug = true
     Vue.config.delimiters = [ '{' , '}' ]
 
-    const notae = {
-      'An':   { content: [ 'duup' , 'lex' ] },
-      'note': { content: [ 'hely' ] },
-      'for':  { content: [ 'tropic' ] },
-      'thee': { content: [ 'yuna' ] },
-    }
+    let notae;
+    
+    // try {
+      // notae = JSON.parse( localStorage.notae )
+    // }  catch(er) {
+      notae = {
+        'An':   { content: [ 'duup' , 'lex' ] },
+        'note': { content: [ 'hely' ] },
+        'for':  { content: [ 'tropic' ] },
+        'thee': { content: [ 'yuna' ] },
+      }
+    // }
+      
 
     const vm = new Vue({
       el: 'main',
@@ -51,9 +58,18 @@
         nota(data) {
           this.title = data.title
           this.content = this.notae[ data.title ].content
-        }
+        },
+        
+        edit(data) {
+          this.notae[ data.original ] = {
+            title: data.title,
+            content: data.content,
+          }
+        },
       },
     })
+    
+    // window.onbeforeunload = () => localStorage.notae = JSON.stringify( vm.$data.notae )
   </script>
 
 </html>

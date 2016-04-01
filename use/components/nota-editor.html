@@ -17,6 +17,7 @@
         v-model="content[$index]"
         v-focus="$index === focused"
         :value="field"
+        data-original="{* field }"
         :data-index="$index"
         track-by="$index"></textarea>
     </div>
@@ -50,8 +51,14 @@
           if ( event.shiftKey && u.key(event) === 'enter' ) {
             event.preventDefault()
             
-            this.create(event)
+            return this.create(event)
           }
+          
+          this.$dispatch('edit', {
+            original: event.target.dataset.original,
+            title: this.title,
+            content: this.content,
+          })
         },
         
         create(event) {
