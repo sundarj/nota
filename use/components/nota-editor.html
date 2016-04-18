@@ -10,7 +10,7 @@
   <div am-editor="field">
     <span class="l-screen-reader" name="editor-content"> Content </span>
 
-    <div am-editor="content" aria-labelledby="editor-content" 
+    <div am-editor="content" aria-labelledby="editor-content"
       v-on:keydown="key">
       <textarea am-editor="entry" placeholder="..."
         v-for="field of item.content"
@@ -27,17 +27,18 @@
 
 <script>
 
-  (function(Vue) {
+  (function(window, Vue) {
 
     'use strict'
 
-    Vue.component('nota-editor', {
+
+    const NotaEditor = Vue.extend({
       props: [ 'item' ],
 
       template: this.querySelector( '[am-editor=root]' ).outerHTML,
 
       replace: false,
-      
+
       data: function() {
         return {
           focused: 0
@@ -49,30 +50,33 @@
 
           if ( event.shiftKey && u.key(event) === 'enter' ) {
             event.preventDefault()
-            
+
             return this.create(event)
           }
-          
+
           this.$dispatch('edit', {
             id: this.item.id,
             title: this.item.title,
             content: this.item.content,
           })
         },
-        
+
         create(event) {
-          
+
           const $index = +event.target.dataset.index + 1
           this.item.content.splice($index , 0 , '')
           Vue.nextTick(() => this.focused = $index)
         }
       },
-      
+
       directives: {
         focus: VueFocus.focus
       },
     })
 
-  }.call(document.currentScript.ownerDocument, Vue))
+
+    objectPath.set(window, 'nota.components.NotaEditor', NotaEditor)
+
+  }.call(document.currentScript.ownerDocument, window, Vue))
 
 </script>

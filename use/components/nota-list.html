@@ -9,11 +9,12 @@
 
 <script>
 
-  (function(Vue) {
+  (function(window, Vue) {
 
     'use strict'
 
-    Vue.component('nota-list', {
+
+    const NotaList = Vue.extend({
       props: [ 'items' ],
 
       template: this.querySelector( '[am-list=root]' ).outerHTML,
@@ -21,7 +22,7 @@
       methods: {
         setNota(event) {
           const self = event.target.dataset
-          
+
           this.$dispatch( 'nota', { id: self.id } )
         },
       },
@@ -29,6 +30,9 @@
       replace: false,
     })
 
-  }.call(document.currentScript.ownerDocument, Vue))
+
+    objectPath.set(window, 'nota.components.NotaList', NotaList)
+
+  }.call(document.currentScript.ownerDocument, window, Vue))
 
 </script>
