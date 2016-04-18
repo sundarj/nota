@@ -8,10 +8,8 @@
   const lower = (str) => (str||'').toLowerCase()
   
   u.key = function key(event) {
-    return (
-      lower(event.key) ||
-      lower(event.keyIdentifier) ||
-      lower( keymap[event.keyCode] )
+    return lower(
+      event.key || event.keyIdentifier || keymap[event.keyCode]
     )
   }
   
