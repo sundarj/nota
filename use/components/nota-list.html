@@ -9,10 +9,7 @@
 
 <script>
 
-  (function(window, Vue) {
-
-    'use strict'
-
+  (function(window) {
 
     const NotaList = Vue.extend({
       props: [ 'items' ],
@@ -33,6 +30,6 @@
 
     objectPath.set(window, 'nota.components.NotaList', NotaList)
 
-  }.call(document.currentScript.ownerDocument, window, Vue))
+  }.call(document.currentScript.ownerDocument, window))
 
 </script>

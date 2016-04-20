@@ -27,12 +27,9 @@
 
 <script>
 
-  (function(window, Vue) {
+  (function(window, u) {
 
-    'use strict'
-
-
-    const NotaEditor = Vue.extend({
+    const NotaEditor = {
       props: [ 'item' ],
 
       template: this.querySelector( '[am-editor=root]' ).outerHTML,
@@ -72,11 +69,11 @@
       directives: {
         focus: VueFocus.focus
       },
-    })
+    }
 
 
     objectPath.set(window, 'nota.components.NotaEditor', NotaEditor)
 
-  }.call(document.currentScript.ownerDocument, window, Vue))
+  }.call(document.currentScript.ownerDocument, window, u))
 
 </script>

@@ -8,15 +8,20 @@
   <link rel="stylesheet" href="use/sheets/base.css">
 
   <main>
-    <nota-list :items="notae"></nota-list>
+    <router-view></router-view>
+    
     <nota-editor :item="nota"></nota-editor>
   </main>
+
+  <template>
+    <nota-list :items="notae"></nota-list>
+  </template>
 
   <script src="use/scripts/util.js"></script>
   <script src="https://rawgit.com/mariocasciaro/object-path/master/index.js"></script>
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
-  <script src="https://cdn.rawgit.com/inca/voie/master/dist/voie.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.10/vue-router.js"></script>
   <script src="https://cdn.rawgit.com/simplesmiler/vue-focus/0.1.1/dist/vue-focus.min.js"></script>
 
 
@@ -24,55 +29,68 @@
   <link rel="import" href="use/components/nota-editor.html">
 
   <script>
-    'use strict'
+    (function(document, Vue, VueRouter, objectPath) {
 
-    Vue.config.debug = true
-    Vue.config.delimiters = [ '{' , '}' ]
+      'use strict'
 
-    let notae;
-
-    // try {
-      // notae = JSON.parse( localStorage.notae )
-    // }  catch(er) {
-      notae = [
-        { id: u.uid() , title: 'An'   , content: [ 'duup' , 'lex' ] },
-        { id: u.uid() , title: 'note' , content: [ 'hely' ] },
-        { id: u.uid() , title: 'for'  , content: [ 'tropic' ] },
-        { id: u.uid() , title: 'thee' , content: [ 'yuna' ] },
-      ]
-    // }
+      Vue.config.debug = true
+      Vue.config.delimiters = [ '{' , '}' ]
+      
+      Vue.component( 'nota-editor' , objectPath.get(window, 'nota.components.NotaEditor') );
 
 
-    const vm = new Vue({
-      el: 'main',
+      let notae;
 
-      data: {
-        nota: null,
-        notae,
-      },
+      // try {
+        // notae = JSON.parse( localStorage.notae )
+      // }  catch(er) {
+        notae = [
+          { id: u.uid() , title: 'An'   , content: [ 'duup' , 'lex' ] },
+          { id: u.uid() , title: 'note' , content: [ 'hely' ] },
+          { id: u.uid() , title: 'for'  , content: [ 'tropic' ] },
+          { id: u.uid() , title: 'thee' , content: [ 'yuna' ] },
+        ]
+      // }
 
-      events: {
-        nota(data) {
-          this.nota = this.notae.filter(nota => nota.id === data.id)[0]
+
+      const App = Vue.extend({
+        template: document.querySelector('template').innerHTML,
+
+        data: function() {
+          return {
+            nota: null,
+            notae,
+          }
         },
 
-        edit(data) {
-          this.notae.forEach((nota, idx) => {
-            if ( nota.id === data.id ) {
-              this.notae[idx].title = data.title
-              this.notae[idx].content = data.content
-            }
-          })
+        events: {
+          nota(data) {
+            this.nota = this.notae.filter(nota => nota.id === data.id)[0]
+          },
+
+          edit(data) {
+            this.notae.forEach((nota, idx) => {
+              if ( nota.id === data.id ) {
+                this.notae[idx].title = data.title
+                this.notae[idx].content = data.content
+              }
+            })
+          },
         },
-      },
 
-      components: {
-        'nota-list': objectPath.get(window, 'nota.components.NotaList'),
-        'nota-editor': objectPath.get(window, 'nota.components.NotaEditor'),
-      }
-    })
+        components: {
+          'nota-list': objectPath.get(window, 'nota.components.NotaList'),
+        },
+      })
 
-    // window.onbeforeunload = () => localStorage.notae = JSON.stringify( vm.$data.notae )
+
+      const router = new VueRouter({ history: true })
+
+      router.start(App, 'main')
+
+      // window.onbeforeunload = () => localStorage.notae = JSON.stringify( vm.$data.notae )
+
+    })(document, Vue, VueRouter, objectPath)
   </script>
 
 </html>
