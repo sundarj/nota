@@ -34,8 +34,6 @@
 
       template: this.querySelector( '[am-editor=root]' ).outerHTML,
 
-      replace: false,
-
       data: function() {
         return {
           focused: 0
@@ -62,13 +60,9 @@
 
           const $index = +event.target.dataset.index + 1
           this.item.content.splice($index , 0 , '')
-          Vue.nextTick(() => this.focused = $index)
+          this.$nextTick(() => this.focused = $index)
         }
-      },
-
-      directives: {
-        focus: VueFocus.focus
-      },
+      }
     }
 
 

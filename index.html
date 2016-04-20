@@ -6,27 +6,25 @@
   <title> of nota </title>
 
   <link rel="stylesheet" href="use/sheets/base.css">
-
-  <main>
-    <router-view></router-view>
-    
-    <nota-editor :item="nota"></nota-editor>
-  </main>
-
-  <template>
-    <nota-list :items="notae"></nota-list>
-  </template>
-
+  
+  
   <script src="use/scripts/util.js"></script>
   <script src="https://rawgit.com/mariocasciaro/object-path/master/index.js"></script>
+  
+  <link rel="import" href="use/components/nota-list.html">
+  <link rel="import" href="use/components/nota-editor.html">
+
+  <main>
+    <template>
+      <router-view :items="notae"></router-view>
+      
+      <nota-editor :item="nota"></nota-editor>
+    </template>
+  </main>
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.10/vue-router.js"></script>
   <script src="https://cdn.rawgit.com/simplesmiler/vue-focus/0.1.1/dist/vue-focus.min.js"></script>
-
-
-  <link rel="import" href="use/components/nota-list.html">
-  <link rel="import" href="use/components/nota-editor.html">
 
   <script>
     (function(document, Vue, VueRouter, objectPath) {
@@ -34,9 +32,16 @@
       'use strict'
 
       Vue.config.debug = true
-      Vue.config.delimiters = [ '{' , '}' ]
+      Vue.directive( 'focus' , VueFocus.focus )
       
-      Vue.component( 'nota-editor' , objectPath.get(window, 'nota.components.NotaEditor') );
+      
+      let NotaEditor, NotaList
+      
+      Vue.component( 'nota-editor' , 
+        NotaEditor = objectPath.get(window, 'nota.components.NotaEditor')
+      )
+      
+      NotaList = Vue.extend( objectPath.get(window, 'nota.components.NotaList') )
 
 
       let notae;
@@ -58,35 +63,47 @@
 
         data: function() {
           return {
-            nota: null,
             notae,
           }
         },
 
         events: {
-          nota(data) {
-            this.nota = this.notae.filter(nota => nota.id === data.id)[0]
+          nota({ id }) {
+            this.nota = this.notae.filter(nota => nota.id === id)[0]
           },
 
-          edit(data) {
+          edit({ id, title, content }) {
             this.notae.forEach((nota, idx) => {
-              if ( nota.id === data.id ) {
-                this.notae[idx].title = data.title
-                this.notae[idx].content = data.content
+              if ( nota.id === id ) {
+                this.notae[idx].title = title
+                this.notae[idx].content = content
               }
             })
           },
         },
-
-        components: {
-          'nota-list': objectPath.get(window, 'nota.components.NotaList'),
-        },
+        
+        computed: {
+          nota() {
+            return this.notae.filter(nota => nota.id === this.$route.params.id)[0]
+          }
+        }
       })
 
 
       const router = new VueRouter({ history: true })
+      
+      router.map({
+        '/': {
+          component: NotaList,
+        },
+        
+        '/nota/:id': {
+          name: 'nota',
+          component: NotaList,
+        },
+      })
 
-      router.start(App, 'main')
+      router.start(App, 'template')
 
       // window.onbeforeunload = () => localStorage.notae = JSON.stringify( vm.$data.notae )
 

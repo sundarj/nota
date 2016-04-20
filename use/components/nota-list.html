@@ -1,6 +1,6 @@
 <ul am-list="root">
     <li am-list="item"
-      v-on:click="setNota"
+      v-link="{ name: 'nota' , params: { id: item.id } }"
       v-for="item of items"
       :data-id="item.id"
       v-text="item.title"></li>
@@ -9,27 +9,17 @@
 
 <script>
 
-  (function(window) {
+  (function(window, u) {
 
-    const NotaList = Vue.extend({
+    const NotaList = {
       props: [ 'items' ],
 
       template: this.querySelector( '[am-list=root]' ).outerHTML,
-
-      methods: {
-        setNota(event) {
-          const self = event.target.dataset
-
-          this.$dispatch( 'nota', { id: self.id } )
-        },
-      },
-
-      replace: false,
-    })
+    }
 
 
     objectPath.set(window, 'nota.components.NotaList', NotaList)
 
-  }.call(document.currentScript.ownerDocument, window))
+  }.call(document.currentScript.ownerDocument, window, u))
 
 </script>

@@ -13,7 +13,7 @@
     )
   }
   
-  u.uid = function() {
+  u.uid = function uuid() {
     function s(n) { return h((Math.random() * (1<<(n<<2)))^Date.now()).slice(-n); }
     function h(n) { return (n|0).toString(16); }
     return  [
