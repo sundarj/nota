@@ -27,7 +27,7 @@
 
 <script>
 
-  (function(window, u) {
+  (function({ window, u }) {
 
     const NotaEditor = {
       props: [ 'item' ],
@@ -70,6 +70,6 @@
 
     objectPath.set(window, 'nota.components.NotaEditor', NotaEditor)
 
-  }.call(document.currentScript.ownerDocument, window, u))
+  }).call(document.currentScript.ownerDocument, this)
 
 </script>

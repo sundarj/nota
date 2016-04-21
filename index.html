@@ -28,7 +28,7 @@
   <script src="https://cdn.rawgit.com/simplesmiler/vue-focus/0.1.1/dist/vue-focus.min.js"></script>
 
   <script>
-    (function(document, Vue, VueRouter, objectPath) {
+    (function({ document, Vue, VueRouter, objectPath }) {
 
       'use strict'
 
@@ -111,7 +111,7 @@
 
       // window.onbeforeunload = () => localStorage.notae = JSON.stringify( vm.$data.notae )
 
-    })(document, Vue, VueRouter, objectPath)
+    })(this)
   </script>
 
 </html>

@@ -9,7 +9,7 @@
 
 <script>
 
-  (function(window, u) {
+  (function({ window, u }) {
 
     const NotaList = {
       props: [ 'items' ],
@@ -20,6 +20,6 @@
 
     objectPath.set(window, 'nota.components.NotaList', NotaList)
 
-  }.call(document.currentScript.ownerDocument, window, u))
+  }).call(document.currentScript.ownerDocument, this)
 
 </script>
