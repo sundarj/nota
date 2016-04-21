@@ -28,9 +28,9 @@
   <script src="https://cdn.rawgit.com/simplesmiler/vue-focus/0.1.1/dist/vue-focus.min.js"></script>
 
   <script>
+     'use strict';
+    
     (function({ document, Vue, VueRouter, objectPath }) {
-
-      'use strict'
 
       Vue.config.debug = true
       Vue.directive( 'focus' , VueFocus.focus )
@@ -93,8 +93,10 @@
         name: 'nota',
       })
 
+      let $root
+      if ( location.pathname.slice(1) ) $root = location.pathname
 
-      const router = new VueRouter({ history: true  , root: location.pathname })
+      const router = new VueRouter({ history: true  , root: $root })
       
       router.map({
         '/': {
