@@ -1,8 +1,8 @@
 <ul am-list="root">
     <li am-list="item"
-      v-link="{ name: 'nota' , params: { id: item.id } }"
+      v-link="{ name: 'nota' , params: { id: item.$id } }"
       v-for="item of items"
-      :data-id="item.id"
+      :data-id="item.$id"
       v-text="item.title"></li>
 </ul>
 

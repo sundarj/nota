@@ -7,20 +7,21 @@
 
   <link rel="stylesheet" href="use/sheets/base.css">
   
-  
   <script src="use/scripts/util.js"></script>
   <script src="https://rawgit.com/mariocasciaro/object-path/master/index.js"></script>
   
   <link rel="import" href="use/components/nota-list.html">
   <link rel="import" href="use/components/nota-editor.html">
+  
+  <main></main>
 
-  <main>
-    <template>
-      <router-view :items="notae"></router-view>
+  <template>
+      <main>
+        <router-view :items="notae"></router-view>
       
-      <nota-editor :item="nota"></nota-editor>
-    </template>
-  </main>
+        <nota-editor :item="nota"></nota-editor>
+      </main>
+  </template>
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.10/vue-router.js"></script>
@@ -44,16 +45,16 @@
       NotaList = Vue.extend( objectPath.get(window, 'nota.components.NotaList') )
 
 
-      let notae;
+      let $notae;
 
       // try {
         // notae = JSON.parse( localStorage.notae )
       // }  catch(er) {
-        notae = [
-          { id: u.uid() , title: 'An'   , content: [ 'duup' , 'lex' ] },
-          { id: u.uid() , title: 'note' , content: [ 'hely' ] },
-          { id: u.uid() , title: 'for'  , content: [ 'tropic' ] },
-          { id: u.uid() , title: 'thee' , content: [ 'yuna' ] },
+        $notae = [
+          { $id: u.uid() , title: 'An'   , content: [ 'duup' , 'lex' ] },
+          { $id: u.uid() , title: 'note' , content: [ 'hely' ] },
+          { $id: u.uid() , title: 'for'  , content: [ 'tropic' ] },
+          { $id: u.uid() , title: 'thee' , content: [ 'yuna' ] },
         ]
       // }
 
@@ -62,19 +63,17 @@
         template: document.querySelector('template').innerHTML,
 
         data: function() {
+          
           return {
-            notae,
+            notae: $notae,
           }
         },
 
         events: {
-          nota({ id }) {
-            this.nota = this.notae.filter(nota => nota.id === id)[0]
-          },
-
-          edit({ id, title, content }) {
+          edit({ $id, title, content }) {
+            
             this.notae.forEach((nota, idx) => {
-              if ( nota.id === id ) {
+              if ( nota.$id === $id ) {
                 this.notae[idx].title = title
                 this.notae[idx].content = content
               }
@@ -84,26 +83,31 @@
         
         computed: {
           nota() {
-            return this.notae.filter(nota => nota.id === this.$route.params.id)[0]
+            
+            return this.notae.find(
+              nota => nota.$id === this.$route.params.id
+            )
           }
-        }
+        },
+        
+        name: 'nota',
       })
 
 
-      const router = new VueRouter({ history: true })
+      const router = new VueRouter({ history: true  , root: location.pathname })
       
       router.map({
         '/': {
           component: NotaList,
         },
         
-        '/nota/:id': {
+        '/n/:id': {
           name: 'nota',
           component: NotaList,
         },
       })
-
-      router.start(App, 'template')
+      
+      router.start(App, 'main')
 
       // window.onbeforeunload = () => localStorage.notae = JSON.stringify( vm.$data.notae )
 
