@@ -7,21 +7,24 @@
   
   const lower = (str) => (str||'').toLowerCase()
   
-  u.key = function key(event) {
-    return lower(
-      event.key || event.keyIdentifier || keymap[event.keyCode]
-    )
+  u.key = function key({ key, keyIdentifier, keyCode }) {
+    
+    return lower( key || keyIdentifier || keymap[keyCode] )
   }
   
-  u.uid = function uuid() {
-    function s(n) { return h((Math.random() * (1<<(n<<2)))^Date.now()).slice(-n); }
-    function h(n) { return (n|0).toString(16); }
-    return  [
-        s(4) + s(4), s(4),
-        '4' + s(3),                    // UUID version 4
-        h(8|(Math.random()*4)) + s(3), // {8|9|A|B}xxx
-        // s(4) + s(4) + s(4),
-        Date.now().toString(16).slice(-10) + s(2) // Use timestamp to avoid collisions
-    ].join('-');
-}
+  const $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ_-~@!+'.split('')
+  
+  u.uid = function generateID() {
+    
+    const $length = 10
+    let $res = ''
+    
+    const entropy = $chars.length
+    
+    while ( $res.length < $length) {
+      $res += $chars[Math.floor( Math.random() * entropy )]
+    }
+    
+    return $res
+  }
 }.call(this))
