@@ -19,7 +19,7 @@
       <main>
         <router-view :items="notae"></router-view>
       
-        <nota-editor :item="nota"></nota-editor>
+        <nota-editor></nota-editor>
       </main>
   </template>
 
@@ -51,23 +51,18 @@
         // notae = JSON.parse( localStorage.notae )
       // }  catch(er) {
         $notae = [
-          { $id: u.uid() , title: 'An'   , content: [ 'duup' , 'lex' ] },
-          { $id: u.uid() , title: 'note' , content: [ 'hely' ] },
-          { $id: u.uid() , title: 'for'  , content: [ 'tropic' ] },
-          { $id: u.uid() , title: 'thee' , content: [ 'yuna' ] },
+          { $id: u.uid() , $folder: '*' , title: 'The Silmarillion'   , content: [ 'duup' , 'lex' ] },
+          { $id: u.uid() , $folder: '*' , title: '不思議の国のアリス' , content: [ 'hely' ] },
+          { $id: u.uid() , $folder: '*' , title: 'Warning!!'  , content: [ 'tropic' ] },
+          { $id: u.uid() , $folder: 'other' , title: 'Don\'t Panic' , content: [ 'yuna' ] },
         ]
       // }
 
 
       const App = Vue.extend({
         template: document.querySelector('template').innerHTML,
-
-        data: function() {
-          
-          return {
-            notae: $notae,
-          }
-        },
+        
+        data: () => ({ Notae: $notae }),
 
         events: {
           edit({ $id, title, content }) {
@@ -82,31 +77,44 @@
         },
         
         computed: {
-          nota() {
-            
+          /*nota() {
+
             return this.notae.find(
               nota => nota.$id === this.$route.params.id
             )
-          }
+          },*/
+          
+          notae() {
+            return this.Notae.map(Nota => {
+              Nota.slug = u.slugify(Nota.title)
+              
+              return Nota
+            })
+          },
         },
         
         name: 'nota',
       })
 
-      let $root
+      let $root = '.'
       if ( location.pathname.slice(1) ) $root = location.pathname
 
-      const router = new VueRouter({ history: true  , root: $root })
+      const router = window.router = new VueRouter({ history: true , root: $root })
       
       router.map({
-        '/': {
-          component: NotaList,
-        },
-        
-        '/n/:id': {
+        '/*folder': {
           name: 'nota',
           component: NotaList,
         },
+        
+        '/*folder/:slug': {
+          name: 'nota',
+          component: NotaList,
+        },
+      })
+      
+      router.alias({
+        '/': '/*'
       })
       
       router.start(App, 'main')

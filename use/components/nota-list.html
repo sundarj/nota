@@ -1,8 +1,8 @@
 <ul am-list="root">
     <li am-list="item"
-      v-link="{ name: 'nota' , params: { id: item.$id } }"
       v-for="item of items"
-      :data-id="item.$id"
+      v-if="inFolder(item)"
+      v-link="{ name: 'nota' , params: { folder: item.$folder , slug: item.slug } }"
       v-text="item.title"></li>
 </ul>
 
@@ -15,6 +15,17 @@
       props: [ 'items' ],
 
       template: this.querySelector( '[am-list=root]' ).outerHTML,
+      
+      name: 'nota-list',
+      
+      methods: {
+        inFolder({ $folder }) {
+          const routeFolder = this.$route.params.folder
+          if ( routeFolder === '*' || routeFolder === $folder ) return true
+          
+          return false
+        }
+      },
     }
 
 

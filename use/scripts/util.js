@@ -27,4 +27,17 @@
     
     return $res
   }
+  
+  u.slugify = function slugify(title) {
+    if ( ! /\w\W/.test(title) ) return title // non-ascii
+    
+    return (title+'')
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/['"]/g, '')
+      .replace(/[^\w\-]+/g, '-')
+      .replace(/\-\-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '')
+  }
 }.call(this))
