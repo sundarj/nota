@@ -19,7 +19,7 @@
       <main>
         <router-view :items="notae"></router-view>
       
-        <nota-editor></nota-editor>
+        <nota-editor :item="nota"></nota-editor>
       </main>
   </template>
 
@@ -55,6 +55,8 @@
           { $id: u.uid() , $folder: '*' , title: '不思議の国のアリス' , content: [ 'hely' ] },
           { $id: u.uid() , $folder: '*' , title: 'Warning!!'  , content: [ 'tropic' ] },
           { $id: u.uid() , $folder: 'other' , title: 'Don\'t Panic' , content: [ 'yuna' ] },
+          { $id: u.uid() , $folder: 'other/else' , title: 'Sometimes' , content: [ 'yuna' ] },
+          { $id: u.uid() , $folder: 'other/else/another' , title: '1' , content: [ 'yuna' ] },
         ]
       // }
 
@@ -67,26 +69,28 @@
         events: {
           edit({ $id, title, content }) {
             
-            this.notae.forEach((nota, idx) => {
+            /*this.notae.forEach((nota, idx) => {
               if ( nota.$id === $id ) {
                 this.notae[idx].title = title
                 this.notae[idx].content = content
               }
-            })
+            })*/
+            
+            console.log($id, title, content)
           },
         },
         
         computed: {
-          /*nota() {
+          nota() {
 
             return this.notae.find(
-              nota => nota.$id === this.$route.params.id
+              nota => nota.$slug === this.$route.params.slug
             )
-          },*/
+          },
           
           notae() {
             return this.Notae.map(Nota => {
-              Nota.slug = u.slugify(Nota.title)
+              Nota.$slug = u.slugify(Nota.title)
               
               return Nota
             })

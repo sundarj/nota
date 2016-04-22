@@ -4,7 +4,7 @@
       <span class="l-screen-reader" name="editor-title"> Title </span>
 
       <input am-editor="title" placeholder="title" aria-labelledby="editor-title"
-        v-model="item.title" v-on:keydown="key">
+        v-on:keydown="key">
     </div>
 
     <div am-editor="field">
@@ -14,7 +14,6 @@
         v-on:keydown="key">
         <textarea am-editor="entry" placeholder="..."
           v-for="field of item.content"
-          v-model="item.content[$index]"
           v-focus="$index === focused"
           :value="field"
           :data-index="$index"
@@ -41,8 +40,8 @@
       },
 
       methods: {
-        key(event) {
-
+        key(event) { /*
+          
           if ( event.shiftKey && u.key(event) === 'enter' ) {
             event.preventDefault()
 
@@ -55,15 +54,15 @@
             title: this.item.title,
             content: this.item.content,
           })
-        },
+        */},
 
-        create(event) {
+        create(event) {/*
 
           const $index = +event.target.dataset.index + 1
           this.item.content.splice($index , 0 , '')
           
           this.$nextTick(() => this.focused = $index)
-        }
+        */}
       }
     }
 
