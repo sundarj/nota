@@ -1,14 +1,17 @@
-<div am-editor="root">
+<script src="https://cdn.rawgit.com/simplesmiler/vue-focus/0.1.1/dist/vue-focus.min.js"></script>
+
+<am-editor>
   <template v-if="item">
     <div am-editor="field">
-      <span class="l-screen-reader" name="editor-title"> Title </span>
+      <span name="editor-title"> Title </span>
 
       <input am-editor="title" placeholder="title" aria-labelledby="editor-title"
-        v-on:keydown="key">
+        v-on:keydown="key"
+        v-model="item.title">
     </div>
 
     <div am-editor="field">
-      <span class="l-screen-reader" name="editor-content"> Content </span>
+      <span name="editor-content"> Content </span>
 
       <div am-editor="content" aria-labelledby="editor-content"
         v-on:keydown="key">
@@ -21,54 +24,51 @@
       </div>
     </div>
   </template>
-</div>
+</am-editor>
 
 
 <script>
+  nota.components.NotaEditor = Vue.extend({
+    props: [ 'item' ],
 
-  (function({ window, u }) {
+    template: document.currentScript.ownerDocument.querySelector( 'am-editor' ).outerHTML,
 
-    const NotaEditor = {
-      props: [ 'item' ],
-
-      template: this.querySelector( '[am-editor=root]' ).outerHTML,
-
-      data: function() {
-        return {
-          focused: 0
-        }
-      },
-
-      methods: {
-        key(event) { /*
-          
-          if ( event.shiftKey && u.key(event) === 'enter' ) {
-            event.preventDefault()
-
-            return this.create(event)
-          }
-
-          this.$dispatch('edit', {
-            $id: this.item.$id,
-            
-            title: this.item.title,
-            content: this.item.content,
-          })
-        */},
-
-        create(event) {/*
-
-          const $index = +event.target.dataset.index + 1
-          this.item.content.splice($index , 0 , '')
-          
-          this.$nextTick(() => this.focused = $index)
-        */}
+    data: function() {
+      return {
+        focused: 0
       }
-    }
+    },
 
+    methods: {
+      key(event) { /*
+        
+        if ( event.shiftKey && u.key(event) === 'enter' ) {
+          event.preventDefault()
 
-    objectPath.set(window, 'nota.components.NotaEditor', NotaEditor)
+          return this.create(event)
+        }
 
-  }).call(document.currentScript.ownerDocument, this)
+        this.$dispatch('edit', {
+          $id: this.item.$id,
+          
+          title: this.item.title,
+          content: this.item.content,
+        })
+      */},
 
+      create(event) {/*
+
+        const $index = +event.target.dataset.index + 1
+        this.item.content.splice($index , 0 , '')
+        
+        this.$nextTick(() => this.focused = $index)
+      */}
+    },
+    
+    directives: {
+      focus: VueFocus.focus
+    },
+    
+    name: 'nota-editor',
+  })
 </script>

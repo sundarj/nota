@@ -1,46 +1,37 @@
-<ul am-list="root">
+<am-list>
     <li am-list="item"
       v-for="item of items"
       v-show="inFolder(item.$folder)"
       v-link="{ name: 'nota' , params: { folder: item.$folder , slug: item.$slug } }">
-        [ {{ item.$folder }} ] -- {{ item.title }}
+        {{ item.$folder }} // <b> {{ item.title }} </b>
       </li>
-</ul>
+</am-list>
 
 
 <script>
+  nota.components.NotaList = Vue.extend({
+    props: [ 'items' ],
 
-  (function({ window, u }) {
-
-    const NotaList = {
-      props: [ 'items' ],
-
-      template: this.querySelector( '[am-list=root]' ).outerHTML,
-      
-      name: 'nota-list',
-      
-      methods: {
-        inFolder( $folder ) {
-          const routeFolder = this.$route.params.folder
-          
-          const isRoot = ( routeFolder === '*' || $folder === '*' )
-          const isChild = routeFolder === $folder
-          
-          if ( isRoot || isChild ) return true
-          
-          const routePath = routeFolder.split('/')
-          const $folderPath = $folder.split('/')
-          
-          console.log( routePath, $folderPath )
-          
-          return false
-        }
-      },
-    }
-
-
-    objectPath.set(window, 'nota.components.NotaList', NotaList)
-
-  }).call(document.currentScript.ownerDocument, this)
-
+    template: document.currentScript.ownerDocument.querySelector( 'am-list' ).outerHTML,
+    
+    methods: {
+      inFolder( $folder ) {
+        const routeFolder = this.$route.params.folder
+        
+        const isRoot  = ( routeFolder === '*' )
+        const isChild = ( routeFolder === $folder )
+        
+        if ( isRoot || isChild ) return true
+        
+        const routePath = routeFolder.split('/')
+        const $folderPath = $folder.split('/')
+        
+        console.log( routePath, $folderPath )
+        
+        return false
+      }
+    },
+    
+    name: 'nota-list',
+  })
 </script>

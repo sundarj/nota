@@ -1,0 +1,60 @@
+<script src="../scripts/util.js"></script>
+<script>
+  const nota = { components: {} }
+</script>
+
+<link rel="import" href="nota-list.html">
+<link rel="import" href="nota-editor.html">
+
+<template>
+  <am-nota>
+    <router-view :items="notae"></router-view>
+    <nota-editor :item="nota"></nota-editor>
+  </am-nota>
+</template>
+
+<script>
+  nota.components.Nota = Vue.extend({
+    template: document.currentScript.ownerDocument.querySelector('template').content,
+    
+    props: [ 'data' ],
+
+    events: {
+      edit({ $id, title, content }) {
+        
+        /*this.notae.forEach((nota, idx) => {
+          if ( nota.$id === $id ) {
+            this.notae[idx].title = title
+            this.notae[idx].content = content
+          }
+        })*/
+        
+        console.log($id, title, content)
+      },
+    },
+    
+    computed: {
+      notae() {
+        
+        return this.data.map(datum => {
+          datum.$slug = u.slugify(datum.title)
+          
+          return datum
+        })
+      },
+      
+      nota() {
+
+        return this.notae.find(
+          nota => nota.$slug === this.$route.params.slug
+        )
+      },
+    },
+    
+    components: {
+        'nota-editor': nota.components.NotaEditor
+      },
+    
+    name: 'nota',
+  })
+</script>
