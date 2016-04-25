@@ -1,18 +1,32 @@
-<am-list>
-    <li am-list="item"
-      v-for="item of items"
-      v-show="inFolder(item.$folder)"
-      v-link="{ name: 'nota' , params: { folder: item.$folder , slug: item.$slug } }">
-        {{ item.$folder }} // <b> {{ item.title }} </b>
-      </li>
-</am-list>
+<aside am-list>
+    <div am-list="folder"
+      v-for="($folder, items) of itemsByFolder"
+      v-show="inFolder($folder)"
+    >
+      <strong am-list="folder-title"
+        v-link="{ name: 'folder', params: { folder: $folder } }"
+        v-text="$folder"
+      ></strong>
+      
+      <a am-list="link"
+        v-for="item of items" 
+        v-link="{ name: 'item', params: { folder: item.$folder, slug: item.$slug } }" v-text="item.title"
+      ></a>
+    </div>
+</aside>
 
+<style>
+  [am-list] { display: block }
+  
+  [am-list=folder] { margin: 1em 0; padding: .5em }
+  [am-list=link]   { padding-left: .5em }
+</style>
 
 <script>
   nota.components.NotaList = Vue.extend({
     props: [ 'items' ],
 
-    template: document.currentScript.ownerDocument.querySelector( 'am-list' ).outerHTML,
+    template: document.currentScript.ownerDocument.querySelector( '[am-list]' ).outerHTML,
     
     methods: {
       inFolder( $folder ) {
@@ -22,6 +36,7 @@
         const isChild = ( routeFolder === $folder )
         
         if ( isRoot || isChild ) return true
+        if ( $folder === '*' )   return false
         
         const routePath = routeFolder.split('/')
         const $folderPath = $folder.split('/')
@@ -30,6 +45,20 @@
         
         return false
       }
+    },
+    
+    computed: {
+      itemsByFolder() {
+        const folderMap = Object.create(null)
+        
+        this.items.forEach(item => {
+          if ( ! folderMap[item.$folder] ) folderMap[item.$folder] = []
+          
+          folderMap[item.$folder].push(item)
+        })
+        
+        return folderMap
+      },
     },
     
     name: 'nota-list',

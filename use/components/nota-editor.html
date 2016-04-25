@@ -1,21 +1,21 @@
 <script src="https://cdn.rawgit.com/simplesmiler/vue-focus/0.1.1/dist/vue-focus.min.js"></script>
 
-<am-editor>
+<div am-editor>
   <template v-if="item">
-    <div am-editor="field">
+    <div am-editor=field>
       <span name="editor-title"> Title </span>
 
-      <input am-editor="title" placeholder="title" aria-labelledby="editor-title"
+      <input am-editor=title placeholder="title" aria-labelledby="editor-title"
         v-on:keydown="key"
         v-model="item.title">
     </div>
 
-    <div am-editor="field">
+    <div am-editor=field>
       <span name="editor-content"> Content </span>
 
-      <div am-editor="content" aria-labelledby="editor-content"
+      <div am-editor=content aria-labelledby="editor-content"
         v-on:keydown="key">
-        <textarea am-editor="entry" placeholder="..."
+        <textarea am-editor=entry placeholder="..."
           v-for="field of item.content"
           v-focus="$index === focused"
           :value="field"
@@ -24,14 +24,13 @@
       </div>
     </div>
   </template>
-</am-editor>
-
+</div>
 
 <script>
   nota.components.NotaEditor = Vue.extend({
     props: [ 'item' ],
 
-    template: document.currentScript.ownerDocument.querySelector( 'am-editor' ).outerHTML,
+    template: document.currentScript.ownerDocument.querySelector( '[am-editor]' ).outerHTML,
 
     data: function() {
       return {
@@ -40,7 +39,7 @@
     },
 
     methods: {
-      key(event) { /*
+      key( event ) { /*
         
         if ( event.shiftKey && u.key(event) === 'enter' ) {
           event.preventDefault()
@@ -56,7 +55,7 @@
         })
       */},
 
-      create(event) {/*
+      create( event ) {/*
 
         const $index = +event.target.dataset.index + 1
         this.item.content.splice($index , 0 , '')

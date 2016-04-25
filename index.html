@@ -8,7 +8,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.10/vue-router.js"></script>
 
-<link rel="import" name="nota" href="use/components/nota.html">
+<link rel="import" name="nota" href="/use/components/nota.html">
 
 <main>
   <router-view :data="notae"></router-view>
@@ -18,21 +18,18 @@
   (function({ window, location, Vue, VueRouter }) {
     
     const $notae = [
-      { $folder: '*', title: 'The Silmarillion', content: [ 'duup' , 'lex' ] },
-      { $folder: '*', title: '不思議の国のアリス', content: [ 'hely' ] },
-      { $folder: '*', title: 'Warning!!', content: [ 'tropic' ] },
-      { $folder: 'other', title: 'Don\'t Panic', content: [ 'yuna' ] },
-      { $folder: 'other/else', title: 'Sometimes', content: [ 'yuna' ] },
-      { $folder: 'other/else/another', title: '1', content: [ 'yuna' ] },
+      { $id: u.uid(), $folder: '*', title: 'The Silmarillion', content: [ 'duup' , 'lex' ] },
+      { $id: u.uid(), $folder: '*', title: '不思議の国のアリス', content: [ 'hely' ] },
+      { $id: u.uid(), $folder: '*', title: 'Warning!!', content: [ 'tropic' ] },
+      { $id: u.uid(), $folder: 'other', title: 'Don\'t Panic', content: [ 'yuna' ] },
+      { $id: u.uid(), $folder: 'other/else', title: 'Sometimes', content: [ 'yuna' ] },
+      { $id: u.uid(), $folder: 'other/else/another', title: '1', content: [ 'yuna' ] },
     ]
     
     Vue.config.debug = true
     
-    
-    let $root = '.'
-    if ( location.pathname.slice(1) ) $root = location.pathname
 
-    const router = nota.router = new VueRouter({ history: true, root: $root })
+    const router = nota.router = new VueRouter({ history: true })
     
     router.map({
       '/': {
@@ -40,12 +37,12 @@
         
         subRoutes: {
           '/*folder': {
-            name: 'nota',
+            name: 'folder',
             component:  nota.components.NotaList,
           },
           
           '/*folder/:slug': {
-            name: 'nota',
+            name: 'item',
             component:  nota.components.NotaList,
           },
         },
