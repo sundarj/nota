@@ -17,13 +17,42 @@
 <script>
   (function({ window, location, Vue, VueRouter }) {
     
-    const $notae = [
+    /*const $notae = [
       { $id: u.uid(), $folder: '*', title: 'The Silmarillion', content: [ 'duup' , 'lex' ] },
       { $id: u.uid(), $folder: '*', title: '不思議の国のアリス', content: [ 'hely' ] },
       { $id: u.uid(), $folder: '*', title: 'Warning!!', content: [ 'tropic' ] },
       { $id: u.uid(), $folder: 'other', title: 'Don\'t Panic', content: [ 'yuna' ] },
       { $id: u.uid(), $folder: 'other/else', title: 'Sometimes', content: [ 'yuna' ] },
       { $id: u.uid(), $folder: 'other/else/another', title: '1', content: [ 'yuna' ] },
+    ]*/
+    
+    const $notae = [
+      { 
+        folder: '*',
+        items: [
+          { $id: u.uid(), title: 'The Silmarillion', content: [ 'duup' , 'lex' ] },
+          { $id: u.uid(), title: '不思議の国のアリス', content: [ 'hely' ] },
+          { $id: u.uid(), title: 'Warning!!', content: [ 'tropic' ] },
+        ],
+      },
+      {
+        folder: 'other',
+        items: [
+          { $id: u.uid(), title: 'Don\'t Panic', content: [ 'yuna' ] },
+          {
+            folder: 'other/else',
+            items: [
+              { $id: u.uid(), title: 'Sometimes', content: [ 'yuna' ] },
+              {
+                folder: 'other/else/another',
+                items: [
+                  { $id: u.uid(), title: '1', content: [ 'yuna' ] },
+                ]
+              },
+            ]
+          },
+        ],
+      },
     ]
     
     Vue.config.debug = true
