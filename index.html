@@ -29,7 +29,7 @@
     const $notae = [
       { 
         folder: '*',
-        items: [
+        contents: [
           { $id: u.uid(), title: 'The Silmarillion', content: [ 'duup' , 'lex' ] },
           { $id: u.uid(), title: '不思議の国のアリス', content: [ 'hely' ] },
           { $id: u.uid(), title: 'Warning!!', content: [ 'tropic' ] },
@@ -37,15 +37,15 @@
       },
       {
         folder: 'other',
-        items: [
+        contents: [
           { $id: u.uid(), title: 'Don\'t Panic', content: [ 'yuna' ] },
           {
             folder: 'other/else',
-            items: [
+            contents: [
               { $id: u.uid(), title: 'Sometimes', content: [ 'yuna' ] },
               {
                 folder: 'other/else/another',
-                items: [
+                contents: [
                   { $id: u.uid(), title: '1', content: [ 'yuna' ] },
                 ]
               },
@@ -68,11 +68,12 @@
           '/*folder': {
             name: 'folder',
             component:  nota.components.NotaList,
-          },
-          
-          '/*folder/:slug': {
-            name: 'item',
-            component:  nota.components.NotaList,
+            
+            subRoutes: {
+              '/:slug': {
+                component: nota.components.NotaList
+              }
+            },
           },
         },
       },

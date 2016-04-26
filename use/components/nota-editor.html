@@ -32,14 +32,12 @@
 
     template: document.currentScript.ownerDocument.querySelector( '[am-editor]' ).outerHTML,
 
-    data: function() {
-      return {
-        focused: 0
-      }
-    },
+    data: () => ({
+      focused: 0
+    }),
 
     methods: {
-      key( event ) { /*
+      key( event ) {
         
         if ( event.shiftKey && u.key(event) === 'enter' ) {
           event.preventDefault()
@@ -53,15 +51,15 @@
           title: this.item.title,
           content: this.item.content,
         })
-      */},
+      },
 
-      create( event ) {/*
+      create( event ) {
 
         const $index = +event.target.dataset.index + 1
         this.item.content.splice($index , 0 , '')
         
         this.$nextTick(() => this.focused = $index)
-      */}
+      }
     },
     
     directives: {

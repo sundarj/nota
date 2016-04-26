@@ -35,19 +35,25 @@
     
     computed: {
       notae() {
-        
         return this.data.map(datum => {
-          datum.$slug = u.slugify(datum.title)
+          datum.contents = datum.contents.map(item => {
+              item.$slug = u.slugify(item.title)
+              
+              return item
+          })
           
           return datum
         })
       },
       
       nota() {
-
-        return this.notae.find(
-          nota => nota.$slug === this.$route.params.slug
-        )
+        return this.notae.find(nota => {
+          const $slug = this.$route.params.slug
+          
+          return nota.contents.find(item => {
+            return item.$slug === $slug
+          })
+        })
       },
     },
     
