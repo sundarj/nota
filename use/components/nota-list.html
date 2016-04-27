@@ -1,34 +1,23 @@
 <aside am-list>
-    <!--<div am-list="folder"
-      v-for="($folder, items) of itemsByFolder"
-      v-show="inFolder($folder)"
-    >
-      <strong am-list="folder-title"
-        v-link="{ name: 'folder', params: { folder: $folder } }"
-        v-text="$folder"
-      ></strong>
-      
-      <a am-list="link"
-        v-for="item of items" 
-        v-link="{ name: 'item', params: { folder: item.$folder, slug: item.$slug } }" v-text="item.title"
-      ></a>
-    </div>-->
     <div am-list=folder
       v-for="item of items"
     >
       <strong am-list=folder-title
+        v-if="item.folder"
         v-link="{ name: 'folder', params: { folder: item.folder } }"
         v-text="item.folder"
       ></strong>
       
       <template v-for="content of item.contents">
-          <router-view v-if="content.folder"></router-view>
+          <pre>{{ content | json }}</pre>
           
-          <a am-list=link
+          <router-view v-if="content.folder" :items="">
+          
+          <!-- <a am-list=link
             v-else
             v-text="content.title"
             v-link="{ name: 'folder', params: { slug: content.$slug } }"
-        ></a>
+        ></a>  -->
       </template>
     </div>
 </aside>
@@ -63,10 +52,6 @@
         
         return false
       }
-    },
-    
-    ready() {
-      console.log(this.items)
     },
     
     name: 'nota-list',
