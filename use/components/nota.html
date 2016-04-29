@@ -36,7 +36,7 @@
       },
       
       nota() {
-        return this.findBySlug( this.notae, this.$route.params.slug )
+        return this.find( this.$route.params )
       },
     },
     
@@ -48,15 +48,26 @@
         return item
       },
       
-      findBySlug( notae, $slug ) {
-        let found = null
+      find( params, notae ) {
+        if ( ! params.slug || ! params.folder ) return null;
+        if ( ! notae ) notae = this.notae
         
-        notae.forEach(nota => {
-          if ( ! nota.folder && nota.$slug === $slug ) found = nota
-          else found = this.findBySlug( nota.contents )
-        })
+        const length = notae.length
+        let index = -1
         
-        return found
+        while ( ++index < length ) {
+          const nota = notae[index]
+          
+          if ( nota.$slug === params.slug ) {
+            return nota
+          }
+          
+          if ( nota.folder === params.folder ) {
+            return this.findBySlug( $slug, nota.contents )
+          }
+        }
+        
+        return null
       },
     },
     
