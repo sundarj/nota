@@ -1,0 +1,49 @@
+{
+  "name": "@j.su/nota",
+  "version": "0.0.0",
+  "description": "note-taking app",
+  "main": "use/scripts/nota.js",
+  "scripts": {
+    "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o use/scripts/nota.js",
+    "serve": "lite-server",
+    "dev": "npm-run-all --parallel watchify serve",
+    "build": "cross-env NODE_ENV=production browserify -e src/main.js | uglifyjs -c warnings=false -m > use/scripts/nota.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserify": {
+    "transform": [
+      "vueify",
+      "babelify"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SundarJ/nota.git"
+  },
+  "author": "Sundar Joshi",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^1.0.24",
+    "voie": "^0.7.0",
+    "vue-router": "^0.7.13"
+  },
+  "devDependencies": {
+    "babel-core": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.8.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "babel-runtime": "6.6.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "browserify-hmr": "^0.3.1",
+    "cross-env": "^1.0.7",
+    "lite-server": "^2.2.0",
+    "npm-run-all": "^2.0.0",
+    "stylus": "^0.54.5",
+    "uglify-js": "^2.6.2",
+    "vue-hot-reload-api": "^1.3.2",
+    "vueify": "^8.4.1",
+    "vueify-insert-css": "^1.0.0",
+    "watchify": "^3.7.0"
+  }
+}
