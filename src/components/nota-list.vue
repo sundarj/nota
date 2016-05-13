@@ -1,5 +1,5 @@
 <template>
-  <div am-nota>
+  <aside am-nota=list>
     <v-view></v-view>
-  </div>
+  </aside>
 </template>
