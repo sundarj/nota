@@ -29,6 +29,13 @@
   [am-nota=list]
   [am-nota=list-item] {
     display block
+  }
+  
+  [am-nota=list] {
     padding 1em
+  }
+  
+  [am-nota=list-item] {
+    padding .5em
   }
 </style>
