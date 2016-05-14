@@ -10,31 +10,20 @@ app.add('list', {
   component: NotaList,
 
   enter(context) {
-    context.data.items = [{
-        folder: '*',
-        contents: [
-          { $id: ID(), title: 'The Silmarillion', content: [ 'duup' , 'lex' ] },
-          { $id: ID(), title: '不思議の国のアリス', content: [ 'hely' ] },
-          { $id: ID(), title: 'Warning!!', content: [ 'tropic' ] },
-        ],
-      }, {
-        folder: 'other',
-        contents: [
-          { $id: ID(), title: 'Don\'t Panic', content: [ 'yuna' ] },
-          {
-            folder: 'else',
-            contents: [
-              { $id: ID(), title: 'Sometimes', content: [ 'yuna' ] },
-              {
-                folder: 'another',
-                contents: [
-                  { $id: ID(), title: '1', content: [ 'yuna' ] },
-                ]
-              },
-            ]
-          },
-        ],
-      }]
+    context.data.initial = [
+      { type: 'nota', $id: ID(), title: 'The Silmarillion', contents: [ 'duup', 'lex' ] },
+      { type: 'nota', $id: ID(), title: '不思議の国のアリス', contents: [ 'hely' ] },
+      { type: 'nota', $id: ID(), title: 'Warning!!', contents: [ 'tropic' ] },
+      { type: 'folder', title: 'other', contents: [
+        { type: 'nota', $id: ID(), title: 'Don\'t Panic', contents: [ 'yuna' ] },
+        { type: 'folder', title: 'else', contents: [
+            { type: 'nota', $id: ID(), title: 'Sometimes', contents: [ 'yuna' ] },
+            { type: 'folder', title: 'another', contents: [
+              { type: 'nota', $id: ID(), title: '1', contents: [ 'yuna' ] },
+            ] },
+        ] },
+      ] },
+    ]
   },
 })
 

@@ -15,6 +15,7 @@
       "strict": 0,
       "no-shadow": 0,
       "comma-dangle": [2, "always-multiline"],
-      "array-bracket-spacing": [2, "always", { "objectsInArrays": false }]
+      "array-bracket-spacing": [2, "always", { "objectsInArrays": false }],
+      "new-cap": 0
     }
 }
