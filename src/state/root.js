@@ -3,5 +3,10 @@ import Nota from '../components/nota.vue'
 
 app.add('root', {
   component: Nota,
-  redirect: 'list',
+  redirect: {
+    name: 'list',
+    params: {
+      folder: '*',
+    },
+  },
 })

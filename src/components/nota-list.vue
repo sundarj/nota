@@ -1,20 +1,20 @@
 <template>
-  <nav am-nota=list
-  >
-    <a am-nota=list-item
+  <nav am-nota=list>
+    <div am-nota=list-item
       v-for='item of items'
-      data-type='{{ item.type }}'
+      data-type='{{ item.$.type }}'
     >
-      {{ item.title }}
+        <a v-link='getLink(item)' v-if='item.title'>
+          <span am-nota=list-item-title v-text='item.title'>
+        </a>
+      </span>
       
-      <nota-list v-if='item.type === "folder"' :items='item.contents'></nota-list>
-    </a>
+      <nota-list v-if='item.$.type === "folder"' :items='item.contents'></nota-list>
+    </div>
   </nav>
 </template>
 
 <script>
-  import { ID } from '../util'
-
   export default {
     name: 'nota-list',
     props: [ 'items' ],
@@ -22,6 +22,38 @@
     created() {
       if ( ! this.items ) this.items = this.initial
     },
+    
+    methods: {
+      getLink({ $ }) {
+        const $type = $.type
+        const $id = $.id
+        
+        const isFolder = ( $type === 'folder' )
+        const isNota = ( $type === 'nota' )
+        
+        console.assert(
+          isFolder || isNota,
+          'item should be either `folder` or  `nota`'
+        )
+        
+        const params = {
+          folder: null,
+          id: null,
+        }
+        
+        if (isFolder) {
+          params.folder = $id
+        } else if (isNota) {
+          params.folder = $.parent
+          params.id = $id
+        }
+        
+        return {
+          name: isFolder ? 'list' : 'edit',
+          params,
+        }
+      }
+    }
   }
 </script>
 
@@ -31,11 +63,12 @@
     display block
   }
   
-  [am-nota=list] {
-    padding 1em
+  [data-type=folder] > [am-nota=list-item-title]:first-child::before {
+    content '- '
+    margin-left -1ch
   }
   
   [am-nota=list-item] {
-    padding .5em
+    margin .5em
   }
 </style>
