@@ -2,13 +2,12 @@
   <nav am-nota=list>
     <div am-nota=list-item
       v-for='item of items'
-      v-bind='{ "data-open": isOpen(item) }'
+      v-bind='{ "data-open": isOpen(item), "data-folder": folderID(item) }'
       data-type='{{ item.$.type }}'
     >
-        <a v-link='getLink(item)' v-if='item.title'>
-          <span am-nota=list-item-title v-text='item.title'>
+        <a v-link='getLink(item)' v-if='item.title' am-nota=list-item-title>
+          <i class="material-icons" v-text='getIcon(item)'></i> <span v-text='item.title'></span>
         </a>
-      </span>
 
       <nota-list v-if='item.$.type === "folder"' :items='item.contents'></nota-list>
     </div>
@@ -24,7 +23,7 @@
 
     data() {
       return {
-        nota,
+        params: nota.context.params,
       }
     },
 
@@ -66,11 +65,25 @@
       isOpen({ $ }) {
         if ( $.type !== 'folder' ) return false
 
-        const $folder = this.nota.context.params.folder
+        const $folder = this.params.folder
 
         return (
-         $folder === '*' || $folder == $.id
+         $folder === '*' || $.id === '*' || $folder == $.id
         )
+      },
+      
+      getIcon( item ) {
+        let icon = 'insert_drive_file'
+        
+        if ( item.$.type === 'folder' ) {
+          icon = this.isOpen(item) ? 'folder_open' : 'folder'
+        }
+
+        return icon
+      },
+      
+      folderID({ $ }) {
+        return $.type === 'folder' && $.id
       },
     }
   }
@@ -81,13 +94,39 @@
   [am-nota=list-item] {
     display block
   }
-
-  [data-type=folder] > [am-nota=list-item-title]:first-child::before {
-    content '- '
-    margin-left -1ch
+  
+  [am-nota=list] a {
+    text-decoration none
+    color inherit
+    
+    padding .25em
   }
 
   [am-nota=list-item] {
     margin .5em
+    
+    &[data-folder='*'] {
+      margin-left 0
+      margin-right 0
+    }
+  }
+  
+  [data-type=nota] {
+    opacity 0
+    font-size 0
+    overflow hidden
+    
+    [data-open] & {
+      opacity 1
+      height 100%
+      
+      font-size inherit
+    }
+  }
+  
+  .material-icons {
+    font-size inherit
+    vertical-align middle
+    margin-right 5px
   }
 </style>
