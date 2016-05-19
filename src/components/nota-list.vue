@@ -27,10 +27,6 @@
       }
     },
 
-    created() {
-      if ( ! this.items ) this.items = this.initial
-    },
-
     methods: {
       getLink({ $ }) {
         const $type = $.type
@@ -71,17 +67,17 @@
          $folder === '*' || $.id === '*' || $folder == $.id
         )
       },
-      
+
       getIcon( item ) {
         let icon = 'insert_drive_file'
-        
+
         if ( item.$.type === 'folder' ) {
           icon = this.isOpen(item) ? 'folder_open' : 'folder'
         }
 
         return icon
       },
-      
+
       folderID({ $ }) {
         return $.type === 'folder' && $.id
       },
@@ -94,36 +90,36 @@
   [am-nota=list-item] {
     display block
   }
-  
+
   [am-nota=list] a {
     text-decoration none
     color inherit
-    
+
     padding .25em
   }
 
   [am-nota=list-item] {
     margin .5em
-    
+
     &[data-folder='*'] {
       margin-left 0
       margin-right 0
     }
   }
-  
+
   [data-type=nota] {
     opacity 0
     font-size 0
     overflow hidden
-    
+
     [data-open] & {
       opacity 1
       height 100%
-      
+
       font-size inherit
     }
   }
-  
+
   .material-icons {
     font-size inherit
     vertical-align middle

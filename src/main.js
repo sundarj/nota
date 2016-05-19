@@ -1,7 +1,7 @@
 import app from './app'
 
 import './state/root'
-import './state/list'
+import './state/aside'
 
 app.start()
 
