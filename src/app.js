@@ -1,5 +1,10 @@
-import { StateManager } from 'voie'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-export default new StateManager({
-  el: 'main',
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+  history: true,
 })
+
+export default router

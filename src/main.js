@@ -1,8 +1,6 @@
 import app from './app'
+import Nota from './components/nota.vue'
 
-import './state/root'
-import './state/aside'
-
-app.start()
+app.start(Nota, 'main')
 
 window.nota = app

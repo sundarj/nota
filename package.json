@@ -25,12 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "vue": "^1.0.24",
-    "voie": "^0.7.0"
+    "vue-router": "^0.7.13"
   },
-  "bundledDependencies": [
-    "vue",
-    "voie"
-  ],
   "devDependencies": {
     "babel-core": "^6.8.0",
     "babel-plugin-transform-runtime": "^6.8.0",
@@ -52,5 +48,9 @@
     "vueify": "^8.4.1",
     "vueify-insert-css": "^1.0.0",
     "watchify": "^3.7.0"
-  }
+  },
+  "bundledDependencies": [
+    "vue",
+    "vue-router"
+  ]
 }
