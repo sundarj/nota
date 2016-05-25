@@ -1,5 +1,6 @@
 <template>
   <div am-nota=editor>
+    <input>
   </div>
 </template>
 

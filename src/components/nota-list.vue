@@ -1,85 +1,51 @@
 <template>
-  <nav am-nota=list>
-    <div am-nota=list-item
+  <!--   <div am-nota=list-item
       v-for='item of items'
-      v-bind='{ "data-open": isOpen(item), "data-folder": folderID(item) }'
-      data-type='{{ item.$.type }}'
+      v-bind='{ "data-folder": folderID(item) }'
+      data-type='{{ item.type }}'
     >
         <a v-link='getLink(item)' v-if='item.title' am-nota=list-item-title>
           <i class="material-icons" v-text='getIcon(item)'></i> <span v-text='item.title'></span>
         </a>
 
-      <nota-list v-if='item.$.type === "folder"' :items='item.contents'></nota-list>
-    </div>
+      <nota-list v-if='item.type === "folder"' :items='item.contents'></nota-list>
+    </div> -->
+
+  <nav am-nota=list>
+    <template v-for='item in roots'>
+      <nota-folder v-if='item.type === "folder"' :folder='item' :items='items'></nota-folder>
+      
+      <a am-nota=item v-else
+          v-link='{ name: "root", params: { id: item.id } }'
+          v-text='item.title'></a>
+    </template>
   </nav>
 </template>
 
 <script>
-  import nota from '../app'
+  import NotaFolder from './nota-folder.vue'
 
   export default {
     name: 'nota-list',
     props: [ 'items' ],
-
-    data() {
-      return {
-        params: nota.context.params,
+    components: [ NotaFolder ],
+    
+    computed: {
+      roots() {
+        return this.items.filter( item => ! item.parent )
       }
     },
 
     methods: {
-      getLink({ $ }) {
-        const $type = $.type
-        const $id = $.id
+      getIcon({ type, id }) {
+        let icon = 'note'
 
-        const isFolder = ( $type === 'folder' )
-        const isNota = ( $type === 'nota' )
-
-        console.assert(
-          isFolder || isNota,
-          'item should be either `folder` or  `nota`'
-        )
-
-        const params = {
-          folder: null,
-          id: null,
-        }
-
-        if (isFolder) {
-          params.folder = $id
-        } else if (isNota) {
-          params.folder = $.parent
-          params.id = $id
-        }
-
-        return {
-          name: isFolder ? 'list' : 'edit',
-          params,
-        }
-      },
-
-      isOpen({ $ }) {
-        if ( $.type !== 'folder' ) return false
-
-        const $folder = this.params.folder
-
-        return (
-         $folder === '*' || $.id === '*' || $folder == $.id
-        )
-      },
-
-      getIcon( item ) {
-        let icon = 'insert_drive_file'
-
-        if ( item.$.type === 'folder' ) {
-          icon = this.isOpen(item) ? 'folder_open' : 'folder'
+        if ( type === 'folder' ) {
+          const $path = this.$route.params.path.split('/')
+          icon = $path.includes( id + '' ) ? 'folder_open' : 'folder'
         }
 
         return icon
-      },
-
-      folderID({ $ }) {
-        return $.type === 'folder' && $.id
       },
     }
   }
@@ -101,22 +67,21 @@
   [am-nota=list-item] {
     margin .5em
 
-    &[data-folder='*'] {
+    &[data-folder=all] {
       margin-left 0
       margin-right 0
     }
   }
 
-  [data-type=nota] {
-    opacity 0
-    font-size 0
+  [am-nota=list-item] > [am-nota=list] {
+    max-height 0
     overflow hidden
-
-    [data-open] & {
-      opacity 1
-      height 100%
-
-      font-size inherit
+  }
+  
+  [am-nota=list] {
+    [data-folder=all] &
+    .v-link-active + & {
+      max-height 100%
     }
   }
 
