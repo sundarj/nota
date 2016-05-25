@@ -14,10 +14,12 @@
   <nav am-nota=list>
     <template v-for='item in roots'>
       <nota-folder v-if='item.type === "folder"' :folder='item' :items='items'></nota-folder>
-      
+
       <a am-nota=item v-else
           v-link='{ name: "root", params: { id: item.id } }'
-          v-text='item.title'></a>
+      >
+        <span class='material-icons'> note </span> {{ item.title }}
+      </a>
     </template>
   </nav>
 </template>
@@ -29,7 +31,7 @@
     name: 'nota-list',
     props: [ 'items' ],
     components: [ NotaFolder ],
-    
+
     computed: {
       roots() {
         return this.items.filter( item => ! item.parent )
@@ -52,42 +54,15 @@
 </script>
 
 <style lang='stylus'>
-  [am-nota=list]
-  [am-nota=list-item] {
-    display block
-  }
-
-  [am-nota=list] a {
-    text-decoration none
-    color inherit
-
-    padding .25em
-  }
-
-  [am-nota=list-item] {
-    margin .5em
-
-    &[data-folder=all] {
-      margin-left 0
-      margin-right 0
-    }
-  }
-
-  [am-nota=list-item] > [am-nota=list] {
-    max-height 0
-    overflow hidden
-  }
-  
-  [am-nota=list] {
-    [data-folder=all] &
-    .v-link-active + & {
-      max-height 100%
-    }
-  }
-
   .material-icons {
     font-size inherit
     vertical-align middle
     margin-right 5px
+  }
+
+  a {
+    color inherit
+    text-decoration none
+    margin .5em 0
   }
 </style>
