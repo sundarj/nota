@@ -2,7 +2,7 @@
   <a am-nota=folder-title
     v-link='{ name: folder.type, params: { path: path } }'
   >
-    <span class='material-icons' v-text='icon'></span> {{ folder.title }}
+    <span class='material-icons' v-text='icon'></span> <span>{{ folder.title }}</span>
   </a>
 
   <div am-nota=folder v-bind='{ "am-open": open }'>
@@ -15,7 +15,7 @@
         <a am-nota=item v-else
           v-link='{ name: child.type, params: { path: path, id: child.id } }'
         >
-          <span class='material-icons'> note </span> {{ child.title }}
+          <span class='material-icons'> note </span> <span>{{ child.title }}</span>
         </a>
       </template>
   </div>

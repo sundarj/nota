@@ -18,7 +18,7 @@
       <a am-nota=item v-else
           v-link='{ name: "root", params: { id: item.id } }'
       >
-        <span class='material-icons'> note </span> {{ item.title }}
+        <span class='material-icons'> note </span> <span>{{ item.title }}</span>
       </a>
     </template>
   </nav>
@@ -56,8 +56,12 @@
 <style lang='stylus'>
   .material-icons {
     font-size inherit
-    vertical-align middle
     margin-right 5px
+    
+    &, & + span {
+      display inline-block
+      vertical-align middle
+    }
   }
 
   a {
