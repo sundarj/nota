@@ -12,7 +12,7 @@
     </div> -->
 
   <nav am-nota=list>
-    <template v-for='item in roots'>
+    <template v-for='item of roots'>
       <nota-folder v-if='item.type === "folder"' :folder='item' :items='items'></nota-folder>
 
       <a am-nota=item v-else

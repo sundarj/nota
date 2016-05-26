@@ -1,8 +1,8 @@
-import app from './app'
+import router from './router'
 import Nota from './components/nota.vue'
 import NotaList from './components/nota-list.vue'
 
-app.map({
+router.map({
   '/': {
     component: NotaList,
     
@@ -27,6 +27,6 @@ app.map({
   },
 })
 
-app.start(Nota, 'main')
+router.start(Nota, 'main')
 
-window.nota = app
+window.nota = router

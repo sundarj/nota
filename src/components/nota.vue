@@ -4,7 +4,7 @@
       <router-view :items='items'></router-view>
     </aside>
     
-    <nota-editor></nota-editor>
+    <nota-editor v-show='editing' :editing='editing'></nota-editor>
   </main>
 </template>
 
@@ -65,6 +65,17 @@
           title: '1',
           contents: [ 'yuna' ],
         }]
+      }
+    },
+    
+    computed: {
+      editing() {
+        const $id = this.$route.params.id
+        const $current = this.items.find( item => item.id === $id )
+        
+        if ( $current.type === 'folder' ) return false
+        
+        return $current
       }
     },
   }
