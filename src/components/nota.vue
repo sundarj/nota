@@ -3,7 +3,7 @@
     <aside am-nota=aside>
       <router-view :items='items'></router-view>
     </aside>
-    
+
     <nota-editor v-show='editing' :editing='editing'></nota-editor>
   </main>
 </template>
@@ -14,9 +14,11 @@
   export default {
     name: 'nota',
     components: [ NotaEditor ],
-    
+
     data() {
       return {
+        editing: false,
+
         items: [{
           type: 'nota',
           id: '1',
@@ -67,16 +69,13 @@
         }]
       }
     },
-    
-    computed: {
-      editing() {
-        const $id = this.$route.params.id
+
+    created() {
+      this.$watch('$route.params.id', $id => {
         const $current = this.items.find( item => item.id === $id )
-        
-        if ( $current.type === 'folder' ) return false
-        
-        return $current
-      }
+
+        return ( $current.type === 'folder' ) || ( this.editing = $current )
+      })
     },
   }
 </script>
