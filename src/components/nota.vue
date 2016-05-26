@@ -1,5 +1,5 @@
 <template>
-  <main am-nota>
+  <main>
     <aside am-nota=aside>
       <router-view :items='items'></router-view>
     </aside>
