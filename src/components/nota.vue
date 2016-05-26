@@ -4,7 +4,7 @@
       <router-view :items='items'></router-view>
     </aside>
 
-    <nota-editor v-show='editing' :editing='editing'></nota-editor>
+    <nota-editor v-show='editing' :editing='editing' transition='editor'></nota-editor>
   </main>
 </template>
 
@@ -71,11 +71,15 @@
     },
 
     created() {
-      this.$watch('$route.params.id', $id => {
-        const $current = this.items.find( item => item.id === $id )
+      const setEditing = ( $id ) => {
+        if ( ! $id ) return
 
+        const $current = this.items.find( item => item.id === $id )
         return ( $current.type === 'folder' ) || ( this.editing = $current )
-      })
+      }
+
+      this.$watch( '$route.params.id', setEditing )
+      setEditing( this.$route.params.id )
     },
   }
 </script>
