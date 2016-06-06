@@ -1,23 +1,26 @@
 <template>
-  <a am-nota=folder-title
-    v-link='{ name: folder.type, params: { path: path } }'
-  >
-    <span class='material-icons' v-text='icon'></span> <span>{{ folder.title }}</span>
-  </a>
+  <div>
+    <a am-nota=folder-title
+      v-link='{ name: "folder", params: { path: path } }'
+    >
+      <span class='material-icons' v-text='icon'></span> <span>{{ folder.title }}</span>
+    </a>
 
-  <div am-nota=folder v-bind='{ "am-open": open }'>
-      <template v-for='child of children'>
-        <nota-folder v-if='child.type === folder.type'
-          :folder='child'
-          :items='items'
-        ></nota-folder>
+    <div am-nota=folder v-bind='{ "am-open": open }'>
+        <template v-for='child of children'>
+          <a am-nota=folder-title v-if='child.type === folder.type'
+            v-link='{ name: "folder", params: { path: path + "/" + child.id } }'
+          >
+            <span class='material-icons' v-text='icon'></span> <span>{{ child.title }}</span>
+          </a>
 
-        <a am-nota=item v-else
-          v-link='{ name: child.type, params: { path: path, id: child.id } }'
-        >
-          <span class='material-icons'> note </span> <span>{{ child.title }}</span>
-        </a>
-      </template>
+          <a am-nota=item v-else
+            v-link='{ name: "nota", params: { path: path, id: child.id } }'
+          >
+            <span class='material-icons'> note </span> <span>{{ child.title }}</span>
+          </a>
+        </template>
+    </div>
   </div>
 </template>
 

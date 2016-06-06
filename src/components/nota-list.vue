@@ -1,19 +1,11 @@
 <template>
-  <!--   <div am-nota=list-item
-      v-for='item of items'
-      v-bind='{ "data-folder": folderID(item) }'
-      data-type='{{ item.type }}'
-    >
-        <a v-link='getLink(item)' v-if='item.title' am-nota=list-item-title>
-          <i class="material-icons" v-text='getIcon(item)'></i> <span v-text='item.title'></span>
-        </a>
-
-      <nota-list v-if='item.type === "folder"' :items='item.contents'></nota-list>
-    </div> -->
-
   <nav am-nota=list>
     <template v-for='item of roots'>
-      <nota-folder v-if='item.type === "folder"' :folder='item' :items='items'></nota-folder>
+      <a am-nota=folder-title v-if='item.type === "folder"'
+        v-link='{ name: "folder", params: { path: item.id } }'
+      >
+        <span class='material-icons' v-text='icon'></span> <span>{{ item.title }}</span>
+      </a>
 
       <a am-nota=item v-else
           v-link='{ name: "root", params: { id: item.id } }'
@@ -57,7 +49,7 @@
   .material-icons {
     font-size inherit
     margin-right 5px
-    
+
     &, & + span {
       display inline-block
       vertical-align middle
