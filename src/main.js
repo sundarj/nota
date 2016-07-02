@@ -1,33 +1,20 @@
-import router from './router'
-import Nota from './components/nota.vue'
-import NotaList from './components/nota-list.vue'
-import NotaFolder from './components/nota-folder.vue'
+import Vue from 'vue'
+import Router, { route } from './router'
+Vue.use( Router )
 
-router.map({
-  '/': {
-    component: NotaList,
+import NotaApp from './components/nota-app.vue'
 
-    subRoutes: {
-      '/:id': {
-        name: 'root',
-        component: NotaList,
-      },
+window.nota = route(
+  new Vue({
+    el: 'body',
 
-      '/*path': {
-        name: 'folder',
-        component: NotaFolder,
+    components: [ NotaApp ],
+  })
+)
 
-        subRoutes: {
-          '/:id': {
-            name: 'nota',
-            component: NotaFolder,
-          },
-        },
-      },
-    },
-  },
+window.nota.router = Router({
+  routes: [
+    { name: 'root', path: '/:id' },
+    { name: 'item', path: '/:path*/:id' },
+  ],
 })
-
-router.start(Nota, 'main')
-
-window.nota = router

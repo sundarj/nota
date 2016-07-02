@@ -1,23 +1,25 @@
 <template>
   <main>
     <aside am-nota=aside>
-      <router-view :items='items'></router-view>
+      <nota-list :items='items' :location='location'></nota-list>
     </aside>
 
-    <nota-editor v-show='editing' :editing='editing' transition='editor'></nota-editor>
+   <nota-editor v-show='editing' :editing='editing' transition='editor'></nota-editor>
   </main>
 </template>
 
 <script>
   import NotaEditor from './nota-editor.vue'
+  import NotaList from './nota-list.vue'
 
   export default {
-    name: 'nota',
-    components: [ NotaEditor ],
+    name: 'nota-app',
+    components: [ NotaEditor, NotaList ],
 
     data() {
       return {
         editing: false,
+        location: {},
 
         items: [{
           type: 'nota',
@@ -70,16 +72,23 @@
       }
     },
 
-    created() {
-      const setEditing = ( $id ) => {
-        if ( ! $id ) return
-
-        const $current = this.items.find( item => item.id === $id )
-        return ( $current.type === 'folder' ) || ( this.editing = $current )
-      }
-
-      this.$watch( '$route.params.id', setEditing )
-      setEditing( this.$route.params.id )
+    events: {
+      historychange( location ) {
+        console.log( location )
+        this.location = location
+      },
     },
+
+    // created() {
+    //   const setEditing = ( $id ) => {
+    //     if ( ! $id ) return
+
+    //     const $current = this.items.find( item => item.id === $id )
+    //     return ( $current.type === 'folder' ) || ( this.editing = $current )
+    //   }
+
+    //   this.$watch( '$route.params.id', setEditing )
+    //   setEditing( this.$route.params.id )
+    // },
   }
 </script>

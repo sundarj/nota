@@ -1,17 +1,19 @@
 <template>
   <nav am-nota=list>
     <template v-for='item of roots'>
-      <a am-nota=folder-title v-if='item.type === "folder"'
-        v-link='{ name: "folder", params: { path: item.id } }'
+      <a am-nota=item v-if='item.type === "nota"'
+          v-href='{ name: "root", params: { id: item.id } }'
+      >
+        <span class='material-icons'> note </span> <span>{{ item.title }}</span>
+      </a>
+
+      <a am-nota=folder-title v-else
+        v-href='{ name: "folder", params: { path: item.id } }'
       >
         <span class='material-icons' v-text='icon'></span> <span>{{ item.title }}</span>
       </a>
 
-      <a am-nota=item v-else
-          v-link='{ name: "root", params: { id: item.id } }'
-      >
-        <span class='material-icons'> note </span> <span>{{ item.title }}</span>
-      </a>
+      
     </template>
   </nav>
 </template>
@@ -21,7 +23,7 @@
 
   export default {
     name: 'nota-list',
-    props: [ 'items' ],
+    props: [ 'items', 'location' ],
     components: [ NotaFolder ],
 
     computed: {
