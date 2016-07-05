@@ -31,12 +31,18 @@ export default function Router({ basename = '/', routes = [] } = {}) {
 Router.install = function install( Vue ) {
   Vue.directive( 'href', {
     bind() {
-      this.el.addEventListener( 'click', event => {
-        event.preventDefault()
+      this.el.addEventListener( 'click', this.click )
+    },
 
-        History.push({
-          pathname: normalisePathname( event.currentTarget.pathname ),
-        })
+    unbind() {
+      this.el.removeEventListener( 'click', this.click )
+    },
+
+    click( event ) {
+      event.preventDefault()
+
+      History.push({
+        pathname: normalisePathname( event.currentTarget.pathname ),
       })
     },
 
