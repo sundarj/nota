@@ -74,7 +74,6 @@
 
     events: {
       historychange( location ) {
-        console.log( location )
         this.location = location
       },
     },

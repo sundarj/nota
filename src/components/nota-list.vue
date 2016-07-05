@@ -8,12 +8,10 @@
       </a>
 
       <a am-nota=folder-title v-else
-        v-href='{ name: "folder", params: { path: item.id } }'
+        v-href='{ name: "item", params: { path: item.path, id: item.id } }'
       >
         <span class='material-icons' v-text='icon'></span> <span>{{ item.title }}</span>
       </a>
-
-      
     </template>
   </nav>
 </template>
@@ -28,7 +26,7 @@
 
     computed: {
       roots() {
-        return this.items.filter( item => ! item.parent )
+        if ( ! this.location ) return this.items.filter( item => ! item.parent )
       }
     },
 
@@ -37,7 +35,7 @@
         let icon = 'note'
 
         if ( type === 'folder' ) {
-          const $path = this.$route.params.path.split('/')
+          const $path = this.location.params.path.split('/')
           icon = $path.includes( id + '' ) ? 'folder_open' : 'folder'
         }
 
