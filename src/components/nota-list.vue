@@ -1,16 +1,19 @@
 <template>
   <nav am-nota=list>
-    <template v-for='item of roots'>
+    <template v-for='item of results'>
       <a am-nota=item v-if='item.type === "nota"'
           v-href='{ name: "root", params: { id: item.id } }'
       >
-        <span class='material-icons'> note </span> <span>{{ item.title }}</span>
+        <span class='material-icons'> note </span>
+        <span>{{ item.title }}</span>
       </a>
 
       <a am-nota=folder-title v-else
-        v-href='{ name: "item", params: { path: item.path, id: item.id } }'
+        v-href='{ name: "item", params: { id: item.id } }'
       >
-        <span class='material-icons' v-text='icon'></span> <span>{{ item.title }}</span>
+        <!-- v-text='getIcon( item )' -->
+        <span class='material-icons'></span>
+        <span>{{ item.title }}</span>
       </a>
     </template>
   </nav>
@@ -21,12 +24,17 @@
 
   export default {
     name: 'nota-list',
-    props: [ 'items', 'location' ],
+    props: [ 'items' ],
     components: [ NotaFolder ],
 
     computed: {
-      roots() {
-        if ( ! this.location ) return this.items.filter( item => ! item.parent )
+      results() {
+        if ( ! (this.location && this.location.name) ) {
+          return this.items.filter( item => ! item.parent )
+        }
+
+        // const parentID = this.location.params.id
+        // return this.items.filter( item => item.parent == parentID )
       }
     },
 
@@ -41,7 +49,13 @@
 
         return icon
       },
-    }
+    },
+
+    events: {
+      historychange( location ) {
+        if ( location ) this.location = location
+      },
+    },
   }
 </script>
 

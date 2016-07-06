@@ -1,7 +1,7 @@
 <template>
   <main>
     <aside am-nota=aside>
-      <nota-list :items='items' :location='location'></nota-list>
+      <nota-list :items='items'></nota-list>
     </aside>
 
    <nota-editor v-show='editing' :editing='editing' transition='editor'></nota-editor>
@@ -70,12 +70,6 @@
           contents: [ 'yuna' ],
         }]
       }
-    },
-
-    events: {
-      historychange( location ) {
-        this.location = location
-      },
     },
 
     // created() {
