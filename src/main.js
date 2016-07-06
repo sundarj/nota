@@ -1,20 +1,19 @@
 import Vue from 'vue'
-import Router, { route } from './router'
+import Router from './router'
 Vue.use( Router )
 
 import NotaApp from './components/nota-app.vue'
 
-window.nota = route(
-  new Vue({
-    el: 'body',
 
-    components: [ NotaApp ],
-  })
-)
-
-window.nota.router = Router({
+const nota = window.nota = Router({
   routes: [
     { name: 'root', path: '/:id' },
     { name: 'item', path: '/:path*/:id' },
   ],
+
+  app: _ => new Vue({
+    el: 'body',
+
+    components: [ NotaApp ],
+  })
 })

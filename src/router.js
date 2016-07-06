@@ -1,31 +1,38 @@
 import { createHistory, useBasename } from 'history'
 import fromPath from 'path-to-regexp'
 
-let History
-let Component
+let history
 const toPath = {}
 
-export default function Router({ basename = '/', routes = [] } = {}) {
+export default function Router({
+  basename = '/',
+  routes = [],
+  app,
+} = {}) {
   if ( ! Router.installed ) {
     throw new Error(
       'Please install the Router with Vue.use() before creating an instance.'
     )
   }
 
-  if ( ! Component ) {
-    throw new Error( 'Please call route( component ) before creating an instance.' )
+  if ( typeof app !== 'function' ) {
+    throw new Error(
+      'Please provide a Vue instance factory as the `app` option'
+    )
   }
 
-  History = useBasename( createHistory )({
+  history = useBasename( createHistory )({
     basename,
   })
 
-  History.listen( location => {
-    onhistorychange( location, routes )
+  history.listen( location => {
+    history.app.$broadcast( 'historychange', matchRoutes( location, routes ) )
   })
-  onhistorychange( History.getCurrentLocation(), routes )
 
-  return History
+  matchRoutes( history.getCurrentLocation(), routes )  // set up global state
+
+  history.app = app()
+  return history
 }
 
 Router.install = function install( Vue ) {
@@ -41,7 +48,7 @@ Router.install = function install( Vue ) {
     click( event ) {
       event.preventDefault()
 
-      History.push({
+      history.push({
         pathname: normalisePathname( event.currentTarget.pathname ),
       })
     },
@@ -55,17 +62,6 @@ Router.install = function install( Vue ) {
   })
 }
 
-export function route( extComponent ) {
-  Component = extComponent
-
-  return extComponent
-}
-
-
-function onhistorychange( location, routes ) {
-  Component.$broadcast( 'historychange', matchRoutes( location, routes ) )
-}
-
 function matchRoutes( { pathname }, routes ) {
   const matched = {
     name: '',
@@ -75,7 +71,7 @@ function matchRoutes( { pathname }, routes ) {
   for ( const { name, path } of routes ) {
     const keys = []
     const match = fromPath( path, keys ).exec( '/' + pathname )
-    toPath[name] = fromPath.compile( path )
+    toPath[name] = toPath[name] || fromPath.compile( path )
 
     if ( (!match) || (!match.every(Boolean)) ) continue
 
