@@ -29,9 +29,10 @@ export default function Router({
     history.app.$broadcast( 'historychange', matchRoutes( location, routes ) )
   })
 
-  matchRoutes( history.getCurrentLocation(), routes )  // set up global state
-
+  const initial = matchRoutes( history.getCurrentLocation(), routes )
   history.app = app()
+  history.app.$broadcast( 'historychange', initial )  // send current route
+  
   return history
 }
 
@@ -53,7 +54,7 @@ Router.install = function install( Vue ) {
       })
     },
 
-    update ({ name, params }) {
+    update({ name, params }) {
       const el = this.el
       const href = toPath[name]( params )
 
