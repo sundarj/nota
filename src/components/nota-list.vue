@@ -26,15 +26,11 @@
     name: 'nota-list',
     props: [ 'items' ],
     components: [ NotaFolder ],
-
-    computed: {
-      results() {
-        if ( ! (this.location && this.location.name) ) {
-          return this.items.filter( item => ! item.parent )
-        }
-
-        // const parentID = this.location.params.id
-        // return this.items.filter( item => item.parent == parentID )
+    
+    data() {
+      return {
+        roots: this.items.filter( ({ parent }) => ! parent ),
+        results: [],
       }
     },
 
@@ -53,7 +49,17 @@
 
     events: {
       historychange( location ) {
-        if ( location ) this.location = location
+        if ( location ) {
+          const { params } = location
+          
+          const { id, type } = this.items.find( ({ id }) => id === params.id )
+          if ( type !== 'folder' ) {
+            this.results = this.roots
+            return
+          }
+          
+          this.results = this.items.filter( ({ parent }) => parent === id )
+        }
       },
     },
   }
