@@ -28,9 +28,12 @@
     components: [ NotaFolder ],
     
     data() {
+      let results
+      const roots = results = this.items.filter( ({ parent }) => ! parent )
+       
       return {
-        roots: this.items.filter( ({ parent }) => ! parent ),
-        results: [],
+        roots,
+        results,
       }
     },
 
@@ -49,17 +52,19 @@
 
     events: {
       historychange( location ) {
-        if ( location ) {
-          const { params } = location
-          
-          const { id, type } = this.items.find( ({ id }) => id === params.id )
-          if ( type !== 'folder' ) {
-            this.results = this.roots
-            return
-          }
-          
-          this.results = this.items.filter( ({ parent }) => parent === id )
+        const { params } = location
+        if ( !params.id ) {  // location: /
+          this.results = this.roots
+          return
         }
+        
+        let { id, type, parent } = this.items.find( ({ id }) => id === params.id )
+        
+        if ( type !== 'folder' ) {
+          id = parent
+        }
+        
+        this.results = this.items.filter( ({ parent }) => parent === id )
       },
     },
   }
