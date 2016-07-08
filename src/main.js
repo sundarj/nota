@@ -12,8 +12,8 @@ const nota = window.nota = Router({
   ],
 
   app: _ => new Vue({
-    el: 'body',
-
-    components: [ NotaApp ],
+    el: 'main',
+    
+    render: h => h( NotaApp )
   })
 })
