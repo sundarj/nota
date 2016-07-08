@@ -65,7 +65,7 @@ Router.install = function install( Vue ) {
 
 function matchRoutes( { pathname }, routes ) {
   const matched = {
-    name: '',
+    name: null,
     params: {},
   }
 
@@ -84,7 +84,6 @@ function matchRoutes( { pathname }, routes ) {
     }
   }
 
-  if ( ! matched.name ) return null
   return matched
 }
 
