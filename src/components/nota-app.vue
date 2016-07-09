@@ -9,6 +9,7 @@
 </template>
 
 <script>
+  import bus from '../bus'
   import NotaEditor from './nota-editor.vue'
   import NotaList from './nota-list.vue'
 
@@ -72,16 +73,19 @@
       }
     },
 
-    // created() {
-    //   const setEditing = ( $id ) => {
-    //     if ( ! $id ) return
+    created() {
+      bus.$on( 'historychange', this.historychange )
+    },
 
-    //     const $current = this.items.find( item => item.id === $id )
-    //     return ( $current.type === 'folder' ) || ( this.editing = $current )
-    //   }
+    methods: {
+      historychange({ params }) {
+        if ( ! params.id ) return
 
-    //   this.$watch( '$route.params.id', setEditing )
-    //   setEditing( this.$route.params.id )
-    // },
+        const item = this.items.find( item => item.id === params.id )
+        if ( item.type !== 'nota' ) return
+
+        this.editing = item
+      }
+    },
   }
 </script>
