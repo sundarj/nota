@@ -11,8 +11,7 @@
       <a am-nota=folder-title v-else
         v-href='{ name: "item", params: { id: item.id } }'
       >
-        <!-- v-text='getIcon( item )' -->
-        <span class='material-icons'></span>
+        <span class='material-icons'> folder </span>
         <span>{{ item.title }}</span>
       </a>
     </template>
@@ -34,19 +33,6 @@
         roots,
         results,
       }
-    },
-
-    methods: {
-      getIcon({ type, id }) {
-        let icon = 'note'
-
-        if ( type === 'folder' ) {
-          const $path = this.location.params.path.split('/')
-          icon = $path.includes( id + '' ) ? 'folder_open' : 'folder'
-        }
-
-        return icon
-      },
     },
 
     created() {
