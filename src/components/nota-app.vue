@@ -14,7 +14,7 @@
 
   export default {
     name: 'nota-app',
-    components: [ NotaEditor, NotaList ],
+    components: { NotaEditor, NotaList },
 
     data() {
       return {

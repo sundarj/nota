@@ -20,17 +20,16 @@
 </template>
 
 <script>
-  import NotaFolder from './nota-folder.vue'
+  import bus from '../bus'
 
   export default {
     name: 'nota-list',
     props: [ 'items' ],
-    components: [ NotaFolder ],
-    
+
     data() {
       let results
       const roots = results = this.items.filter( ({ parent }) => ! parent )
-       
+
       return {
         roots,
         results,
@@ -50,20 +49,24 @@
       },
     },
 
-    events: {
+    created() {
+      bus.$on( 'historychange', this.historychange )
+    },
+
+    methods: {
       historychange( location ) {
         const { params } = location
         if ( !params.id ) {  // location: /
           this.results = this.roots
           return
         }
-        
+
         let { id, type, parent } = this.items.find( ({ id }) => id === params.id )
-        
+
         if ( type !== 'folder' ) {
           id = parent
         }
-        
+
         this.results = this.items.filter( ({ parent }) => parent === id )
       },
     },
@@ -85,5 +88,6 @@
     color inherit
     text-decoration none
     margin .5em 0
+    display block
   }
 </style>

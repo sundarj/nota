@@ -7,7 +7,7 @@ const toPath = {}
 export default function Router({
   basename = '/',
   routes = [],
-  app,
+  bus,
 } = {}) {
   if ( ! Router.installed ) {
     throw new Error(
@@ -15,9 +15,9 @@ export default function Router({
     )
   }
 
-  if ( typeof app !== 'function' ) {
+  if ( typeof bus !== 'object' ) {
     throw new Error(
-      'Please provide a Vue instance factory as the `app` option'
+      'Please provide an event bus as the `bus` option'
     )
   }
 
@@ -26,39 +26,39 @@ export default function Router({
   })
 
   history.listen( location => {
-    history.app.$broadcast( 'historychange', matchRoutes( location, routes ) )
+    bus.$emit( 'historychange', matchRoutes( location, routes ) )
   })
 
-  const initial = matchRoutes( history.getCurrentLocation(), routes )
-  history.app = app()
-  history.app.$broadcast( 'historychange', initial )  // send current route
-  
+  history.replace( history.getCurrentLocation() )
+
   return history
 }
 
 Router.install = function install( Vue ) {
+  function click( event ) {
+    event.preventDefault()
+
+    history.push({
+      pathname: normalisePathname( event.currentTarget.pathname ),
+    })
+  }
+
+  function setHref( el, { name, params } ) {
+    el.setAttribute( 'href', toPath[name](params) )
+  }
+
   Vue.directive( 'href', {
-    bind() {
-      this.el.addEventListener( 'click', this.click )
+    bind( el, { value } ) {
+      setHref( el, value )
+      el.addEventListener( 'click', click )
     },
 
-    unbind() {
-      this.el.removeEventListener( 'click', this.click )
+    unbind( el ) {
+      el.removeEventListener( 'click', click )
     },
 
-    click( event ) {
-      event.preventDefault()
-
-      history.push({
-        pathname: normalisePathname( event.currentTarget.pathname ),
-      })
-    },
-
-    update({ name, params }) {
-      const el = this.el
-      const href = toPath[name]( params )
-
-      this.el.setAttribute( 'href', href )
+    update( el, { value } ) {
+      setHref( el, value )
     },
   })
 }
