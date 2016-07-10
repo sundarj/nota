@@ -80,7 +80,7 @@ function matchRoutes( { pathname }, routes ) {
 
     let index = 1
     for ( const key of keys ) {
-      matched.params[key.name] = match[index++]
+      matched.params[key.name] = decodeURIComponent( match[index++] )
     }
   }
 
