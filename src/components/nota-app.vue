@@ -88,7 +88,6 @@
 
     methods: {
       historychange({ params }) {
-        console.log( params )
         if ( ! params.id ) return
 
         const item = this.items.find( item => item.id === params.id )
