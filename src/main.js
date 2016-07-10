@@ -20,3 +20,5 @@ nota.app = new Vue({
 
   render: h => h( NotaApp ),
 })
+
+nota.start()

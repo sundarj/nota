@@ -29,7 +29,9 @@ export default function Router({
     bus.$emit( 'historychange', matchRoutes( location, routes ) )
   })
 
-  history.replace( history.getCurrentLocation() )
+  // match initial route
+  const initial = matchRoutes( history.getCurrentLocation(), routes )
+  history.start = _ => bus.$emit( 'historychange', initial )
 
   return history
 }
