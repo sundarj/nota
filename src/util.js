@@ -3,8 +3,8 @@ const keymap = [ '', '', '', 'CANCEL', '', '', 'HELP', '', 'BACK_SPACE', 'TAB', 
 
 const lower = str => ( str || '' ).toLowerCase()
 
-export function key({ key, keyIdentifier, keyCode }) {
-  return lower( key || keyIdentifier || keymap[keyCode] )
+export function key({ keyCode }) {
+  return lower( keymap[keyCode] )
 }
 
 const $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ_-~@!+'.split('')
