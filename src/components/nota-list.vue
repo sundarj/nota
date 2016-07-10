@@ -21,18 +21,24 @@
 <script>
   import bus from '../bus'
 
+  function hasNoParent({ parent }) {
+    return ( ! parent )
+  }
+
   export default {
     name: 'nota-list',
     props: [ 'items' ],
 
     data() {
-      let results
-      const roots = results = this.items.filter( ({ parent }) => ! parent )
-
       return {
-        roots,
-        results,
+        filter: hasNoParent,
       }
+    },
+
+    computed: {
+      results() {
+        return this.items.filter( this.filter )
+      },
     },
 
     created() {
@@ -40,10 +46,12 @@
     },
 
     methods: {
-      historychange( location ) {
-        const { params } = location
-        if ( !params.id ) {  // location: /
-          this.results = this.roots
+      hasNoParent,
+      isChildOf: id => ({ parent }) => parent === id,
+
+      historychange({ params }) {
+        if ( ! params.id ) {  // location: /
+          this.filter = this.hasNoParent
           return
         }
 
@@ -53,7 +61,7 @@
           id = parent
         }
 
-        this.results = this.items.filter( ({ parent }) => parent === id )
+        this.filter = this.isChildOf( id )
       },
     },
   }
