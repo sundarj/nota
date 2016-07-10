@@ -2,6 +2,7 @@
   <nav am-nota=list
     v-on:click.capture='edit( $event )'
     v-on:keyup='keyup( $event )'
+    v-on:focusout='blur( $event )'
   >
     <template v-for='item of results'>
       <a am-nota=item v-if='item.type === "nota"'
@@ -51,7 +52,9 @@
       bus.$on( 'historychange', this.historychange )
 
       bus.$on( 'focus', id =>
-        this.$nextTick( _ => this.focus( document.getElementById(id) ) )
+        this.$nextTick( _ =>
+          this.focus({ target: document.getElementById(id) })
+        )
       )
     },
 
@@ -69,6 +72,10 @@
 
         if ( type !== 'folder' ) {
           id = parent
+        } else {
+          // reset focus to top
+          this.$el.tabIndex = 0
+          this.$el.focus()
         }
 
         this.filter = this.isChildOf( id )
@@ -78,15 +85,19 @@
         return this.items.find( ({ id }) => id === $id )
       },
 
-      focus( input ) {
-        input.readOnly = false
-        input.focus()
-        input.select()
+      focus({ target }) {
+        if ( target.tagName !== 'INPUT' ) return
+
+        target.readOnly = false
+        target.focus()
+        target.select()
       },
 
-      blur( input ) {
-        input.readOnly = true
-        input.blur()
+      blur({ target }) {
+        if ( target.tagName !== 'INPUT' ) return
+
+        target.readOnly = true
+        target.blur()
       },
 
       edit( event ) {
@@ -103,16 +114,18 @@
         event.preventDefault()
         event.stopPropagation()
 
-        this.focus( input )
+        this.focus( event )
 
         this.lastTarget = target
         this.lastValue  = target.value
       },
 
-      cancel( input ) {
-        this.blur( input )
+      cancel({ target }) {
+        this.blur( target )
 
-        this.getItemById( input.dataset.id ).title = this.lastValue
+        if ( ! this.lastValue ) return
+
+        this.getItemById( target.dataset.id ).title = this.lastValue
         this.lastValue = null
       },
 
@@ -122,14 +135,26 @@
         if ( target.tagName !== 'INPUT' ) return
 
         const keyPressed = key( event )
-        if ( keyPressed === 'escape' ) this.cancel( target )
-        else if ( keyPressed === 'enter' ) this.blur( target )
+
+        if ( keyPressed === 'escape' ) {
+          this.cancel( event )
+        } else if ( keyPressed === 'enter' ) {
+          target.parentElement.click()
+
+          if ( event.shiftKey ) {
+            this.edit( event )
+          }
+        }
       },
     },
   }
 </script>
 
 <style lang='stylus'>
+  [am-nota=list]:focus {
+    outline none
+  }
+
   .material-icons {
     font-size inherit
     margin-right 5px
