@@ -110,6 +110,7 @@
         }
 
         this.items.push( item )
+        bus.$emit( 'focus', item.id )
       },
     },
   }

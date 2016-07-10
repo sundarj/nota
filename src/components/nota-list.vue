@@ -8,14 +8,14 @@
           v-href='{ name: "root", params: { id: item.id } }'
       >
         <span class='material-icons'> note </span>
-        <input v-model=item.title :data-id=item.id readonly>
+        <input v-model=item.title :data-id=item.id :id=item.id readonly>
       </a>
 
       <a am-nota=folder-title v-else
         v-href='{ name: "item", params: { id: item.id } }'
       >
         <span class='material-icons'> folder </span>
-        <input v-model=item.title :data-id=item.id readonly>
+        <input v-model=item.title :data-id=item.id :id=item.id readonly>
       </a>
     </template>
   </nav>
@@ -49,6 +49,10 @@
 
     created() {
       bus.$on( 'historychange', this.historychange )
+
+      bus.$on( 'focus', id =>
+        this.$nextTick( _ => this.focus( document.getElementById(id) ) )
+      )
     },
 
     methods: {
@@ -74,6 +78,17 @@
         return this.items.find( ({ id }) => id === $id )
       },
 
+      focus( input ) {
+        input.readOnly = false
+        input.focus()
+        input.select()
+      },
+
+      blur( input ) {
+        input.readOnly = true
+        input.blur()
+      },
+
       edit( event ) {
         const { target } = event
 
@@ -88,17 +103,10 @@
         event.preventDefault()
         event.stopPropagation()
 
-        target.readOnly = false
-        target.focus()
-        target.select()
+        this.focus( input )
 
         this.lastTarget = target
         this.lastValue  = target.value
-      },
-
-      blur( input ) {
-        input.readOnly = true
-        input.blur()
       },
 
       cancel( input ) {
