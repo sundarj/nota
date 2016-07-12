@@ -2,7 +2,7 @@
   <div am-nota=editor>
     <header am-nota=editor-title v-text='editing.title'></header>
 
-    <medium-editor v-for='field of editing.contents' v-model='field'></medium-editor>
+    <medium-editor v-model='editing.content'></medium-editor>
   </div>
 </template>
 

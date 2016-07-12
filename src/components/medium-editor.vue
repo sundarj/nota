@@ -1,8 +1,9 @@
 <template>
-  <div class=editable contenteditable ref=editor v-html=value></div>
+  <div ref=editor contenteditable></div>
 </template>
 
 <script>
+  import debounce from 'lodash.debounce'
   import Editor from 'medium-editor'
 
   export default {
@@ -12,9 +13,23 @@
     mounted() {
       const editor = new Editor( this.$refs.editor, {
         toolbar: false,
+        autoLink: true,
       })
 
-      console.log( editor )
+      console.log( this.value )
+
+      editor.subscribe( 'editableInput', debounce(({ target }) => {
+        this.$emit( 'input', target.innerHTML )
+      }, 300))
     },
   }
 </script>
+
+<style lang=stylus>
+  [ contenteditable ] a {
+    text-decoration underline
+    cursor pointer
+    display inline-block
+    margin 0
+  }
+</style>

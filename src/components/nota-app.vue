@@ -35,17 +35,17 @@
           type: 'nota',
           id: '1',
           title: 'The Silmarillion',
-          contents: [ 'duup', 'lex' ],
+          content: '<p>duup</p><p>lex</p>',
         }, {
           type: 'nota',
           id: '2',
           title: '不思議の国のアリス',
-          contents: [ 'hely' ],
+          content: '<p>hely</p>',
         }, {
           type: 'nota',
           id: '3',
           title: 'Warning!!',
-          contents: [ 'tropic' ],
+          content: '<p>tropic</p>',
         }, {
           type: 'folder',
           id: '4',
@@ -55,7 +55,7 @@
           id: '5',
           parent: '4',
           title: 'Don\'t Panic',
-          contents: [ 'yuna' ],
+          content: '<p>yuna</p>',
         }, {
           type: 'folder',
           id: '6',
@@ -66,7 +66,7 @@
           id: '7',
           parent: '6',
           title: 'Sometimes',
-          contents: [ 'yuna' ],
+          content: '<p>yuna</p>',
         }, {
           type: 'folder',
           id: '8',
@@ -77,7 +77,7 @@
           id: '9',
           parent: '8',
           title: '1',
-          contents: [ 'yuna' ],
+          content: '<p>yuna</p>',
         }],
       }
     },
@@ -104,7 +104,7 @@
         }
 
         if ( type === 'nota' ) {
-          item.contents = [ '' ]
+          item.content = [ '' ]
 
           this.editing = item
         }
