@@ -7,11 +7,20 @@
 </template>
 
 <script>
+  import bus from '../bus'
   import MediumEditor from './medium-editor.vue'
 
   export default {
     name: 'nota-editor',
     props: [ 'editing' ],
-    components: { MediumEditor },
+    components: {
+      MediumEditor( resolve ) {
+        // wait until route is matched to resolve editor
+
+        bus.$once( 'historychange', _ => {
+          resolve( MediumEditor )
+        })
+      },
+    },
   }
 </script>

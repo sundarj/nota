@@ -3,7 +3,6 @@
 </template>
 
 <script>
-  import debounce from 'lodash.debounce'
   import Editor from 'medium-editor'
 
   export default {
@@ -16,11 +15,11 @@
         autoLink: true,
       })
 
-      console.log( this.value )
+      editor.setContent( this.value )
 
-      editor.subscribe( 'editableInput', debounce(({ target }) => {
+      editor.subscribe( 'editableInput', ({ target }) => {
         this.$emit( 'input', target.innerHTML )
-      }, 300))
+      })
     },
   }
 </script>
