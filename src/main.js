@@ -1,3 +1,5 @@
+import 'setimmediate'
+
 import Vue from 'vue'
 import Router from './router'
 Vue.use( Router )

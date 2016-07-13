@@ -18,7 +18,7 @@
 
       if ( this.value ) editor.setContent( this.value )
       bus.$on( 'historychange', _ => {
-        setTimeout( _ => editor.setContent( this.value ), 0 )
+        setImmediate( _ => editor.setContent( this.value ) )
       })
 
       editor.subscribe( 'editableInput', ({ target }) => {
