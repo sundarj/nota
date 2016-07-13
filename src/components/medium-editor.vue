@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  import bus from '../bus'
   import Editor from 'medium-editor'
 
   export default {
@@ -15,7 +16,10 @@
         autoLink: true,
       })
 
-      editor.setContent( this.value )
+      if ( this.value ) editor.setContent( this.value )
+      bus.$on( 'historychange', _ => {
+        setTimeout( _ => editor.setContent( this.value ), 0 )
+      })
 
       editor.subscribe( 'editableInput', ({ target }) => {
         this.$emit( 'input', target.innerHTML )

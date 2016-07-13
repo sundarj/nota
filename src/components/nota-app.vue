@@ -104,7 +104,7 @@
         }
 
         if ( type === 'nota' ) {
-          item.content = [ '' ]
+          item.content = ''
 
           this.editing = item
         }

@@ -13,14 +13,6 @@
   export default {
     name: 'nota-editor',
     props: [ 'editing' ],
-    components: {
-      MediumEditor( resolve ) {
-        // wait until route is matched to resolve editor
-
-        bus.$once( 'historychange', _ => {
-          resolve( MediumEditor )
-        })
-      },
-    },
+    components: { MediumEditor },
   }
 </script>
