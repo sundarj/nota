@@ -36,6 +36,10 @@ export default function Router({
   return history
 }
 
+export function href({ name, params }) {
+  return toPath[name](params)
+}
+
 Router.install = function install( Vue ) {
   function click( event ) {
     event.preventDefault()
@@ -45,8 +49,8 @@ Router.install = function install( Vue ) {
     })
   }
 
-  function setHref( el, { name, params } ) {
-    el.setAttribute( 'href', toPath[name](params) )
+  function setHref( el, route ) {
+    el.setAttribute( 'href', href(route) )
   }
 
   Vue.directive( 'href', {

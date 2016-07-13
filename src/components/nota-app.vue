@@ -18,6 +18,7 @@
 
 <script>
   import bus from '../bus'
+  import history, { href } from '../history'
   import { ID } from '../util'
 
   import NotaEditor from './nota-editor.vue'
@@ -91,7 +92,7 @@
         if ( ! params.id ) return
 
         const item = this.items.find( item => item.id === params.id )
-        if ( item.type !== 'nota' ) return
+        if ( !item || item.type !== 'nota' ) return
 
         this.editing = item
       },
@@ -103,14 +104,18 @@
           id: ID(),
         }
 
+        this.items.push( item )
+
         if ( type === 'nota' ) {
           item.content = ''
-
           this.editing = item
+
+          history.push(
+            href({ name: 'item', params: item })
+          )
         }
 
-        this.items.push( item )
-        bus.$emit( 'focus', item.id )
+        bus.$emit( 'newItem', { id: item.id } )
       },
     },
   }

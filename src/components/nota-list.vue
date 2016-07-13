@@ -51,7 +51,7 @@
     created() {
       bus.$on( 'historychange', this.historychange )
 
-      bus.$on( 'focus', id =>
+      bus.$on( 'newItem', ({ id }) =>
         this.$nextTick( _ =>
           this.focus({ target: document.getElementById(id) })
         )
