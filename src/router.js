@@ -69,19 +69,19 @@ Router.install = function install( Vue ) {
   })
 }
 
-function matchRoutes( { pathname }, routes ) {
+function matchRoutes( { state, pathname }, routes ) {
   const matched = {
     name: null,
     params: {},
+    state,
   }
 
   for ( const { name, path } of routes ) {
     const keys = []
     const match = fromPath( path, keys ).exec( '/' + pathname )
+
     toPath[name] = toPath[name] || fromPath.compile( path )
-
     if ( (!match) || (!match.every(Boolean)) ) continue
-
     matched.name = name
 
     let index = 1

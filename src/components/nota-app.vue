@@ -109,11 +109,14 @@
         if ( type === 'nota' ) {
           item.content = ''
           this.editing = item
-
-          history.push(
-            href({ name: 'item', params: item })
-          )
         }
+
+        history.push({
+          pathname: href({ name: 'item', params: item }),
+          state: {
+            status: 'new',
+          },
+        })
 
         bus.$emit( 'newItem', { id: item.id } )
       },

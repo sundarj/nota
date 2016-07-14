@@ -5,17 +5,13 @@
     v-on:focusout='blur( $event )'
   >
     <template v-for='item of results'>
-      <a am-nota=item v-if='item.type === "nota"'
-          v-href='{ name: "root", params: { id: item.id } }'
-      >
-        <span class='material-icons'> note </span>
-        <input v-model=item.title :data-id=item.id :id=item.id readonly>
-      </a>
-
-      <a am-nota=folder-title v-else
+      <a am-nota=item :data-type=item.type
         v-href='{ name: "item", params: { id: item.id } }'
       >
-        <span class='material-icons'> folder </span>
+        <span class=material-icons>
+          {{ item.type === 'folder' ? 'folder' : 'note' }}
+        </span>
+
         <input v-model=item.title :data-id=item.id :id=item.id readonly>
       </a>
     </template>
@@ -37,6 +33,7 @@
     data() {
       return {
         filter: hasNoParent,
+        currentFolder: null,
         lastTarget: null,
         lastValue: null,
       }
@@ -62,21 +59,35 @@
       hasNoParent,
       isChildOf: id => ({ parent }) => parent === id,
 
-      historychange({ params }) {
+      historychange({ state = {}, params }) {
         if ( ! params.id ) {  // location: /
           this.filter = this.hasNoParent
           return
         }
 
-        let { id, type, parent } = this.getItemById( params.id )
+        const isNew = ( state.status === 'new' )
+        const currentFolder = this.currentFolder
 
-        if ( type !== 'folder' ) {
+        const item = this.getItemById( params.id )
+        let { id, type, parent } = item
+
+        const isNota = ( type === 'nota' )
+
+         if ( isNew ) {
+          item.parent = parent = currentFolder
+         }
+
+        if ( isNota ) {
           id = parent
         } else {
           // reset focus to top
           this.$el.tabIndex = 0
           this.$el.focus()
+
+          if ( ! isNew ) this.currentFolder = id
         }
+
+        if ( isNew ) return
 
         this.filter = this.isChildOf( id )
       },
