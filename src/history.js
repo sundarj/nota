@@ -6,12 +6,10 @@ import bus from './bus'
 
 export default Router({
   routes: [
-    { name: 'root', path: '/:id' },
-    { name: 'item', path: '/:path*/:id' },
+    { name: 'item', path: '/:id' },
   ],
 
   bus,
 })
 
 export { href }
-
