@@ -65,29 +65,16 @@
           return
         }
 
-        const isNew = ( state.status === 'new' )
-        const currentFolder = this.currentFolder
-
         const item = this.getItemById( params.id )
         let { id, type, parent } = item
 
-        const isNota = ( type === 'nota' )
-
-         if ( isNew ) {
-          item.parent = parent = currentFolder
-         }
-
-        if ( isNota ) {
+        if ( type === 'nota' ) {
           id = parent
         } else {
           // reset focus to top
           this.$el.tabIndex = 0
           this.$el.focus()
-
-          if ( ! isNew ) this.currentFolder = id
         }
-
-        if ( isNew ) return
 
         this.filter = this.isChildOf( id )
       },

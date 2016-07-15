@@ -2,6 +2,7 @@ import 'setimmediate'
 
 import history from './history'
 import Vue from 'vue'
+
 import NotaApp from './components/nota-app.vue'
 
 const nota = window.nota = history
