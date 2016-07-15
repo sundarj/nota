@@ -28,60 +28,58 @@
     name: 'nota-app',
     components: { NotaEditor, NotaList },
 
-    data() {
-      return {
-        editing: false,
+    data: _ => ({
+      editing: false,
 
-        items: [{
-          type: 'nota',
-          id: '1',
-          title: 'The Silmarillion',
-          content: '<p>duup</p><p>lex</p>',
-        }, {
-          type: 'nota',
-          id: '2',
-          title: '不思議の国のアリス',
-          content: '<p>hely</p>',
-        }, {
-          type: 'nota',
-          id: '3',
-          title: 'Warning!!',
-          content: '<p>tropic</p>',
-        }, {
-          type: 'folder',
-          id: '4',
-          title: 'other',
-        }, {
-          type: 'nota',
-          id: '5',
-          parent: '4',
-          title: 'Don\'t Panic',
-          content: '<p>yuna</p>',
-        }, {
-          type: 'folder',
-          id: '6',
-          parent: '4',
-          title: 'else',
-        }, {
-          type: 'nota',
-          id: '7',
-          parent: '6',
-          title: 'Sometimes',
-          content: '<p>yuna</p>',
-        }, {
-          type: 'folder',
-          id: '8',
-          parent: '6',
-          title: 'another',
-        }, {
-          type: 'nota',
-          id: '9',
-          parent: '8',
-          title: '1',
-          content: '<p>yuna</p>',
-        }],
-      }
-    },
+      items: [{
+        type: 'nota',
+        id: '1',
+        title: 'The Silmarillion',
+        content: '<p>duup</p><p>lex</p>',
+      }, {
+        type: 'nota',
+        id: '2',
+        title: '不思議の国のアリス',
+        content: '<p>hely</p>',
+      }, {
+        type: 'nota',
+        id: '3',
+        title: 'Warning!!',
+        content: '<p>tropic</p>',
+      }, {
+        type: 'folder',
+        id: '4',
+        title: 'other',
+      }, {
+        type: 'nota',
+        id: '5',
+        parent: '4',
+        title: 'Don\'t Panic',
+        content: '<p>yuna</p>',
+      }, {
+        type: 'folder',
+        id: '6',
+        parent: '4',
+        title: 'else',
+      }, {
+        type: 'nota',
+        id: '7',
+        parent: '6',
+        title: 'Sometimes',
+        content: '<p>yuna</p>',
+      }, {
+        type: 'folder',
+        id: '8',
+        parent: '6',
+        title: 'another',
+      }, {
+        type: 'nota',
+        id: '9',
+        parent: '8',
+        title: '1',
+        content: '<p>yuna</p>',
+      }],
+    }),
 
     created() {
       bus.$on( 'historychange', this.historychange )

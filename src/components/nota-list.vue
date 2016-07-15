@@ -30,14 +30,12 @@
     name: 'nota-list',
     props: [ 'items' ],
 
-    data() {
-      return {
-        filter: hasNoParent,
-        currentFolder: null,
-        lastTarget: null,
-        lastValue: null,
-      }
-    },
+    data: _ => ({
+      filter: hasNoParent,
+      currentFolder: null,
+      lastTarget: null,
+      lastValue: null,
+    }),
 
     computed: {
       results() {
