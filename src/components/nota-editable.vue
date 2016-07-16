@@ -41,14 +41,20 @@
 
     methods: {
       keyup( event ) {
-        if ( key(event) !== 'space' ) return
+        const keyPressed = key( event )
+        const activateKeys = [ 'space', 'enter' ]
+        if ( ! activateKeys.includes(key(event)) ) return
 
         const { target } = event
 
         const range = rangy.createRange()
+        const nodes = document.createNodeIterator(
+          target,
+          NodeFilter.SHOW_TEXT
+        )
+        let node, lastNode
 
-        const nodes = target.childNodes
-        const lastNode = nodes[nodes.length - 1]
+        while( node = nodes.nextNode() ) lastNode = node
         range.selectNodeContents( lastNode )
 
         const string = range.toString().trim()
@@ -67,7 +73,6 @@
         }
 
         const start = string.lastIndexOf( lastWord )
-
         range.setStart( lastNode, start )
         range.setEnd( lastNode, start + lastWord.length )
         range.deleteContents()
