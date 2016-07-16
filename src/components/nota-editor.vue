@@ -2,17 +2,17 @@
   <div am-nota=editor>
     <header am-nota=editor-title v-text='editing.title'></header>
 
-    <medium-editor v-model='editing.content'></medium-editor>
+    <nota-editable v-model='editing.content'></nota-editable>
   </div>
 </template>
 
 <script>
   import bus from '../bus'
-  import MediumEditor from './medium-editor.vue'
+  import NotaEditable from './nota-editable.vue'
 
   export default {
     name: 'nota-editor',
     props: [ 'editing' ],
-    components: { MediumEditor },
+    components: { NotaEditable },
   }
 </script>
