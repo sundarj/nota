@@ -21,20 +21,6 @@
     },
 
     methods: {
-      keyup( event ) {
-        const keyPressed = key( event )
-        const activateKeys = [ 'space', 'enter' ]
-        if ( ! activateKeys.includes(keyPressed) ) return
-
-        const caretPos = rangy.saveSelection()
-        const editorContent = editor.getHTML().replace( /&nbsp;/g, ( match, offset))
-        const linkedContent = linked( editorContent )
-        console.log( linkedContent )
-        editor.setHTML( linkedContent.replace( / /g, '&nbsp;' ) )
-        rangy.restoreSelection( caretPos )
-
-      },
-
       blur() {
         if ( ! editor ) return
 

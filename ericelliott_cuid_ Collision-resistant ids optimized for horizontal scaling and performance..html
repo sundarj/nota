@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://github.com/ericelliott/cuid -->
+<html lang="en" class=" is-copy-enabled is-u2f-enabled"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <link crossorigin="anonymous" href="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/frameworks-536bcdee57776d99649d118d29a291c9d7b41d101696162d6456c87b07314253.css" integrity="sha256-U2vN7ld3bZlknRGNKaKRyde0HRAWlhYtZFbIewcxQlM=" media="all" rel="stylesheet">
+    <link crossorigin="anonymous" href="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/github-62cdd177894e003285e5b8b6fa72b4a92fb79f11a1ec44c2f2ae0f6f4ad2e724.css" integrity="sha256-Ys3Rd4lOADKF5bi2+nK0qS+3nxGh7ETC8q4Pb0rS5yQ=" media="all" rel="stylesheet">
+    
+    
+    
+    
+
+    <link as="script" href="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/frameworks-a7639ac9e39da98200a9933eb9841a8b06a96fcefcfaa4614b72f7003f6a9f00.js" rel="preload">
+    
+    <link as="script" href="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/github-7e1bcc1cffe047a54e92c343c0e145ed2b2a84ca2b28db278a0e1301476e1c44.js" rel="preload">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width">
+    
+    
+    <title>ericelliott/cuid: Collision-resistant ids optimized for horizontal scaling and performance.</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" href="https://github.com/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://github.com/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://github.com/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://github.com/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://github.com/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/apple-touch-icon-180x180.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="https://avatars1.githubusercontent.com/u/364727?v=3&amp;s=400" name="twitter:image:src"><meta content="@github" name="twitter:site"><meta content="summary" name="twitter:card"><meta content="ericelliott/cuid" name="twitter:title"><meta content="cuid - Collision-resistant ids optimized for horizontal scaling and performance." name="twitter:description">
+      <meta content="https://avatars1.githubusercontent.com/u/364727?v=3&amp;s=400" property="og:image"><meta content="GitHub" property="og:site_name"><meta content="object" property="og:type"><meta content="ericelliott/cuid" property="og:title"><meta content="https://github.com/ericelliott/cuid" property="og:url"><meta content="cuid - Collision-resistant ids optimized for horizontal scaling and performance." property="og:description">
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="web-socket" href="wss://live.github.com/_sockets/NDQxOTM0OmJkODY4NTVhMDVmMzU1YjFjODRlMTIxOGUwYWQxODU5OjdkM2I5ZTRlNGM2NjM2ZjdhODcyNTM2MjFiYjU3MTFiNDM4YjE2NzdhMmJkOTMwMGU0YzAwYTY1OTBmNjAwZGY=--0ee14aacdce881b290f41545b58341fb5bcd55d2">
+    <meta name="pjax-timeout" content="1000">
+    <link rel="sudo-modal" href="https://github.com/sessions/sudo_modal">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_source" data-pjax-transient="">
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host"><meta content="github" name="octolytics-app-id"><meta content="02624FCE:18C1:8684929:5741D00E" name="octolytics-dimension-request_id"><meta content="441934" name="octolytics-actor-id"><meta content="sundarj" name="octolytics-actor-login"><meta content="4802f17d89357d69cd983d424ba0468fe14ab2170876b8ace35b4e6f17148196" name="octolytics-actor-hash">
+<meta content="/&lt;user-name&gt;/&lt;repo-name&gt;" data-pjax-transient="true" name="analytics-location">
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged In">
+
+
+
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="sundarj">
+
+        <meta name="expected-hostname" content="github.com">
+      <meta name="js-proxy-site-detection-payload" content="YTUxOGRkN2M5YzQ1NGU5Y2Q0ZjRlNzBmN2I4ODBhMjc1YTFmM2Y0MzA5NTkwZGI1ZWRlNGQ2YWI4ZTU1NDRiNHx7InJlbW90ZV9hZGRyZXNzIjoiMi45OC43OS4yMDYiLCJyZXF1ZXN0X2lkIjoiMDI2MjRGQ0U6MThDMTo4Njg0OTI5OjU3NDFEMDBFIiwidGltZXN0YW1wIjoxNDYzOTMwODk1fQ==">
+
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta name="html-safe-nonce" content="f3dd2acd7bbf42b94e2182461867b16aa2a74668">
+    <meta content="8561e58876445b21e95d098d1dc9b3b13bdd779f" name="form-nonce">
+
+    <meta http-equiv="x-pjax-version" content="e4f929931a9a15f97bc092fc4ddec4fc">
+    
+
+      
+  <meta name="description" content="cuid - Collision-resistant ids optimized for horizontal scaling and performance.">
+  <meta name="go-import" content="github.com/ericelliott/cuid git https://github.com/ericelliott/cuid.git">
+
+  <meta content="364727" name="octolytics-dimension-user_id"><meta content="ericelliott" name="octolytics-dimension-user_login"><meta content="5635966" name="octolytics-dimension-repository_id"><meta content="ericelliott/cuid" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="5635966" name="octolytics-dimension-repository_network_root_id"><meta content="ericelliott/cuid" name="octolytics-dimension-repository_network_root_nwo">
+  <link href="https://github.com/ericelliott/cuid/commits/master.atom" rel="alternate" title="Recent Commits to cuid:master" type="application/atom+xml">
+
+
+      <link rel="canonical" href="https://github.com/ericelliott/cuid" data-pjax-transient="">
+  </head>
+
+
+  <body class="logged-in   env-production linux vis-public">
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"></div>
+    <a href="https://github.com/ericelliott/cuid#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+        <div class="header header-logged-in true" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+  <svg aria-hidden="true" class="octicon octicon-mark-github" height="28" version="1.1" viewBox="0 0 16 16" width="28"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+</a>
+
+
+        <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/ericelliott/cuid/search" class="js-site-search-form" data-scoped-search-url="/ericelliott/cuid/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+    <label class="form-control header-search-wrapper js-chromeless-input-container">
+      <div class="header-search-scope">This repository</div>
+      <input type="text" class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable" data-hotkey="s" name="q" placeholder="Search" aria-label="Search this repository" data-unscoped-placeholder="Search GitHub" data-scoped-placeholder="Search" tabindex="1" autocapitalize="off">
+    </label>
+</form></div>
+
+
+      <ul class="header-nav left" role="navigation">
+        <li class="header-nav-item">
+          <a href="https://github.com/pulls" class="js-selected-navigation-item header-nav-link" data-ga-click="Header, click, Nav menu - item:pulls context:user" data-hotkey="g p" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls">
+            Pull requests
+</a>        </li>
+        <li class="header-nav-item">
+          <a href="https://github.com/issues" class="js-selected-navigation-item header-nav-link" data-ga-click="Header, click, Nav menu - item:issues context:user" data-hotkey="g i" data-selected-links="/issues /issues/assigned /issues/mentioned /issues">
+            Issues
+</a>        </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://gist.github.com/" data-ga-click="Header, go to gist, text:gist">Gist</a>
+          </li>
+      </ul>
+
+    
+<ul class="header-nav user-nav right" id="user-links">
+  <li class="header-nav-item">
+    
+    <a href="https://github.com/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator" data-channel="notification-changed-v2:441934" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+        <span class="mail-status "></span>
+        <svg aria-hidden="true" class="octicon octicon-bell" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 12v1H0v-1l0.73-0.58c0.77-0.77 0.81-2.55 1.19-4.42 0.77-3.77 4.08-5 4.08-5 0-0.55 0.45-1 1-1s1 0.45 1 1c0 0 3.39 1.23 4.16 5 0.38 1.88 0.42 3.66 1.19 4.42l0.66 0.58z m-7 4c1.11 0 2-0.89 2-2H5c0 1.11 0.89 2 2 2z"></path></svg>
+</a>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link tooltipped tooltipped-s js-menu-target" href="https://github.com/new" aria-label="Create new…" data-ga-click="Header, create new, icon:add">
+      <svg aria-hidden="true" class="octicon octicon-plus left" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg>
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <ul class="dropdown-menu dropdown-menu-sw">
+        
+<a class="dropdown-item" href="https://github.com/new" data-ga-click="Header, create new repository">
+  New repository
+</a>
+
+  <a class="dropdown-item" href="https://github.com/new/import" data-ga-click="Header, import a repository">
+    Import repository
+  </a>
+
+
+  <a class="dropdown-item" href="https://github.com/organizations/new" data-ga-click="Header, create new organization">
+    New organization
+  </a>
+
+
+
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-header">
+    <span title="ericelliott/cuid">This repository</span>
+  </div>
+    <a class="dropdown-item" href="https://github.com/ericelliott/cuid/issues/new" data-ga-click="Header, create new issue">
+      New issue
+    </a>
+
+      </ul>
+    </div>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link name tooltipped tooltipped-sw js-menu-target" href="https://github.com/sundarj" aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar">
+      <img alt="@sundarj" class="avatar" height="20" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/441934" width="20">
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <div class="dropdown-menu  dropdown-menu-sw">
+        <div class=" dropdown-header header-nav-current-user css-truncate">
+            Signed in as <strong class="css-truncate-target">sundarj</strong>
+
+        </div>
+
+
+        <div class="dropdown-divider"></div>
+
+          <a class="dropdown-item" href="https://github.com/sundarj" data-ga-click="Header, go to profile, text:your profile">
+            Your profile
+          </a>
+        <a class="dropdown-item" href="https://github.com/stars" data-ga-click="Header, go to starred repos, text:your stars">
+          Your stars
+        </a>
+          <a class="dropdown-item" href="https://github.com/explore" data-ga-click="Header, go to explore, text:explore">
+            Explore
+          </a>
+          <a class="dropdown-item" href="https://github.com/integrations" data-ga-click="Header, go to integrations, text:integrations">
+            Integrations
+          </a>
+        <a class="dropdown-item" href="https://help.github.com/" data-ga-click="Header, go to help, text:help">
+          Help
+        </a>
+
+
+          <div class="dropdown-divider"></div>
+
+          <a class="dropdown-item" href="https://github.com/settings/profile" data-ga-click="Header, go to settings, icon:settings">
+            Settings
+          </a>
+
+          <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/logout" class="logout-form" data-form-nonce="8561e58876445b21e95d098d1dc9b3b13bdd779f" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="BwTjb+slNe0FgAnUm4K0FKXDdDWjCocpWsvyK9w8K4TecRqI9c5g/fsW12v2UlF/kHIDwdF1OY9z6n1cq6bF7g=="></div>
+            <button class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
+              Sign out
+            </button>
+</form>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+    
+  </div>
+</div>
+
+
+      
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+      <div id="js-flash-container">
+</div>
+
+
+    <div role="main" class="main-content">
+        <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode">
+    <div id="js-repo-pjax-container" data-pjax-container="">
+      
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+
+    
+
+<ul class="pagehead-actions">
+
+  <li>
+        <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-form-nonce="8561e58876445b21e95d098d1dc9b3b13bdd779f" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="2XMTJG7Zk3dJB0EIJo2J4XueE7lqmvc14O6N1/oGcRKbGbJ7pj5YD7jm9732VfXQ2Ix2i0gOHX/N9bXqZALxHQ=="></div>      <input class="form-control" id="repository_id" name="repository_id" type="hidden" value="5635966">
+
+        <div class="select-menu js-menu-container js-select-menu">
+          <a href="https://github.com/ericelliott/cuid/subscription" class="btn btn-sm btn-with-count select-menu-button js-menu-target" role="button" tabindex="0" aria-haspopup="true" data-ga-click="Repository, click Watch settings, action:files#disambiguate">
+            <span class="js-select-button">
+              <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6c4.94 0 7.94-6 7.94-6S13 2 8.06 2z m-0.06 10c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4z m2-4c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path></svg>
+              Watch
+            </span>
+          </a>
+          <a class="social-count js-social-count" href="https://github.com/ericelliott/cuid/watchers">
+            22
+          </a>
+
+        <div class="select-menu-modal-holder">
+          <div class="select-menu-modal subscription-menu-modal js-menu-content" aria-hidden="true">
+            <div class="select-menu-header js-navigation-enable" tabindex="-1">
+              <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75-1.48-1.48 3.75-3.75L0.77 4.25l1.48-1.48 3.75 3.75 3.75-3.75 1.48 1.48-3.75 3.75z"></path></svg>
+              <span class="select-menu-title">Notifications</span>
+            </div>
+
+              <div class="select-menu-list js-navigation-container" role="menu">
+
+                <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+                  <div class="select-menu-item-text">
+                    <input checked="checked" id="do_included" name="do" type="radio" value="included">
+                    <span class="select-menu-item-heading">Not watching</span>
+                    <span class="description">Be notified when participating or @mentioned.</span>
+                    <span class="js-select-button-text hidden-select-button-text">
+                      <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6c4.94 0 7.94-6 7.94-6S13 2 8.06 2z m-0.06 10c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4z m2-4c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path></svg>
+                      Watch
+                    </span>
+                  </div>
+                </div>
+
+                <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+                  <div class="select-menu-item-text">
+                    <input id="do_subscribed" name="do" type="radio" value="subscribed">
+                    <span class="select-menu-item-heading">Watching</span>
+                    <span class="description">Be notified of all conversations.</span>
+                    <span class="js-select-button-text hidden-select-button-text">
+                      <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6c4.94 0 7.94-6 7.94-6S13 2 8.06 2z m-0.06 10c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4z m2-4c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path></svg>
+                      Unwatch
+                    </span>
+                  </div>
+                </div>
+
+                <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+                  <div class="select-menu-item-text">
+                    <input id="do_ignore" name="do" type="radio" value="ignore">
+                    <span class="select-menu-item-heading">Ignoring</span>
+                    <span class="description">Never be notified.</span>
+                    <span class="js-select-button-text hidden-select-button-text">
+                      <svg aria-hidden="true" class="octicon octicon-mute" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8 2.81v10.38c0 0.67-0.81 1-1.28 0.53L3 10H1c-0.55 0-1-0.45-1-1V7c0-0.55 0.45-1 1-1h2l3.72-3.72c0.47-0.47 1.28-0.14 1.28 0.53z m7.53 3.22l-1.06-1.06-1.97 1.97-1.97-1.97-1.06 1.06 1.97 1.97-1.97 1.97 1.06 1.06 1.97-1.97 1.97 1.97 1.06-1.06-1.97-1.97 1.97-1.97z"></path></svg>
+                      Stop ignoring
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+</form>
+  </li>
+
+  <li>
+    
+  <div class="js-toggler-container js-social-container starring-container on success">
+
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/ericelliott/cuid/unstar" class="starred" data-form-nonce="8561e58876445b21e95d098d1dc9b3b13bdd779f" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="au9Djnn3ez6zUjyCh6vypPL/bg3x6PSANWezQelpDPUFjkbx14ceDWpDkHGnU1oNRYcpYRfvKRZW+tKDxsxwKw=="></div>
+      <button class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Unstar ericelliott/cuid" data-ga-click="Repository, click unstar button, action:files#disambiguate; text:Unstar">
+        <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/ericelliott/cuid/stargazers">544</a>
+</form>
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/ericelliott/cuid/star" class="unstarred" data-form-nonce="8561e58876445b21e95d098d1dc9b3b13bdd779f" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="pT319dm6lh0orfXqluEG2dN0+Ltg2Sceb1VQueFrrIZgWlU71q3Eq6uwntCOay6HmVB9MZ2heV6mk8hBvnS9xA=="></div>
+      <button class="btn btn-sm btn-with-count js-toggler-target" aria-label="Star this repository" title="Star ericelliott/cuid" data-ga-click="Repository, click star button, action:files#disambiguate; text:Star">
+        <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/ericelliott/cuid/stargazers">544</a>
+</form>  </div>
+
+  </li>
+
+  <li>
+          <a href="https://github.com/ericelliott/cuid#fork-destination-box" class="btn btn-sm btn-with-count" title="Fork your own copy of ericelliott/cuid to your account" aria-label="Fork your own copy of ericelliott/cuid to your account" rel="facebox" data-ga-click="Repository, show fork modal, action:files#disambiguate; text:Fork" data-vivaldi-spatnav-clickable="1">
+              <svg aria-hidden="true" class="octicon octicon-repo-forked" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M8 1c-1.11 0-2 0.89-2 2 0 0.73 0.41 1.38 1 1.72v1.28L5 8 3 6v-1.28c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72v1.78l3 3v1.78c-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72V9.5l3-3V4.72c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2zM2 4.2c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m3 10c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m3-10c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+            Fork
+          </a>
+
+          <div id="fork-destination-box" style="display: none;">
+            <h2 class="facebox-header" data-facebox-id="facebox-header">Where should we fork this repository?</h2>
+            <include-fragment src="" class="js-fork-select-fragment fork-select-fragment" data-url="/ericelliott/cuid/fork?fragment=1">
+              <img alt="Loading" height="64" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-128.gif" width="64">
+            </include-fragment>
+          </div>
+
+    <a href="https://github.com/ericelliott/cuid/network" class="social-count">
+      20
+    </a>
+  </li>
+</ul>
+
+    <h1 class="entry-title public ">
+  <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+  <span class="author" itemprop="author"><a href="https://github.com/ericelliott" class="url fn" rel="author">ericelliott</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a href="https://github.com/ericelliott/cuid" data-pjax="#js-repo-pjax-container">cuid</a></strong>
+
+</h1>
+
+  </div>
+  <div class="container">
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/ericelliott/cuid" aria-selected="true" class="js-selected-navigation-item selected reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /ericelliott/cuid" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M9.5 3l-1.5 1.5 3.5 3.5L8 11.5l1.5 1.5 4.5-5L9.5 3zM4.5 3L0 8l4.5 5 1.5-1.5L2.5 8l3.5-3.5L4.5 3z"></path></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="https://github.com/ericelliott/cuid/issues" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /ericelliott/cuid/issues" itemprop="url">
+        <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z m1 3H6v5h2V4z m0 6H6v2h2V10z"></path></svg>
+        <span itemprop="name">Issues</span>
+        <span class="counter">8</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/ericelliott/cuid/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /ericelliott/cuid/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 11.28c0-1.73 0-6.28 0-6.28-0.03-0.78-0.34-1.47-0.94-2.06s-1.28-0.91-2.06-0.94c0 0-1.02 0-1 0V0L4 3l3 3V4h1c0.27 0.02 0.48 0.11 0.69 0.31s0.3 0.42 0.31 0.69v6.28c-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72z m-1 2.92c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2zM4 3c0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72 0 1.55 0 5.56 0 6.56-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72V4.72c0.59-0.34 1-0.98 1-1.72z m-0.8 10c0 0.66-0.55 1.2-1.2 1.2s-1.2-0.55-1.2-1.2 0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2z m-1.2-8.8c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="counter">0</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+    <a href="https://github.com/ericelliott/cuid/wiki" class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /ericelliott/cuid/wiki">
+      <svg aria-hidden="true" class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M2 5h4v1H2v-1z m0 3h4v-1H2v1z m0 2h4v-1H2v1z m11-5H9v1h4v-1z m0 2H9v1h4v-1z m0 2H9v1h4v-1z m2-6v9c0 0.55-0.45 1-1 1H8.5l-1 1-1-1H1c-0.55 0-1-0.45-1-1V3c0-0.55 0.45-1 1-1h5.5l1 1 1-1h5.5c0.55 0 1 0.45 1 1z m-8 0.5l-0.5-0.5H1v9h6V3.5z m7-0.5H8.5l-0.5 0.5v8.5h6V3z"></path></svg>
+      Wiki
+</a>
+
+  <a href="https://github.com/ericelliott/cuid/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="pulse /ericelliott/cuid/pulse">
+    <svg aria-hidden="true" class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0V10h3.6L4.5 8.2l0.9 5.4L9 8.5l1.6 1.5H14V8H11.5z"></path></svg>
+    Pulse
+</a>
+  <a href="https://github.com/ericelliott/cuid/graphs" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors /ericelliott/cuid/graphs">
+    <svg aria-hidden="true" class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M16 14v1H0V0h1v14h15z m-11-1H3V8h2v5z m4 0H7V3h2v10z m4 0H11V6h2v7z"></path></svg>
+    Graphs
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+<div class="repository-meta js-details-container">
+  <span class="repository-meta-content">
+        <span itemprop="about"> Collision-resistant ids optimized for horizontal scaling and performance.</span>
+  </span>
+
+</div>
+
+
+<div class="overall-summary overall-summary-bottomless">
+  <div class="stats-switcher-viewport js-stats-switcher-viewport">
+    <div class="stats-switcher-wrapper">
+    <ul class="numbers-summary">
+      <li class="commits">
+        <a data-pjax="" href="https://github.com/ericelliott/cuid/commits/master">
+            <svg aria-hidden="true" class="octicon octicon-history" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M8 13H6V6h5v2H8v5zM7 1c-2.19 0-4.13 1.02-5.41 2.59L0 2v4h4l-1.5-1.5c1.05-1.33 2.67-2.2 4.5-2.2 3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8c0-0.34 0.03-0.67 0.09-1H0.08c-0.05 0.33-0.08 0.66-0.08 1 0 3.86 3.14 7 7 7s7-3.14 7-7S10.86 1 7 1z"></path></svg>
+            <span class="num text-emphasized">
+              174
+            </span>
+            commits
+        </a>
+      </li>
+      <li>
+        <a data-pjax="" href="https://github.com/ericelliott/cuid/branches">
+          <svg aria-hidden="true" class="octicon octicon-git-branch" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M10 5c0-1.11-0.89-2-2-2s-2 0.89-2 2c0 0.73 0.41 1.38 1 1.72v0.3c-0.02 0.52-0.23 0.98-0.63 1.38s-0.86 0.61-1.38 0.63c-0.83 0.02-1.48 0.16-2 0.45V4.72c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72v6.56C0.41 11.63 0 12.27 0 13c0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.53-0.2-1-0.53-1.36 0.09-0.06 0.48-0.41 0.59-0.47 0.25-0.11 0.56-0.17 0.94-0.17 1.05-0.05 1.95-0.45 2.75-1.25s1.2-1.98 1.25-3.02h-0.02c0.61-0.36 1.02-1 1.02-1.73zM2 1.8c0.66 0 1.2 0.55 1.2 1.2s-0.55 1.2-1.2 1.2-1.2-0.55-1.2-1.2 0.55-1.2 1.2-1.2z m0 12.41c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m6-8c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+          <span class="num text-emphasized">
+            4
+          </span>
+          branches
+        </a>
+      </li>
+
+      <li>
+        <a data-pjax="" href="https://github.com/ericelliott/cuid/releases">
+          <svg aria-hidden="true" class="octicon octicon-tag" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M6.73 2.73c-0.47-0.47-1.11-0.73-1.77-0.73H2.5C1.13 2 0 3.13 0 4.5v2.47c0 0.66 0.27 1.3 0.73 1.77l6.06 6.06c0.39 0.39 1.02 0.39 1.41 0l4.59-4.59c0.39-0.39 0.39-1.02 0-1.41L6.73 2.73zM1.38 8.09c-0.31-0.3-0.47-0.7-0.47-1.13V4.5c0-0.88 0.72-1.59 1.59-1.59h2.47c0.42 0 0.83 0.16 1.13 0.47l6.14 6.13-4.73 4.73L1.38 8.09z m0.63-4.09h2v2H2V4z"></path></svg>
+          <span class="num text-emphasized">
+            14
+          </span>
+          releases
+        </a>
+      </li>
+
+      <li>
+          <a href="https://github.com/ericelliott/cuid/graphs/contributors">
+  <svg aria-hidden="true" class="octicon octicon-organization" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M4.75 4.95c0.55 0.64 1.34 1.05 2.25 1.05s1.7-0.41 2.25-1.05c0.34 0.63 1 1.05 1.75 1.05 1.11 0 2-0.89 2-2s-0.89-2-2-2c-0.41 0-0.77 0.13-1.08 0.33C9.61 1 8.42 0 7 0S4.39 1 4.08 2.33c-0.31-0.2-0.67-0.33-1.08-0.33-1.11 0-2 0.89-2 2s0.89 2 2 2c0.75 0 1.41-0.42 1.75-1.05z m5.2-1.52c0.2-0.38 0.59-0.64 1.05-0.64 0.66 0 1.2 0.55 1.2 1.2s-0.55 1.2-1.2 1.2-1.17-0.53-1.19-1.17c0.06-0.19 0.11-0.39 0.14-0.59zM7 0.98c1.11 0 2.02 0.91 2.02 2.02s-0.91 2.02-2.02 2.02-2.02-0.91-2.02-2.02S5.89 0.98 7 0.98zM3 5.2c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2c0.45 0 0.84 0.27 1.05 0.64 0.03 0.2 0.08 0.41 0.14 0.59-0.02 0.64-0.53 1.17-1.19 1.17z m10 0.8H1c-0.55 0-1 0.45-1 1v3c0 0.55 0.45 1 1 1v2c0 0.55 0.45 1 1 1h1c0.55 0 1-0.45 1-1v-1h1v3c0 0.55 0.45 1 1 1h2c0.55 0 1-0.45 1-1V12h1v1c0 0.55 0.45 1 1 1h1c0.55 0 1-0.45 1-1V11c0.55 0 1-0.45 1-1V7c0-0.55-0.45-1-1-1zM3 13h-1V10H1V7h2v6z m7-2h-1V9h-1v6H6V9h-1v2h-1V7h6v4z m3-1h-1v3h-1V7h2v3z"></path></svg>
+    <span class="num text-emphasized">
+      13
+    </span>
+    contributors
+</a>
+      </li>
+    </ul>
+
+      <div class="repository-lang-stats">
+        <ol class="repository-lang-stats-numbers">
+          <li>
+              <a href="https://github.com/ericelliott/cuid/search?l=javascript" data-ga-click="Repository, language stats search click, location:repo overview">
+                <span class="color-block language-color" style="background-color:#f1e05a;"></span>
+                <span class="lang">JavaScript</span>
+                <span class="percent">100.0%</span>
+              </a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="repository-lang-stats-graph js-toggle-lang-stats" title="Click for language details" data-ga-click="Repository, language bar stats toggle, location:repo overview">
+    <span class="language-color" aria-label="JavaScript 100.0%" style="width:100.0%; background-color:#f1e05a;" itemprop="keywords">JavaScript</span>
+  </div>
+
+  
+
+  <div class="file-navigation file-navigation-new in-mid-page">
+
+    <div class="select-menu get-repo-select-menu js-menu-container right select-menu-modal-right">
+  <button class="btn btn-sm btn-primary select-menu-button js-menu-target" title="Clone or download this repository" type="button" aria-label="Clone or download this repository" tabindex="0" aria-haspopup="true">
+    <span>Clone or download</span>
+  </button>
+
+  <div class="select-menu-modal-holder dropdown-menu-content js-menu-content" aria-hidden="true">
+    <div class="get-repo-modal dropdown-menu dropdown-menu-sw pb-0 js-toggler-container ">
+      <div class="clone-options https-clone-options">
+        <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone" class="right" data-form-nonce="8561e58876445b21e95d098d1dc9b3b13bdd779f" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="z9IIFeEUqWmsX9B5i+PllHgBIZD1Wgtp9NiBzbCud/zbCXr2mVqo1opm8jac2hUPOUa3Q52QqaAyZe8lxd1AuA=="></div>
+          <button type="submit" class="btn-link btn-change-protocol js-toggler-target">
+            Use SSH
+          </button>
+</form>
+        <h4 class="mb-2">
+          Clone with HTTPS
+          <a class="muted-link" href="https://help.github.com/articles/which-remote-url-should-i-use" target="_blank">
+            <svg aria-hidden="true" class="octicon octicon-question" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M6 10h2v2H6V10z m4-3.5c0 2.14-2 2.5-2 2.5H6c0-0.55 0.45-1 1-1h0.5c0.28 0 0.5-0.22 0.5-0.5v-1c0-0.28-0.22-0.5-0.5-0.5h-1c-0.28 0-0.5 0.22-0.5 0.5v0.5H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path></svg>
+          </a>
+        </h4>
+        <p class="mb-1 get-repo-decription-text">
+          Use Git or checkout with SVN using the web URL.
+        </p>
+
+        <div class="input-group js-zeroclipboard-container">
+  <input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="https://github.com/ericelliott/cuid.git" aria-label="Clone this repository at https://github.com/ericelliott/cuid.git" readonly="">
+  <div class="input-group-button">
+    <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M2 12h4v1H2v-1z m5-6H2v1h5v-1z m2 3V7L6 10l3 3V11h5V9H9z m-4.5-1H2v1h2.5v-1zM2 11h2.5v-1H2v1z m9 1h1v2c-0.02 0.28-0.11 0.52-0.3 0.7s-0.42 0.28-0.7 0.3H1c-0.55 0-1-0.45-1-1V3c0-0.55 0.45-1 1-1h3C4 0.89 4.89 0 6 0s2 0.89 2 2h3c0.55 0 1 0.45 1 1v5h-1V5H1v9h10V12zM2 4h8c0-0.55-0.45-1-1-1h-1c-0.55 0-1-0.45-1-1s-0.45-1-1-1-1 0.45-1 1-0.45 1-1 1h-1c-0.55 0-1 0.45-1 1z"></path></svg></button>
+  </div>
+</div>
+
+      </div>
+
+      <div class="clone-options ssh-clone-options">
+        <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/users/set_protocol?protocol_selector=https&amp;protocol_type=clone" class="right" data-form-nonce="8561e58876445b21e95d098d1dc9b3b13bdd779f" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="lX2ZdWluhUX7WJnkvwvKzA4Nv5KBZRWUYjSr6qfXbNToAK4IyUBDdLiQ/5bwwNaO3u7sqeuGHLMjWcEQmHNoDg=="></div>
+          <button type="submit" class="btn-link btn-change-protocol js-toggler-target">
+            Use HTTPS
+          </button>
+</form>
+        <h4 class="mb-2">
+          Clone with SSH
+          <a class="muted-link" href="https://help.github.com/articles/which-remote-url-should-i-use" target="_blank">
+            <svg aria-hidden="true" class="octicon octicon-question" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M6 10h2v2H6V10z m4-3.5c0 2.14-2 2.5-2 2.5H6c0-0.55 0.45-1 1-1h0.5c0.28 0 0.5-0.22 0.5-0.5v-1c0-0.28-0.22-0.5-0.5-0.5h-1c-0.28 0-0.5 0.22-0.5 0.5v0.5H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path></svg>
+          </a>
+        </h4>
+        <p class="mb-1 get-repo-decription-text">
+          Use an SSH key and passphrase from account.
+        </p>
+
+        <div class="input-group js-zeroclipboard-container">
+  <input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="git@github.com:ericelliott/cuid.git" aria-label="Clone this repository at git@github.com:ericelliott/cuid.git" readonly="">
+  <div class="input-group-button">
+    <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M2 12h4v1H2v-1z m5-6H2v1h5v-1z m2 3V7L6 10l3 3V11h5V9H9z m-4.5-1H2v1h2.5v-1zM2 11h2.5v-1H2v1z m9 1h1v2c-0.02 0.28-0.11 0.52-0.3 0.7s-0.42 0.28-0.7 0.3H1c-0.55 0-1-0.45-1-1V3c0-0.55 0.45-1 1-1h3C4 0.89 4.89 0 6 0s2 0.89 2 2h3c0.55 0 1 0.45 1 1v5h-1V5H1v9h10V12zM2 4h8c0-0.55-0.45-1-1-1h-1c-0.55 0-1-0.45-1-1s-0.45-1-1-1-1 0.45-1 1-0.45 1-1 1h-1c-0.55 0-1 0.45-1 1z"></path></svg></button>
+  </div>
+</div>
+
+      </div>
+
+      <div class="mt-2">
+        
+<a href="https://github.com/ericelliott/cuid/archive/master.zip" class="btn btn-outline get-repo-btn
+" rel="nofollow" data-ga-click="Repository, download zip, location:repo overview">
+  Download ZIP
+</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="btn-group right">
+      
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://github.com/ericelliott/cuid/new/master" class="btn-group-form" data-form-nonce="8561e58876445b21e95d098d1dc9b3b13bdd779f" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="2fMyu7L4fUbYrPtIaJxdEqi4vaE0aamX0kH6UWdvZt3UuVMxLIf494Snqx7Tli2LxNKbuo3Os9dmAx/43IwrwQ=="></div>
+    <button class="btn btn-sm" type="submit" data-disable-with="Creating file…">
+        Create new file
+    </button>
+</form>
+
+      <a href="https://github.com/ericelliott/cuid/upload/master" class="btn btn-sm">
+        Upload files
+      </a>
+
+    <a href="https://github.com/ericelliott/cuid/find/master" class="btn btn-sm empty-icon right" data-pjax="" data-hotkey="t" data-ga-click="Repository, find file, location:repo overview">
+      Find file
+    </a>
+  </div>
+
+  
+<div class="select-menu branch-select-menu js-menu-container js-select-menu left">
+  <button class="btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w" title="master" type="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <i>Branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </button>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax="" aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75-1.48-1.48 3.75-3.75L0.77 4.25l1.48-1.48 3.75 3.75 3.75-3.75 1.48 1.48-3.75 3.75z"></path></svg>
+        <span class="select-menu-title">Switch branches/tags</span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="form-control js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="https://github.com/ericelliott/cuid#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="https://github.com/ericelliott/cuid#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/add-current" data-name="add-current" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text" title="add-current">
+                add-current
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/gh-pages" data-name="gh-pages" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text" title="gh-pages">
+                gh-pages
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open selected" href="https://github.com/ericelliott/cuid/tree/master" data-name="master" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text" title="master">
+                master
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/update-travis" data-name="update-travis" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text" title="update-travis">
+                update-travis
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.8" data-name="v1.3.8" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.8">
+                v1.3.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.7" data-name="v1.3.7" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.7">
+                v1.3.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.6" data-name="v1.3.6" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.6">
+                v1.3.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.5" data-name="v1.3.5" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.5">
+                v1.3.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.4" data-name="v1.3.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.4">
+                v1.3.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.3" data-name="v1.3.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.3">
+                v1.3.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.2" data-name="v1.3.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.2">
+                v1.3.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.1" data-name="v1.3.1" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.1">
+                v1.3.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.3.0" data-name="v1.3.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.3.0">
+                v1.3.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.2.4" data-name="v1.2.4" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.4">
+                v1.2.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.2.3" data-name="v1.2.3" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.3">
+                v1.2.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.2.2" data-name="v1.2.2" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.2">
+                v1.2.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/v1.2.0" data-name="v1.2.0" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="v1.2.0">
+                v1.2.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/ericelliott/cuid/tree/1.1.9" data-name="1.1.9" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.9">
+                1.1.9
+              </span>
+            </a>
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+      <a href="https://github.com/ericelliott/cuid/pull/new/master" class="btn btn-sm new-pull-request-btn" data-pjax="" data-ga-click="Repository, new pull request, location:repo overview">
+        New pull request
+      </a>
+
+  <div class="breadcrumb">
+    
+  </div>
+</div>
+
+
+
+
+
+  <div class="commit-tease js-details-container">
+    <span class="right">
+      Latest commit
+      <a class="commit-tease-sha" href="https://github.com/ericelliott/cuid/commit/113e0036989b1189e420472f02fed335da3a52e7" data-pjax="">
+        113e003
+      </a>
+      <span itemprop="dateModified"><relative-time datetime="2016-01-04T00:46:19Z" title="2016年1月4日 0:46 GMT">on 4 Jan</relative-time></span>
+    </span>
+
+
+    <span class="commit-author-section">
+      <img alt="@ericelliott" class="avatar" height="20" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/364727" width="20">
+      <a href="https://github.com/ericelliott" class="user-mention" rel="author">ericelliott</a>
+    </span>
+
+        <a href="https://github.com/ericelliott/cuid/commit/113e0036989b1189e420472f02fed335da3a52e7" class="message" data-pjax="true" title="Merge pull request #55 from hden/hden-port
+
+Clojure port">Merge pull request</a> <a href="https://github.com/ericelliott/cuid/pull/55" class="issue-link js-issue-link" data-url="https://github.com/ericelliott/cuid/issues/55" data-id="123445083" data-error-text="Failed to load issue title" data-permission-text="Issue title is private">#55</a> <a href="https://github.com/ericelliott/cuid/commit/113e0036989b1189e420472f02fed335da3a52e7" class="message" data-pjax="true" title="Merge pull request #55 from hden/hden-port
+
+Clojure port">from hden/hden-port</a>
+          <span class="hidden-text-expander inline">
+            <button type="button" class="ellipsis-expander js-details-target">…</button>
+          </span>
+    
+
+      <div class="commit-desc"><pre class="text-small">Clojure port</pre></div>
+  </div>
+
+
+<div class="file-wrap">
+
+  <a href="https://github.com/ericelliott/cuid/tree/113e0036989b1189e420472f02fed335da3a52e7" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+  <table class="files js-navigation-container js-active-navigation-container" data-pjax="">
+
+
+    <tbody>
+      <tr class="warning include-fragment-error">
+        <td class="icon"><svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M15.72 12.5l-6.85-11.98C8.69 0.21 8.36 0.02 8 0.02s-0.69 0.19-0.87 0.5l-6.85 11.98c-0.18 0.31-0.18 0.69 0 1C0.47 13.81 0.8 14 1.15 14h13.7c0.36 0 0.69-0.19 0.86-0.5S15.89 12.81 15.72 12.5zM9 12H7V10h2V12zM9 9H7V5h2V9z"></path></svg></td>
+        <td class="content" colspan="3">Failed to load latest commit information.</td>
+      </tr>
+
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M13 4H7v-1c0-0.66-0.31-1-1-1H1c-0.55 0-1 0.45-1 1v10c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V5c0-0.55-0.45-1-1-1z m-7 0H1v-1h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/tree/master/bin" class="js-navigation-open" id="c1111bd512b29e821b120b86446026b8-f7b0e84bbe297435c52f1d502ef96a07245d869a" title="bin">bin</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/c7f456d32be135828e29a7300864d20e30a8b532" class="message" data-pjax="true" title="Fix broken npm package.">Fix broken npm package.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-25T10:06:41Z" title="2015年8月25日 11:06 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M13 4H7v-1c0-0.66-0.31-1-1-1H1c-0.55 0-1 0.45-1 1v10c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V5c0-0.55-0.45-1-1-1z m-7 0H1v-1h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/tree/master/build" class="js-navigation-open" id="b0da275520918e23dd615e2a747528f1-6834aa76cc60912c541ec4dbcbaa1475949c9a33" title="build">build</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/21b728b6e9f9de6d5a24e244bb7d45290cfbeb9a" class="message" data-pjax="true" title="safer PID handling">safer PID handling</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-27T05:32:04Z" title="2015年8月27日 6:32 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item navigation-focus">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M13 4H7v-1c0-0.66-0.31-1-1-1H1c-0.55 0-1 0.45-1 1v10c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V5c0-0.55-0.45-1-1-1z m-7 0H1v-1h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/tree/master/dist" class="js-navigation-open" id="2a6d07eef8b10b84129b42424ed99327-1a91732ba28aa6cfec2747d8b89a00b1e7fcd267" title="dist">dist</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/13f5eb48a7eb4173f390b794fe75b1cd870f1e69" class="message" data-pjax="true" title="Remove reference to applitude and test for app.
+
+I had a similar error to issue #41, and found these changes to ```./dist/browser-cuid.js``` fixed it for me.
+It wasn&#39;t obvious where these files were generated, so I kept the direct changes.">Remove reference to applitude and test for app.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-11-11T07:15:55Z" title="2015年11月11日 7:15 GMT">6 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M13 4H7v-1c0-0.66-0.31-1-1-1H1c-0.55 0-1 0.45-1 1v10c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V5c0-0.55-0.45-1-1-1z m-7 0H1v-1h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/tree/master/source" class="js-navigation-open" id="36cd38f49b9afa08222c0dc9ebfe35eb-e071b28a62ab067324bcf247589d8172ec35ecf7" title="source">source</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/21b728b6e9f9de6d5a24e244bb7d45290cfbeb9a" class="message" data-pjax="true" title="safer PID handling">safer PID handling</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-27T05:32:04Z" title="2015年8月27日 6:32 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-directory" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M13 4H7v-1c0-0.66-0.31-1-1-1H1c-0.55 0-1 0.45-1 1v10c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V5c0-0.55-0.45-1-1-1z m-7 0H1v-1h5v1z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/tree/master/test" class="js-navigation-open" id="098f6bcd4621d373cade4e832627b4f6-d513eb6bc7404a161e2e25206a4f90ae358b0e1e" title="test">test</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/97947f5ec7eee73646d199d7ed439131af324301" class="message" data-pjax="true" title="bugfix: server build">bugfix: server build</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-27T00:50:42Z" title="2015年8月27日 1:50 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/.eslintignore" class="js-navigation-open" id="1b0fd5322de42e11c8786543f74c7c41-ccb0fb361bcad58bf2f06f195f8baa4412678367" title=".eslintignore">.eslintignore</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/c7f456d32be135828e29a7300864d20e30a8b532" class="message" data-pjax="true" title="Fix broken npm package.">Fix broken npm package.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-25T10:06:41Z" title="2015年8月25日 11:06 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/.eslintrc" class="js-navigation-open" id="1dc6ee56b778cd91e0327b52aaeaa1b9-1c1b9847edb908096d130674e4de643ba3185aff" title=".eslintrc">.eslintrc</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/c7f456d32be135828e29a7300864d20e30a8b532" class="message" data-pjax="true" title="Fix broken npm package.">Fix broken npm package.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-25T10:06:41Z" title="2015年8月25日 11:06 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/.gitattributes" class="js-navigation-open" id="fc723d30b02a4cca7a534518111c1a66-7c0181536961ac9fcec8e46248ab3b3342c75484" title=".gitattributes">.gitattributes</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/9345c51d48d5bc1c9adbde305bd4b95493151d09" class="message" data-pjax="true" title="add .gitattributes">add .gitattributes</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-07-05T08:12:12Z" title="2015年7月5日 9:12 GMT+1">11 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/.gitignore" class="js-navigation-open" id="a084b794bc0759e7a6b77810e01874f2-6a1bb0d17a2626603fe80b49b6219f38c8daee30" title=".gitignore">.gitignore</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/d074c65ad8d6cbf618cf46057dfd4e37ef46273a" class="message" data-pjax="true" title="Add build to git.">Add build to git.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-25T10:15:29Z" title="2015年8月25日 11:15 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/.travis.yml" class="js-navigation-open" id="354f30a63fb0907d4ad57269548329e3-b8e080b4d652aa50a2f98b09047da441f66ef0f4" title=".travis.yml">.travis.yml</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/a9a63d5a6c2e14dcfba5aef560fbaa3c971fd473" class="message" data-pjax="true" title="Add node 5 to Travis">Add node 5 to Travis</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-11-08T11:12:26Z" title="2015年11月8日 11:12 GMT">7 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/.zuul.yml" class="js-navigation-open" id="76b2596360a5d338d6cd7132af537418-647c9f70587ae1e5c391883f6b91c65bf0e8d41e" title=".zuul.yml">.zuul.yml</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/c7f456d32be135828e29a7300864d20e30a8b532" class="message" data-pjax="true" title="Fix broken npm package.">Fix broken npm package.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-25T10:06:41Z" title="2015年8月25日 11:06 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/CONTRIBUTING.md" class="js-navigation-open" id="6a3371457528722a734f3c51d9238c13-c182729924d0c4fae3f48f66aced1abeaf3a7aa9" title="CONTRIBUTING.md">CONTRIBUTING.md</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/cadd1b836d1578a17add1656a0c88d2e57b5196c" class="message" data-pjax="true" title="add saucelabs link">add saucelabs link</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-07-05T21:26:18Z" title="2015年7月5日 22:26 GMT+1">11 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/LICENSE" class="js-navigation-open" id="9879d6db96fd29134fc802214163b95a-95c636be301850df3472dbbb66b20fc7089fb5d3" itemprop="license" title="LICENSE">LICENSE</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/f507d971a70da224d3eb447ed87ddbeb1b9fd097" class="message" data-pjax="true" title="Initial commit">Initial commit</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2012-09-01T02:24:07Z" title="2012年9月1日 3:24 GMT+1">4 years ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/README.markdown" class="js-navigation-open" id="0a369498a5a8db3ac8fa606b544c9810-ae45751798a8b3f18d80a16d0d4c44857c502ce8" title="README.markdown">README.markdown</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/8b8f3265de68f69cf00fe8e1c957849ae344a90e" class="message" data-pjax="true" title="Clojure port
+
+note Clojure port">Clojure port</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-12-22T09:17:55Z" title="2015年12月22日 9:17 GMT">5 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/component.json" class="js-navigation-open" id="162d38b326426c84ac91e51f931105bb-eb6adb93db474f2f63bd3b6f105ad99aa6675187" title="component.json">component.json</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/c7f456d32be135828e29a7300864d20e30a8b532" class="message" data-pjax="true" title="Fix broken npm package.">Fix broken npm package.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-25T10:06:41Z" title="2015年8月25日 11:06 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/package.json" class="js-navigation-open" id="b9cfc7f2cdf78a7f4b91a753d10865a2-c1d67eb659555d96351d3df928fc8907cdd668c2" title="package.json">package.json</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/21b728b6e9f9de6d5a24e244bb7d45290cfbeb9a" class="message" data-pjax="true" title="safer PID handling">safer PID handling</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-27T05:32:04Z" title="2015年8月27日 6:32 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg aria-hidden="true" class="octicon octicon-file-text" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path></svg>
+            <img alt="" class="spinner" height="16" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/octocat-spinner-32.gif" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="https://github.com/ericelliott/cuid/blob/master/webpack.config.js" class="js-navigation-open" id="11e9f7f953edc64ba14b0cc350ae7b9d-61c41b2a140046d37346939641f689315d8cdf79" title="webpack.config.js">webpack.config.js</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="https://github.com/ericelliott/cuid/commit/97947f5ec7eee73646d199d7ed439131af324301" class="message" data-pjax="true" title="bugfix: server build">bugfix: server build</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2015-08-27T00:50:42Z" title="2015年8月27日 1:50 GMT+1">9 months ago</time-ago></span>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+  <div id="readme" class="readme boxed-group clearfix announce instapaper_body markdown">
+    <h3>
+      <svg aria-hidden="true" class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M2 5h4v1H2v-1z m0 3h4v-1H2v1z m0 2h4v-1H2v1z m11-5H9v1h4v-1z m0 2H9v1h4v-1z m0 2H9v1h4v-1z m2-6v9c0 0.55-0.45 1-1 1H8.5l-1 1-1-1H1c-0.55 0-1-0.45-1-1V3c0-0.55 0.45-1 1-1h5.5l1 1 1-1h5.5c0.55 0 1 0.45 1 1z m-8 0.5l-0.5-0.5H1v9h6V3.5z m7-0.5H8.5l-0.5 0.5v8.5h6V3z"></path></svg>
+      README.markdown
+    </h3>
+
+      <article class="markdown-body entry-content" itemprop="text"><h1><a id="user-content-cuid" class="anchor" href="https://github.com/ericelliott/cuid#cuid" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>cuid</h1>
+
+<p><a href="https://travis-ci.org/ericelliott/cuid"><img src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/68747470733a2f2f7472617669732d63692e6f72672f65726963656c6c696f74742f637569642e737667" alt="Travis-CI" data-canonical-src="https://travis-ci.org/ericelliott/cuid.svg" style="max-width:100%;"></a><a href="https://gitter.im/learn-javascript-courses/javascript-questions?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/68747470733a2f2f6261646765732e6769747465722e696d2f4a6f696e253230436861742e737667" alt="Gitter" data-canonical-src="https://badges.gitter.im/Join%20Chat.svg" style="max-width:100%;"></a></p>
+
+<p>Collision-resistant ids optimized for horizontal scaling and sequential lookup performance.</p>
+
+<p>Currently available for Node, browsers, Ruby, .Net, Go, PHP and Elixir (see ports below -- more ports are welcome).</p>
+
+<p><code>cuid()</code> returns a short random string with some collision-busting measures. Safe to use as HTML element ID's, and unique server-side record lookups.</p>
+
+<h2><a id="user-content-example" class="anchor" href="https://github.com/ericelliott/cuid#example" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Example</h2>
+
+<p>Node style. For the browser, either bundle with something like <a href="https://github.com/substack/node-browserify">browserify</a> or <a href="http://webpack.github.io/">webpack</a>, or use the stand-alone version and leave off the require line.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> cuid <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>cuid<span class="pl-pds">'</span></span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>( <span class="pl-en">cuid</span>() );
+
+<span class="pl-c">// ch72gsb320000udocl363eofy</span></pre></div>
+
+<h2><a id="user-content-installing" class="anchor" href="https://github.com/ericelliott/cuid#installing" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Installing</h2>
+
+<pre><code>$ npm install --save cuid
+</code></pre>
+
+<p>or download the stand-alone version from <a href="https://github.com/ericelliott/cuid/tree/master/dist"><code>./dist</code></a>.</p>
+
+<h3><a id="user-content-broken-down" class="anchor" href="https://github.com/ericelliott/cuid#broken-down" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Broken down</h3>
+
+<p>** c - h72gsb32 - 0000 - udoc - l363eofy **</p>
+
+<p>The groups, in order, are:</p>
+
+<ul>
+<li>'c' - identifies this as a cuid, and allows you to use it in html entity ids. The fixed value helps keep the ids sequential.</li>
+<li>Timestamp</li>
+<li>Counter - a single process might generate the same random string. The weaker the pseudo-random source, the higher the probability. That problem gets worse as processors get faster. The counter will roll over if the value gets too big.</li>
+<li>Client fingerprint</li>
+<li>Pseudo random (<code>Math.random()</code> in JavaScript)</li>
+</ul>
+
+<h2><a id="user-content-fingerprints" class="anchor" href="https://github.com/ericelliott/cuid#fingerprints" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Fingerprints</h2>
+
+<p><strong>In browsers</strong>, the first chars are obtained from the user agent string (which is fairly unique), and the supported mimeTypes (which is also fairly unique, except for IE, which always returns 0).
+That string is concatenated with a count of variables in the global scope (which is also fairly unique), and the result is trimmed to 4 chars.</p>
+
+<p><strong>In node</strong>, the first two chars are extracted from the process.pid. The next two chars are extracted from the hostname.</p>
+
+<h2><a id="user-content-motivation" class="anchor" href="https://github.com/ericelliott/cuid#motivation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Motivation</h2>
+
+<p>Modern web applications have different requirements than applications from just a few years ago. Our modern unique identifiers have a stricter list of requirements that cannot all be satisfied by any existing version of the GUID/UUID specifications:</p>
+
+<h3><a id="user-content-horizontal-scalability" class="anchor" href="https://github.com/ericelliott/cuid#horizontal-scalability" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Horizontal scalability</h3>
+
+<p>Today's applications don't run on any single machine.</p>
+
+<p>Applications might need to support online / offline capability, which means we need a way for clients on different hosts to generate ids that won't collide with ids generated by other hosts -- even if they're not connected to the network.</p>
+
+<p>Most pseudo-random algorithms use time in ms as a random seed. Random IDs lack sufficient entropy when running in separate processes (such as cloned virtual machines or client browsers) to guarantee against collisions. Application developers report v4 UUID collisions causing problems in their applications when the ID generation is distributed between lots of machines such that lots of IDs are generated in the same millisecond.</p>
+
+<p>Each new client exponentially increases the chance of collision in the same way that each new character in a random string exponentially reduces the chance of collision. Successful apps scale at hundreds or thousands of new clients per day, so fighting the lack of entropy by adding random characters is a losing strategy.</p>
+
+<p>Because of the nature of this problem, it's possible to build an app from the ground up and scale it to a million users before this problem rears its head. By the time you notice the problem (when your peak hour use requires dozens of ids to be created per ms), if your db doesn't have unique constraints on the id because you thought your guids were safe, you're in a world of hurt. Your users start to see data that doesn't belong to them because the db just returns the first ID match it finds.</p>
+
+<p>Alternatively, you've played it safe and you only let your database create ids. Writes only happen on a master database, and load is spread out over read replicas. But with this kind of strain, you have to start scaling your database writes horizontally, too, and suddenly your application starts to crawl (if the db is smart enough to guarantee unique ids between write hosts), or you start getting id collisions between different db hosts, so your write hosts don't agree about which ids represent which data.</p>
+
+<h3><a id="user-content-performance" class="anchor" href="https://github.com/ericelliott/cuid#performance" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Performance</h3>
+
+<p>Because entities might need to be generated in high-performance loops, id generation should be fast. That means no waiting around for asynchronous entropy pool requests, or cross-process/cross-network communication. Performance slows to impracticality in the browser. All sources of entropy need to be fast enough for synchronous access.</p>
+
+<p>Even worse, when the database is the only guarantee that ids are unique, that means that clients are forced to send incomplete records to the database, and wait for a network round-trip before they can use the ids in any algorithm. Forget about fast client performance. It simply isn't possible.</p>
+
+<p>That situation has caused some clients to create ids that are only usable in a single client session (such as an in-memory counter). When the database returns the real id, the client has to do some juggling logic to swap out the id being used.</p>
+
+<p>If client side ID generation were stronger, the chances of collision would be much smaller, and the client could send complete records to the db for insertion without waiting for a full round-trip request to finish before using the ID.</p>
+
+<h4><a id="user-content-sequential-ids" class="anchor" href="https://github.com/ericelliott/cuid#sequential-ids" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Sequential IDs</h4>
+
+<p><a href="http://stackoverflow.com/questions/170346/what-are-the-performance-improvement-of-sequential-guid-over-standard-guid">Sequential ids can enhance performance</a> for database transactions for a variety of reasons. Ids should be suitable for use as high-performance database primary keys. Pure pseudo-random variants don't meet this requirement.</p>
+
+<h4><a id="user-content-tiny" class="anchor" href="https://github.com/ericelliott/cuid#tiny" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Tiny</h4>
+
+<p>Somewhat related to performance, an algorithm to generate an ID should require a tiny implementation. This is especially important for thick-client JavaScript applications.</p>
+
+<h3><a id="user-content-security" class="anchor" href="https://github.com/ericelliott/cuid#security" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Security</h3>
+
+<p>Client-visible ids often need to have sufficient random data that it becomes practically impossible to try to guess valid IDs based on an existing, known id. That makes simple sequential ids unusable in the context of client-side generated database keys.</p>
+
+<h4><a id="user-content-portability" class="anchor" href="https://github.com/ericelliott/cuid#portability" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Portability</h4>
+
+<p>Most stronger forms of the UUID / GUID algorithms require access to OS services that are not available in browsers, meaning that they are impossible to implement as specified.</p>
+
+<h1><a id="user-content-features-of-cuids" class="anchor" href="https://github.com/ericelliott/cuid#features-of-cuids" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Features of cuids</h1>
+
+<h2><a id="user-content-scalable" class="anchor" href="https://github.com/ericelliott/cuid#scalable" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Scalable</h2>
+
+<p>Because of the timestamp and the counter, cuid is really good at generating unique IDs on one machine.</p>
+
+<p>Because of the fingerprints, cuid is also good at preventing collisions between multiple clients.</p>
+
+<h2><a id="user-content-fast" class="anchor" href="https://github.com/ericelliott/cuid#fast" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Fast</h2>
+
+<p>Because cuids can be safely generated synchronously, you can generate a lot of them quickly. Since it's unlikely that you'll get a collision, you don't have to wait for a round trip to the database just to insert a complete record in your database.</p>
+
+<p>Because cuids are sequential, database primary key performance gets a significant boost.</p>
+
+<p>Weighing in at less than 1k minified and compressed, the cuid source should be suitable for even the lightest-weight mobile clients, and will not have a significant impact on the download time of your app, particularly if you follow best practices and concatenate it with the rest of your code in order to avoid the latency hit of an extra file request.</p>
+
+<h2><a id="user-content-secure" class="anchor" href="https://github.com/ericelliott/cuid#secure" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Secure</h2>
+
+<p>Cuids contain enough random data and moving parts as to make guessing another id based on an existing id practically impossible. It also opens up a way to detect for abuse attempts -- if a client requests large blocks of ids that don't exist, there's a good chance that the client is malicious, or trying to get at data that doesn't belong to it.</p>
+
+<h2><a id="user-content-portable" class="anchor" href="https://github.com/ericelliott/cuid#portable" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Portable</h2>
+
+<p>The only part of a cuid that might be hard to replicate between different clients is the fingerprint. It's easy to override the fingerprint method in order to port to different clients. Cuid already works standalone in browsers, or as a node module, so you can use cuid where you need to use it.</p>
+
+<p>The algorithm is also easy to reproduce in other languages. You are encouraged to port it to whatever language you see fit.</p>
+
+<h3><a id="user-content-ports" class="anchor" href="https://github.com/ericelliott/cuid#ports" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Ports:</h3>
+
+<ul>
+<li>JavaScript (Browsers &amp; Node)</li>
+<li><a href="https://github.com/iyshannon/cuid">cuid for Ruby</a> - <a href="https://github.com/iyshannon">Ian Shannon</a></li>
+<li><a href="https://github.com/moonpyk/ncuid">cuid for .Net</a> - <a href="https://github.com/moonpyk">Clément Bourgeois</a></li>
+<li><a href="http://github.com/lucsky/cuid">cuid for Go</a> - <a href="https://github.com/lucsky">Luc Heinrich</a></li>
+<li><a href="https://github.com/endyjasmi/cuid">cuid for PHP</a> - <a href="https://github.com/endyjasmi">Endy Jasmi</a></li>
+<li><a href="https://github.com/duailibe/cuid">cuid for Elixir</a> - <a href="https://github.com/duailibe">Lucas Duailibe</a></li>
+<li><a href="https://github.com/eightyeight/hscuid">cuid for Haskell</a> - <a href="https://github.com/eightyeight">Daniel Buckmaster</a></li>
+<li><a href="https://github.com/necaris/cuid.py">cuid for Python</a> - <a href="https://github.com/necaris">Rami Chowdhury</a></li>
+<li><a href="https://github.com/hden/cuid">cuid for Clojure</a> - <a href="https://github.com/hden">Hao-kang Den</a></li>
+</ul>
+
+<h1><a id="user-content-short-urls" class="anchor" href="https://github.com/ericelliott/cuid#short-urls" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Short URLs</h1>
+
+<p>Need a smaller ID? <code>cuid.slug()</code> is for you. With fewer than 10 characters, <code>.slug()</code> is a great solution for short urls. They're good for things like URL slug disambiguation (i.e., <code>example.com/some-post-title-&lt;slug&gt;</code>) but <strong>absolutely not recommended for database unique IDs</strong>. Stick to the full cuid for database keys.</p>
+
+<p>Be aware, slugs:</p>
+
+<ul>
+<li><p>are less likely to be sequential. Stick to full cuids for database lookups, if possible.</p></li>
+<li><p>have less random data, less room for the counter, and less room for the fingerprint, which means that all of them are more likely to collide or be guessed, especially as CPU speeds increase.</p></li>
+</ul>
+
+<p>Don't use them if guessing an existing ID would expose confidential information to malicious users. For example, if you're providing a service like Google Drive or DropBox, which hosts user's private files, favor <code>cuid()</code> over <code>.slug()</code>.</p>
+
+<h1><a id="user-content-questions" class="anchor" href="https://github.com/ericelliott/cuid#questions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Questions</h1>
+
+<h3><a id="user-content-is-this-a-replacement-for-guid--uuid" class="anchor" href="https://github.com/ericelliott/cuid#is-this-a-replacement-for-guid--uuid" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Is this a replacement for GUID / UUID?</h3>
+
+<p>No. Cuid is great for the use case it was designed for -- to generate ids for applications which need to be scalable past tens or hundreds of new entities per second across multiple id-generating hosts. In other words, if you're building a web or mobile app and want the assurance that your choice of id standards isn't going to slow you down, cuid is for you.</p>
+
+<p>However, if you need to obscure the order of id generation, or if it's potentially problematic to know the precise time that an id was generated, you'll want to go with something different.</p>
+
+<p>Cuids should not be considered cryptographically secure (but neither should most guid algorithms. Make sure yours is using a crypto library before you rely on it).</p>
+
+<h3><a id="user-content-why-dont-you-use-sha1-md5-etc" class="anchor" href="https://github.com/ericelliott/cuid#why-dont-you-use-sha1-md5-etc" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Why don't you use sha1, md5, etc?</h3>
+
+<p>A sha1 implementation in JavaScript is about 300 lines by itself, uncompressed, and its use would provide little benefit. For contrast, the cuid source code weighs in at less than 100 lines of code, uncompressed. It also comes at considerable performance cost. Md5 has similar issues.</p>
+
+<h3><a id="user-content-why-are-there-no-dashes" class="anchor" href="https://github.com/ericelliott/cuid#why-are-there-no-dashes" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Why are there no dashes?</h3>
+
+<p>Almost all web-technology identifiers allow numbers and letters (though some require you to begin with a letter -- hence the 'c' at the beginning of a cuid). However, dashes are not allowed in some identifier names. Removing dashes between groups allows the ids to be more portable. Also, identifier groupings should not be relied on in your application. Removing them should discourage application developers from trying to extract data from a cuid.</p>
+
+<p>The cuid specification should not be considered an API contract. Code that relies on the groupings as laid out here should be considered brittle and not be used in production.</p>
+
+<h3><a id="user-content-submit-a-question-or-comment" class="anchor" href="https://github.com/ericelliott/cuid#submit-a-question-or-comment" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a><a href="https://github.com/dilvie/cuid/issues/new?title=Question">Submit a Question or Comment</a></h3>
+
+<h3><a id="user-content-credit" class="anchor" href="https://github.com/ericelliott/cuid#credit" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Credit</h3>
+
+<p>Created by Eric Elliott, Author, <a href="http://ericleads.com/javascript-applications/">"Programming JavaScript Applications (O'Reilly)"</a></p>
+
+<p>Thanks to <a href="http://tout.com/">Tout</a> for support and production testing.</p>
+</article>
+  </div>
+
+
+  </div>
+  <div class="modal-backdrop"></div>
+</div>
+
+
+    </div>
+  </div>
+
+    </div>
+
+        <div class="container site-footer-container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com/" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+</a>
+    <ul class="site-footer-links">
+      <li>© 2016 <span title="0.09528s from github-fe122-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+        <li><a href="https://help.github.com/" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+
+    <div id="ajax-error-message" class="ajax-error-message flash flash-error" style="display: none;">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M15.72 12.5l-6.85-11.98C8.69 0.21 8.36 0.02 8 0.02s-0.69 0.19-0.87 0.5l-6.85 11.98c-0.18 0.31-0.18 0.69 0 1C0.47 13.81 0.8 14 1.15 14h13.7c0.36 0 0.69-0.19 0.86-0.5S15.89 12.81 15.72 12.5zM9 12H7V10h2V12zM9 9H7V5h2V9z"></path></svg>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75-1.48-1.48 3.75-3.75L0.77 4.25l1.48-1.48 3.75 3.75 3.75-3.75 1.48 1.48-3.75 3.75z"></path></svg>
+      </button>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      
+      <script crossorigin="anonymous" integrity="sha256-p2OayeOdqYIAqZM+uYQaiwapb878+qRhS3L3AD9qnwA=" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/frameworks-a7639ac9e39da98200a9933eb9841a8b06a96fcefcfaa4614b72f7003f6a9f00.js"></script>
+      <script async="async" crossorigin="anonymous" integrity="sha256-fhvMHP/gR6VOksNDwOFF7SsqhMorKNsnig4TAUduHEQ=" src="./ericelliott_cuid_ Collision-resistant ids optimized for horizontal scaling and performance._files/github-7e1bcc1cffe047a54e92c343c0e145ed2b2a84ca2b28db278a0e1301476e1c44.js"></script>
+      
+      
+      
+      
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner hidden">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M15.72 12.5l-6.85-11.98C8.69 0.21 8.36 0.02 8 0.02s-0.69 0.19-0.87 0.5l-6.85 11.98c-0.18 0.31-0.18 0.69 0 1C0.47 13.81 0.8 14 1.15 14h13.7c0.36 0 0.69-0.19 0.86-0.5S15.89 12.81 15.72 12.5zM9 12H7V10h2V12zM9 9H7V5h2V9z"></path></svg>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="https://github.com/ericelliott/cuid">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="https://github.com/ericelliott/cuid">Reload</a> to refresh your session.</span>
+    </div>
+    <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75-1.48-1.48 3.75-3.75L0.77 4.25l1.48-1.48 3.75 3.75 3.75-3.75 1.48 1.48-3.75 3.75z"></path></svg>
+    </button>
+  </div>
+</div>
+
+  
+
+
+<script aria-hidden="true" type="application/x-lastpass" id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{(function() { for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; if (typeof(lastpass_f.lpsubmitorig2)=='object'){ continue;}lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i.toString(); } else { d.textContent=i.toString(); } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }})()}catch(e){}</script></body></html>
