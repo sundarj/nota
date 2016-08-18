@@ -32,3 +32,29 @@ export function slugify( title ) {
     .replace(/^-+/, '')
     .replace(/-+$/, '')
 }
+
+// eslint-disable-next-line max-len
+const urlRx = /(^|[\s\n]|&nbsp;|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi
+
+// originally bryanwoods/autolink-js
+export function autolink( string ) {
+  return string.replace( urlRx, '$1<a href="$2">$2</a>' )
+
+  /* callback = option["callback"];
+  linkAttributes = ((function() {
+    var results;
+    results = [];
+    for (k in option) {
+      v = option[k];
+      if (k !== 'callback') {
+        results.push(" " + k + "='" + v + "'");
+      }
+    }
+    return results;
+  })()).join('');
+  return this.replace(pattern, function(match, space, url) {
+    var link;
+    link = (typeof callback === "function" ? callback(url) : void 0) || ("<a href='" + url + "'" + linkAttributes + ">" + url + "</a>");
+    return "" + space + link;
+  });*/
+}

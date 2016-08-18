@@ -1,86 +1,45 @@
 <template>
-  <div ref=editor contenteditable v-on:keyup=keyup></div>
+  <div ref=editor contenteditable v-on:blur=blur></div>
 </template>
 
 <script>
   import editable from 'wysiwyg.js'
-  import linked from 'autolink.js'
-  import rangy from 'rangy'
-
-  import { key } from '../util'
+  import { autolink } from '../util'
   import bus from '../bus'
+
+  const linked = autolink
+  let editor
 
   export default {
     name: 'nota-editable',
     props: [ 'value' ],
 
     mounted() {
-      editable({
+      editor = editable({
         element: this.$refs.editor,
       })
-
-      // const editor = new Editor( this.$refs.editor, {
-      //   toolbar: false,
-      //   autoLink: true,
-      // })
-
-      // setContent( editor, this.value )
-      // bus.$on( 'historychange', _ =>
-      //   setImmediate( _ => setContent(editor, this.value) )
-      // )
-
-      // function setContent( editor, value ) {
-      //   editor.origElements.innerHTML = value || ''
-      // }
-
-      // editor.subscribe( 'editableInput', ({ target }) => {
-      //   console.error(new Error)
-      //   this.$emit( 'input', target.innerHTML )
-      // })
     },
 
     methods: {
       keyup( event ) {
         const keyPressed = key( event )
         const activateKeys = [ 'space', 'enter' ]
-        if ( ! activateKeys.includes(key(event)) ) return
+        if ( ! activateKeys.includes(keyPressed) ) return
 
-        const { target } = event
+        const caretPos = rangy.saveSelection()
+        const editorContent = editor.getHTML().replace( /&nbsp;/g, ( match, offset))
+        const linkedContent = linked( editorContent )
+        console.log( linkedContent )
+        editor.setHTML( linkedContent.replace( / /g, '&nbsp;' ) )
+        rangy.restoreSelection( caretPos )
 
-        const range = rangy.createRange()
-        const nodes = document.createNodeIterator(
-          target,
-          NodeFilter.SHOW_TEXT
-        )
-        let node, lastNode
+      },
 
-        while( node = nodes.nextNode() ) lastNode = node
-        range.selectNodeContents( lastNode )
+      blur() {
+        if ( ! editor ) return
 
-        const string = range.toString().trim()
-        const lastWord = string.split(/\s/).pop()
-
-        if ( ! lastWord.length ) {
-          range.collapse()
-          return
-        }
-
-        try {
-          new URL( lastWord )
-        } catch ( err ) {
-          range.collapse()
-          return
-        }
-
-        const start = string.lastIndexOf( lastWord )
-        range.setStart( lastNode, start )
-        range.setEnd( lastNode, start + lastWord.length )
-        range.deleteContents()
-        range.insertNode(
-          range.createContextualFragment( linked(lastWord) )
-        )
-        range.collapse()
-      }
+        editor.setHTML( linked(editor.getHTML()) )
+      },
     },
   }
 </script>
