@@ -1,5 +1,5 @@
 <template>
-  <div ref=editor contenteditable v-on:blur=blur></div>
+  <div ref=editor contenteditable v-on:blur=blur v-on:input=input></div>
 </template>
 
 <script>
@@ -15,8 +15,10 @@
     props: [ 'value' ],
 
     mounted() {
-      editor = editable({
-        element: this.$refs.editor,
+      editor = editable({ element: this.$refs.editor })
+
+      if ( this.value ) editor.setHTML( this.value )
+      bus.$on( 'historychange', _ => {                                           setImmediate( _ => editor.setHTML(this.value) )
       })
     },
 
@@ -24,7 +26,13 @@
       blur() {
         if ( ! editor ) return
 
-        editor.setHTML( linked(editor.getHTML()) )
+        const html = linked( editor.getHTML() )
+        editor.setHTML( html )
+        this.$emit( 'input', html )
+      },
+
+      input({ target }) {
+
       },
     },
   }

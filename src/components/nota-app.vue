@@ -90,7 +90,7 @@
         if ( ! params.id ) return
 
         const item = this.items.find( item => item.id === params.id )
-        if ( !item || item.type !== 'nota' ) return
+        if ( ! item || item.type !== 'nota' ) return
 
         this.editing = item
       },
