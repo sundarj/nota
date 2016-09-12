@@ -1,5 +1,3 @@
-import 'setimmediate'
-
 import history from './history'
 import Vue from 'vue'
 

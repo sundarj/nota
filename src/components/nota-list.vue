@@ -57,7 +57,7 @@
       hasNoParent,
       isChildOf: id => ({ parent }) => parent === id,
 
-      historychange({ state = {}, params }) {
+      historychange({ params }) {
         if ( ! params.id ) {  // location: /
           this.filter = this.hasNoParent
           return

@@ -7,6 +7,7 @@ export function key({ keyCode }) {
   return lower( keymap[keyCode] )
 }
 
+// eslint-disable-next-line max-len
 const $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ_-~@!+'.split('')
 
 export function ID() {
@@ -31,37 +32,4 @@ export function slugify( title ) {
     .replace(/\-\-+/g, '-')
     .replace(/^-+/, '')
     .replace(/-+$/, '')
-}
-
-// eslint-disable-next-line max-len
-const uriRx = /(^|[\s\n]|&nbsp;|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi
-
-// originally bryanwoods/autolink-js
-export function autolink( string ) {
-  const linked = string.replace( uriRx, linkURI )
-  return linked
-}
-
-function linkURI( match, prior, url ) {
-  url = formatURL( url )
-  return `${prior}<a href='${url}'>${renderURL(url)}</a>`
-}
-
-const nbspRx = /&nbsp;?/g
-
-function formatURL( url ) {
-  // `new URL` always returns at least 1 trailing slash
-  return new URL( url.replace(nbspRx, '') + '/' ).href.slice( 0, -1 )
-}
-
-const imageRx = /(.png|.jpg|.jpg:large|.gif|.webp|.apng|.jpeg)$/
-
-function renderURL( url ) {
-  if ( imageRx.test(url) ) return formatImage( url )
-
-  return url
-}
-
-function formatImage( url ) {
-  return `<img src='${url}' alt=''>`
 }

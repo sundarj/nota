@@ -26,10 +26,7 @@
   "dependencies": {
     "history": "^3.0.0",
     "path-to-regexp": "^1.5.3",
-    "rangy": "^1.3.0",
-    "setimmediate": "^1.0.4",
-    "vue": "^2.0.0-beta.1",
-    "wysiwyg.js": "^1.0.0"
+    "vue": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",

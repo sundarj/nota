@@ -35,17 +35,17 @@
         type: 'nota',
         id: '1',
         title: 'The Silmarillion',
-        content: '<p>duup</p><p>lex</p>',
+        content: 'duup\n\nlex',
       }, {
         type: 'nota',
         id: '2',
         title: '不思議の国のアリス',
-        content: '<p>hely</p>',
+        content: 'hely',
       }, {
         type: 'nota',
         id: '3',
         title: 'Warning!!',
-        content: '<p>tropic</p>',
+        content: 'tropic',
       }, {
         type: 'folder',
         id: '4',
@@ -55,7 +55,7 @@
         id: '5',
         parent: '4',
         title: 'Don\'t Panic',
-        content: '<p>yuna</p>',
+        content: 'yuna',
       }, {
         type: 'folder',
         id: '6',
@@ -66,7 +66,7 @@
         id: '7',
         parent: '6',
         title: 'Sometimes',
-        content: '<p>yuna</p>',
+        content: 'didot',
       }, {
         type: 'folder',
         id: '8',
@@ -77,7 +77,7 @@
         id: '9',
         parent: '8',
         title: '1',
-        content: '<p>yuna</p>',
+        content: 'heliotrope',
       }],
     }),
 
