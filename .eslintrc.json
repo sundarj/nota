@@ -19,6 +19,7 @@
       "no-use-before-define": [ 2, "nofunc" ],
       "prefer-template": 0,
       "no-unused-vars": [ 2, { "argsIgnorePattern": "_" } ],
-      "max-len": [ 2, 80 ]
+      "max-len": [ 2, 80 ],
+      "no-multiple-empty-lines": [ 2, { "max": 5 }]
     }
 }
