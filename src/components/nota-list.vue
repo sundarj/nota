@@ -5,10 +5,7 @@
     v-on:focusout='blur( $event )'
   >
     <template v-for='{ type, id, parent, title } of results'>
-      <router-link
-        v-if='type === "item"'
-        v-bind:to='{ name: "item", params: { itemId: id } }'
-      >
+      <router-link v-bind:to='getItemLocation({ type, id, parent })'>
         <span class='material-icons'
           v-text='type === "folder" ? "folder" : "note"'
         ></span>
@@ -84,6 +81,19 @@
 
       getChildrenOf( parentId ) {
         return this.items.filter( this.isChildOf( parentId ) )
+      },
+
+      getItemLocation({ type, id, parent }) {
+        const location = {
+          name: 'item',
+
+          params: {
+            [type + 'Id']: id,
+            folderId: ( type === 'folder' ) ? id : parent,
+          },
+        }
+
+        return location
       },
 
       focus({ target }) {
