@@ -1,19 +1,20 @@
 <template>
-  <nav am-nota=list
+  <nav
     v-on:click.capture='edit( $event )'
     v-on:keyup='keyup( $event )'
     v-on:focusout='blur( $event )'
   >
-    <template v-for='item of results'>
-      <a am-nota=item :data-type=item.type
-        v-href='{ name: "item", params: { id: item.id } }'
+    <template v-for='{ type, id, parent, title } of results'>
+      <router-link
+        v-if='type === "item"'
+        v-bind:to='{ name: "item", params: { itemId: id } }'
       >
-        <span class=material-icons>
-          {{ item.type === 'folder' ? 'folder' : 'note' }}
-        </span>
+        <span class='material-icons'
+          v-text='type === "folder" ? "folder" : "note"'
+        ></span>
 
-        <input v-model=item.title :data-id=item.id :id=item.id readonly>
-      </a>
+        <span v-text='title' v-bind:data-id='id'></span>
+      </router-link>
     </template>
   </nav>
 </template>
@@ -22,16 +23,16 @@
   import bus from '../bus'
   import { key } from '../util'
 
-  function hasNoParent({ parent }) {
-    return ( ! parent )
+  function isRootItem({ parent }) {
+    return ( parent === undefined )
   }
 
   export default {
     name: 'nota-list',
     props: [ 'items' ],
 
-    data: _ => ({
-      filter: hasNoParent,
+    data: () => ({
+      filter: isRootItem,
       currentFolder: null,
       lastTarget: null,
       lastValue: null,
@@ -54,12 +55,12 @@
     },
 
     methods: {
-      hasNoParent,
-      isChildOf: id => ({ parent }) => parent === id,
+      isRootItem,
+      isChildOf: ( id ) => ({ parent }) => parent === id,
 
       historychange({ params }) {
         if ( ! params.id ) {  // location: /
-          this.filter = this.hasNoParent
+          this.filter = this.isRootItem
           return
         }
 
@@ -77,8 +78,12 @@
         this.filter = this.isChildOf( id )
       },
 
-      getItemById( $id ) {
-        return this.items.find( ({ id }) => id === $id )
+      getItemById( itemId ) {
+        return this.items.find( ({ id }) => id === itemId )
+      },
+
+      getChildrenOf( parentId ) {
+        return this.items.filter( this.isChildOf( parentId ) )
       },
 
       focus({ target }) {
@@ -147,24 +152,24 @@
 </script>
 
 <style lang='stylus'>
-  [am-nota=list]:focus {
-    outline none
+  nav:focus {
+    outline: none
   }
 
   .material-icons {
-    font-size inherit
-    margin-right 5px
+    font-size: inherit
+    margin-right: 5px
 
     &, & + span {
-      display inline-block
-      vertical-align middle
+      display: inline-block
+      vertical-align: middle
     }
   }
 
   a {
-    color inherit
-    text-decoration none
-    margin .5em 0
-    display block
+    color: inherit
+    text-decoration: none
+    margin: .5em 0
+    display: block
   }
 </style>

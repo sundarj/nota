@@ -1,48 +1,54 @@
 <template>
   <main>
-    <aside am-nota=aside>
-      <nota-list :items=items></nota-list>
+    <aside>
+      <router-view v-bind:items='items'></router-view>
 
-      <button type=button v-on:click='add( "nota" )'>
-        <span class=material-icons>note_add</span> New note
+
+
+
+
+      <button type='button' v-on:click='add( "nota" )'>
+        <span class='material-icons'>note_add</span> New note
       </button>
 
-      <button type=button v-on:click='add( "folder" )'>
-        <span class=material-icons>create_new_folder</span> New folder
+      <button type='button' v-on:click='add( "folder" )'>
+        <span class='material-icons'>create_new_folder</span> New folder
       </button>
     </aside>
 
-   <nota-editor v-show=editing :editing=editing transition=editor></nota-editor>
+
+
+
+
+   <!--<nota-editor v-show=editing :editing=editing transition=editor></nota-editor>-->
   </main>
 </template>
 
 <script>
   import bus from '../bus'
-  import history, { href } from '../history'
   import { ID } from '../util'
 
   import NotaEditor from './nota-editor.vue'
-  import NotaList from './nota-list.vue'
 
   export default {
     name: 'nota-app',
-    components: { NotaEditor, NotaList },
+    components: { NotaEditor },
 
-    data: _ => ({
+    data: () => ({
       editing: false,
 
       items: [{
-        type: 'nota',
+        type: 'item',
         id: '1',
         title: 'The Silmarillion',
         content: 'duup\n\nlex',
       }, {
-        type: 'nota',
+        type: 'item',
         id: '2',
         title: '不思議の国のアリス',
         content: 'hely',
       }, {
-        type: 'nota',
+        type: 'item',
         id: '3',
         title: 'Warning!!',
         content: 'tropic',
@@ -51,7 +57,7 @@
         id: '4',
         title: 'other',
       }, {
-        type: 'nota',
+        type: 'item',
         id: '5',
         parent: '4',
         title: 'Don\'t Panic',
@@ -62,7 +68,7 @@
         parent: '4',
         title: 'else',
       }, {
-        type: 'nota',
+        type: 'item',
         id: '7',
         parent: '6',
         title: 'Sometimes',
@@ -73,7 +79,7 @@
         parent: '6',
         title: 'another',
       }, {
-        type: 'nota',
+        type: 'item',
         id: '9',
         parent: '8',
         title: '1',

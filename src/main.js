@@ -1,14 +1,26 @@
-import history from './history'
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+Vue.use( VueRouter )
 
 import NotaApp from './components/nota-app.vue'
+import NotaList from './components/nota-list.vue'
 
-const nota = window.nota = history
 
-nota.app = new Vue({
-  el: 'main',
 
-  render: h => h( NotaApp ),
+
+
+const router = new VueRouter({
+  mode: 'history',
+
+  routes: [{
+    name: 'item',
+    path: '/:folderId?/:itemId?',
+    component: NotaList,
+  }],
 })
 
-nota.start()
+// eslint-disable-next-line no-unused-vars
+const nota = window.nota = new Vue({
+  router,
+  render: ( h ) => h( NotaApp ),
+}).$mount( 'main' )
