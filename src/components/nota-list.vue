@@ -1,9 +1,8 @@
 <template>
-  <nav
-    v-on:click.capture='edit( $event )'
+  <!--v-on:click.capture='edit( $event )'
     v-on:keyup='keyup( $event )'
-    v-on:focusout='blur( $event )'
-  >
+    v-on:focusout='blur( $event )'-->
+  <nav>
     <template v-for='{ type, id, parent, title } of results'>
       <router-link v-bind:to='getItemLocation({ type, id, parent })'>
         <span class='material-icons'
@@ -17,12 +16,13 @@
 </template>
 
 <script>
-  import bus from '../bus'
   import { key } from '../util'
 
-  function isRootItem({ parent }) {
-    return ( parent === undefined )
-  }
+  const isRootItem = ({ parent }) => ( parent === undefined )
+
+
+
+
 
   export default {
     name: 'nota-list',
@@ -42,13 +42,13 @@
     },
 
     created() {
-      bus.$on( 'historychange', this.historychange )
+      // bus.$on( 'historychange', this.historychange )
 
-      bus.$on( 'newItem', ({ id }) =>
-        this.$nextTick( _ =>
-          this.focus({ target: document.getElementById(id) })
-        )
-      )
+      // bus.$on( 'newItem', ({ id }) =>
+      //   this.$nextTick( _ =>
+      //     this.focus({ target: document.getElementById(id) })
+      //   )
+      // )
     },
 
     methods: {

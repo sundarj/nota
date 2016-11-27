@@ -25,7 +25,6 @@
 </template>
 
 <script>
-  import bus from '../bus'
   import { ID } from '../util'
 
   import NotaEditor from './nota-editor.vue'
@@ -88,7 +87,7 @@
     }),
 
     created() {
-      bus.$on( 'historychange', this.historychange )
+      // bus.$on( 'historychange', this.historychange )
     },
 
     methods: {
