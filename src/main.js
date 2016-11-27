@@ -16,7 +16,7 @@ const router = new VueRouter({
 
   routes: [{
     name: 'item',
-    path: '/:folderId?/:itemId?',
+    path: '/:folderPath*/:itemId?',
     component: NotaList,
   }],
 })
