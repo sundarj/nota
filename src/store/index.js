@@ -28,7 +28,7 @@ export default new Vuex.Store({
         type: 'folder',
         id: '4',
         title: 'other',
-        children: [ 5, 6 ],
+        children: [ '5', '6' ],
       }, {
         type: 'item',
         id: '5',
@@ -40,7 +40,7 @@ export default new Vuex.Store({
         id: '6',
         parent: '4',
         title: 'else',
-        children: [ 7, 8 ],
+        children: [ '7', '8' ],
       }, {
         type: 'item',
         id: '7',
@@ -52,7 +52,7 @@ export default new Vuex.Store({
         id: '8',
         parent: '6',
         title: 'another',
-        children: [ 9 ],
+        children: [ '9' ],
       }, {
         type: 'item',
         id: '9',
