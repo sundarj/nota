@@ -25,8 +25,6 @@
 </template>
 
 <script>
-  import { ID } from '../util'
-
   // import NotaEditor from './nota-editor.vue'
 
   export default {
@@ -88,41 +86,5 @@
         content: 'heliotrope',
       }],
     }),
-
-    created() {
-      // bus.$on( 'historychange', this.historychange )
-    },
-
-    methods: {
-      historychange({ params }) {
-        if ( ! params.id ) return
-
-        const item = this.items.find( item => item.id === params.id )
-        if ( ! item || item.type !== 'nota' ) return
-
-        this.editing = item
-      },
-
-      add( type ) {
-        const item = {
-          type,
-          title: '',
-          id: ID(),
-        }
-
-        this.items.push( item )
-
-        if ( type === 'nota' ) {
-          item.content = ''
-          this.editing = item
-
-          history.push(
-            href({ name: 'item', params: item })
-          )
-        }
-
-        bus.$emit( 'newItem', { id: item.id } )
-      },
-    },
   }
 </script>
