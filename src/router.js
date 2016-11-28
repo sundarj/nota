@@ -11,8 +11,11 @@ export default new VueRouter({
   mode: 'history',
 
   routes: [{
+    path: '/',
+    component: NotaList,
+  }, {
     name: 'item',
-    path: '/:folderPath*/:itemId?',
+    path: '/:folderPath*/:itemId',
     component: NotaList,
   }],
 })

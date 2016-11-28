@@ -25,10 +25,15 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   // import NotaEditor from './nota-editor.vue'
 
   export default {
     name: 'nota-app',
     // components: { NotaEditor },
+
+    computed: mapState({
+      items: ({ app: { items } }) => items
+    }),
   }
 </script>
