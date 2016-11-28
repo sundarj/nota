@@ -1,28 +1,18 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use( VueRouter )
-// import Vuex from 'vuex'
-// Vue.use( Vuex )
+import { sync } from 'vuex-router-sync'
+import router from './router'
+import store from './store'
+sync( store, router )
 
 import NotaApp from './components/nota-app.vue'
-import NotaList from './components/nota-list.vue'
 
 
 
 
-
-const router = new VueRouter({
-  mode: 'history',
-
-  routes: [{
-    name: 'item',
-    path: '/:folderPath*/:itemId?',
-    component: NotaList,
-  }],
-})
 
 // eslint-disable-next-line no-unused-vars
 const nota = window.nota = new Vue({
+  store,
   router,
   render: ( h ) => h( NotaApp ),
 }).$mount( 'main' )
